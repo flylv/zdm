@@ -19,6 +19,7 @@ class backendAction extends baseAction {
         }
         $this->check_priv();
         $this->menuid = $this->_request('menuid', 'trim', 0);
+        
         if ($this->menuid) {
             $sub_menu = D('menu')->sub_menu($this->menuid, false);            
             $selected = '';
@@ -44,6 +45,7 @@ class backendAction extends baseAction {
         $map = $this->_search();
         $mod = D($this->_name);
         !empty($mod) && $this->_list($mod, $map);
+        
         $this->display();
     }
     public function add() {
@@ -192,6 +194,7 @@ class backendAction extends baseAction {
     }
     protected function _list($model, $map = array(), $sort_by = '', $order_by = '', $field_list = '*', $pagesize = 20) {
         $mod_pk = $model->getPk();
+
         if ($this->_request("sort", 'trim')) {
             $sort = $this->_request("sort", 'trim');
         } else if (!empty($sort_by)) {
@@ -209,19 +212,27 @@ class backendAction extends baseAction {
             $order = $this->order;
         } else {
             $order = 'DESC';
-        }
+        }   
+       
         if ($pagesize) {
             $count = $model->where($map)->count($mod_pk);
+           
             $pager = new Page($count, $pagesize);
+             
         }
+        
         $select = $model->field($field_list)->where($map)->order($sort . ' ' . $order);
+        
         $this->list_relation && $select->relation(true);
         if ($pagesize) {
+            
             $select->limit($pager->firstRow . ',' . $pager->listRows);
             $page = $pager->show();
             $this->assign("page", $page);
         }
+        
         $list = $select->select();
+        
         $p = $this->_get('p', 'intval', 1);
         $this->assign('p', $p);
         $this->assign('list', $list);

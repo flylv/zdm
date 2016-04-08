@@ -1,0 +1,128 @@
+<include file="public:header" />
+<style type="text/css">
+#mall_id{
+    width: 200px;
+}
+</style>
+<form id="info_form" action="{:U(MODULE_NAME.'/add')}" method="post" enctype="multipart/form-data">
+<div class="pad_10">
+	<div class="col_tab">
+		<ul class="J_tabs tab_but cu_li">
+			<li class="current">{:L('article_basic')}</li>			
+		</ul>
+		<div class="J_panes">
+			<div class="content_list pad_10">
+                <table>
+                    <tr>
+                        <td style="width: 80%;">
+            				<table width="100%" cellspacing="0" class="table_form">
+            		            <tr>
+                                        <th style="width: 60px;">cover_image_name：</th>
+                                        <td style="width: 680px;">
+            		                    <input type="text" name="cover_image_name" id="J_cover_image_name" rel="cover_image_name" class="input-text" value="{$info.cover_image_name}"/>
+            		                </td>
+            					</tr>
+                                <tr>
+                                    <th>logo_image_name：</th>
+                                    <td>
+                                        <input type="text" name="logo_image_name" id="J_logo_image_name" class="input-text" value="{$info.logo_image_name}"/></td>
+                                </tr>
+                                <tr>
+                                    <th>name_cn：</th>                                        
+                                    <td>
+                                        <input type="text" name="name_cn" class="input-text" value="{$info.name_cn}"/>                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>name_fr：</th>
+                                    <td><input type="text" name="name_fr" class="input-text" value="{$info.name_fr}"/></td>
+                                </tr>
+                                    <tr>
+            		 		<th>num_version：</th>
+                                        <td><input type="text" name="num_version" id="num_version" class="input-text"  value="{$info.num_version}"/></td>
+                                    </tr>
+                                   <tr>
+                                        <th>description：</th>
+            				<td><textarea name="description" id="description" style="width:100%;height:350px;visibility:hidden;resize:none;">{$info.description}</textarea></td>
+                                    </tr>
+                                    
+            		           
+            				</table>                        
+                        </td>
+           
+                    </tr>
+                </table>
+			</div>
+        </div>
+	</div>
+    <include file="public:_submit" />
+</div>
+<input type="hidden" name="menuid"  value="{$menuid}"/>
+<input type="hidden" name="id" id="id" value="{$info.id}" />
+<input type="hidden" name="key_id" id="id" value="{$info.key_id}" />
+</form>
+<include file="public:footer" />
+<script src="__STATIC__/js/jquery/plugins/colorpicker.js"></script>
+<script src="__STATIC__/js/kindeditor/kindeditor-min.js"></script>
+<script>
+//$('.J_cate_select').cate_select('请选择');
+$(function() {
+	KindEditor.create('#description', {
+		uploadJson : '{:U("attachment/editer_upload")}',
+		fileManagerJson : '{:U("attachment/editer_manager")}',
+		allowFileManager : true,
+        items:['source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+		'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+		'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+		'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen',
+		'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+		'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', 'image', 'multiimage', 
+		'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+		'anchor', 'link', 'unlink']
+	});
+	$('ul.J_tabs').tabs('div.J_panes > div');
+	//颜色选择器
+	$('.J_color_picker').colorpicker();
+	//自动获取标签
+	$('#J_gettags').live('click', function() {
+		var title = $.trim($('#J_title').val());
+		if(title == ''){
+			$.zhiphp.tip({content:lang.article_title_isempty, icon:'alert'});
+			return false;
+		}
+		$.getJSON('{:U(MODULE_NAME."/ajax_gettags")}', {title:title}, function(result){
+			if(result.status == 1){
+				$('#J_tags').val(result.data);
+			}else{
+				$.zhiphp.tip({content:result.msg});
+			}
+		});
+	});
+    create_mall_index($('.J_mall_index'));
+    $('.J_link_tab').each(function(){
+        $this=$(this);
+        var selected=$this.attr('data-selected');
+        if($.trim(selected).length==0){
+            selected='taobao';
+        }
+        $select_item=$('.tab_menu .tab_item[data-data="'+selected+'"]',$this);
+        $select_item.attr('checked','checked');
+        $('.tab_content .tab_item',$this).eq($select_item.index()).show().siblings().hide();
+        $('.tab_menu .tab_item',$this).click(function(){
+            $('.tab_content .tab_item',$this).eq($(this).index()).show().siblings().hide();
+        });         
+    });    
+    $('.btn_b2c').click(function(){
+        var link=$.trim($('.link_b2c').val());
+        if(link.length>0){
+            $.get("{:U(MODULE_NAME.'/convert_link')}",{link:link},function(data){
+                if(data.status==1){
+                    $('.url_b2c').val(data.data);
+                }
+            },'json');
+        }
+    });
+});
+</script>
+</body>
+</html>
