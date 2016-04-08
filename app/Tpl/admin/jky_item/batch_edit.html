@@ -1,0 +1,65 @@
+<div class="dialog_content">
+    <form id="info_form" action="{:u(MODULE_NAME.'/'.ACTION_NAME,array('act'=>'add'))}" method="post">
+        <div class="common-form">
+            <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+                <tr>
+                    <th width="100">所属栏目 :</th>
+                    <td>
+                        <div style="height: 200px;overflow-y: scroll">{$cate_tree}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100">来源:</th>
+                    <td>
+                        {:html_select('orig_id',$orig_list,$info['orig_id'])}
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100">发布人 :</th>
+                    <td>
+                        <input type="text" name="uname" class="input-text" size="30" value="{$uname}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>推荐 :</th>
+                    <td>
+                        {:html_select('is_recommend',C('YESNO'))}
+                    </td>
+                </tr>
+                <tr>
+                    <th>审核状态 :</th>
+                    <td>
+                        {:html_select('status',C('YESNO'))}
+                    </td>
+                </tr>
+                <tr>
+                    <th>开始时间 :</th>
+                    <td>
+                        <input type="text" name="stime" id="J_time_start" class="date J_date_picker" size="22" value="{:date('Y-m-d H:i:s',time())}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>结束时间 :</th>
+                    <td>
+                        <input type="text" name="etime" id="J_time_end" class="date J_date_picker" size="22" value="{:date('Y-m-d H:i:s',time()+3600*24*30)}"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <input type="hidden" name="api_params" value="{$Think.get.api_params}">
+        <input type="hidden" name="id" value="{$Think.get.id}">
+    </form>
+</div>
+<script type="text/javascript">
+$(function(){
+    $('#info_form').ajaxForm({success:complate,dataType:'json'});
+    function complate(result){
+        if(result.status == 1){
+            $.zhiphp.tip({content:result.msg});
+            window.location.reload();
+        } else {
+            $.zhiphp.tip({content:result.msg, icon:'alert'});
+        }
+    }
+});
+</script>

@@ -1,0 +1,55 @@
+<include file="public:header" />
+<div id="main" class="pb30 pt20">
+    <div class="w1040">
+        <div class="logincont clearfix">
+            <div class="loginbox clearfix">
+                <div class="loginbox-left fl">
+                    <div class="logininfo">
+                        <div class="logininfo-head">
+                            <h3 class="ml20">{:L('resetpwd_title')}</h3>
+                        </div>
+                        <div class="logininfo-body">
+                            <form id="J_resetpwd_form" action="" method="post" class="login_form">
+                                <div class="rp_pass clearfix line">
+                                    <span>{:L('password')}：</span>
+                                    <input maxlength="36" type="password" name="password" id="J_password" class="input_text">
+                                </div>
+                                <div class="rp_repass clearfix line">
+                                    <span>{:L('confirm_password')}：</span>
+                                    <input type="password" maxlength="36" name="repassword" id="J_repassword" class="input_text">
+                                </div>
+                                <div class="rp_chk clearfix line">
+                                    <span>{:L('captcha')}：</span>
+                                    <input type="text" name="captcha" id="J_captcha" class="input_text" maxlength="10">
+                                    <img src="{:U('captcha/index', array('t'=>time()))}" id="J_captcha_img" class="captcha_img" alt="{:L('captcha')}" data-url="{:U('captcha/index')}">
+                                    <a href="javascript:;" id="J_captcha_change">{:L('change_captcha')}</a>
+                                </div>
+                                <div class="lg_login line">
+                                    <span></span>
+                                    <input type="submit" class="submit" value="{:L('next_step')}">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="loginbox-right fl">
+                    <div class="logintip">
+                        <dl>
+                            <dt>注册</dt>
+                            <dd>
+                                <h3>还没有账号？</h3>
+                                <a class="reg-btn" href="{:U('user/register')}">轻松注册</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(function(){
+    $.zhiphp.user.resetpwd_form(); //登录验证
+});
+</script>
+<include file="public:footer" />

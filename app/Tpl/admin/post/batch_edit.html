@@ -1,0 +1,66 @@
+<div class="dialog_content">
+    <form id="info_form" action="{:u(MODULE_NAME.'/'.ACTION_NAME,array('act'=>'add'))}" method="post">
+        <div class="common-form">
+            <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+                <tr>
+                    <th width="100px">所属栏目 :</th>
+                    <td>
+                        <div style="height: 200px;overflow-y: scroll">{$cate_tree}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>发布人 :</th>
+                    <td>
+                        <input type="text" name="uname" class="input-text" size="30" value="{$uname}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>热门 :</th>
+                    <td>
+                        {:html_radio('is_hot',C('YESNO'))}
+                    </td>
+                </tr>
+                <tr>
+                    <th>推荐状态 :</th>
+                    <td>
+                        {:html_radio('is_recommend',C('YESNO'))}
+                    </td>
+                </tr>
+                <tr>
+                    <th>审核状态 :</th>
+                    <td>
+                        {:html_radio('status',C('YESNO'))}
+                    </td>
+                </tr>
+                <tr>
+                    <th>定时发布 :</th>
+                    <td>
+                        <input type="text" name="post_time" id="J_time_start" class="date J_date_picker" size="22" value=""/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <input type="hidden" name="id" value="{$Think.get.id}">
+    </form>
+</div>
+<script type="text/javascript">
+$(function(){
+    $('select[name="index"]').change(function(){
+        _ajax_mall_list($('option:selected',this).val());
+    });
+    function _ajax_mall_list(index){
+        $.post('{:u(MODULE_NAME."/ajax_mall_list")}',{index:index},function(data){
+            $('select[name="mall_id"]').html(data.data);
+        },'json');
+    }
+    $('#info_form').ajaxForm({success:complate,dataType:'json'});
+    function complate(result){
+        if(result.status == 1){
+            $.zhiphp.tip({content:result.msg});
+            window.location.reload();
+        } else {
+            $.zhiphp.tip({content:result.msg, icon:'alert'});
+        }
+    }
+});
+</script>

@@ -1,0 +1,9 @@
+<if condition="empty($visitor)">
+    <a href="{:u('user/login',array('ret_url'=>get_ret_url()))}">登录</a>
+    <a href="{:u('user/register')}">免费注册</a>
+    <else/>
+    您好，<a target="_blank" class="user" href="{:u('user/index')}">{$visitor.username}</a>
+    <a href="{:u('user/score_log')}" class="usz0"></a>，&nbsp;
+    <a href="{:u('user/logout',array('ret_url'=>get_ret_url()))}">退出</a>
+</if>
+<span></span>

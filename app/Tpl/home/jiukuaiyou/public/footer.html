@@ -1,0 +1,104 @@
+<!-- 尾部广告 app\Lib\Widget 下广告扩展-->
+<div style="width:100%;background:#FFFFFF;padding-bottom:20px;">
+	<div style="width:1000px;margin:0 auto;position: relative;">
+		{:R('advert/index', array(17), 'Widget')}
+	</div>
+</div> 
+<!-- 尾部广告 end -->
+
+<!--尾部开始-->
+<div class="foot">
+	<div class="white_bg">
+		<div class="xd_info">
+			<!-- 页尾 LOGO 开始 -->
+			<div class="jky-info fl"><h2></h2></div>
+			<!-- 页尾 LOGO end -->
+			<div class="linkslist fl">
+				<div class="about">
+					<ul>
+						<li class="tit">关于我们</li>
+						<li><a href="about.html">关于我们</a></li>
+                       <li><a href="contact.html">联系我们</a></li>
+                        <li><a href="friends.html">合作伙伴</a></li>
+                        <li><a href="flink.html">友情链接</a></li>
+                        <li><a href="partner.html">商务合作</a></li>
+					</ul>
+				</div>
+				<div class="hezuo">
+					<ul>
+						<li class="tit">商务合作</li>
+						<li><a href="{:u('post_cate/index',array('id'=>2))}">什么值得买</a></li>
+                        <li><a href="{:u('post_cate/index',array('id'=>4))}">海外淘购</a></li>
+                       <li><a href="{:u('mall/index')}">返利商家</a></li>
+                        <li><a href="{:u('post/submit')}">我要爆料</a></li>
+					</ul>
+				</div>
+
+				<div class="help" style="padding:0px;">
+					<ul>
+						<li class="tit">用户帮助</li>
+						<li><a href="faq.html">常见问题</a></li>
+                        <li><a href="fanli.html">商城返利</a></li>
+                        <li><a href="weixin.html">微信二维码</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="download">
+			<!-- 关注我们 扩展-->
+				{:R('advert/index', array(8), 'Widget')}  
+			<!-- 关注我们 end -->
+			</div>
+		</div>
+	</div>
+	<p class="f_miibeian">
+		© copyright 2010-2013 {:C("pin_site_name")}. All rights reserved.  {:C("pin_site_icp")}{:C("pin_statistics_code")}
+        <a rel="nofollow" href="https://ss.knet.cn/verifyseal.dll?sn=e13052442010040878prr0000000&ct=df&a=1&pa=777146" target="_blank"><img src="__ASSETS__/images/r_cnnic.gif"></a>
+	</p>
+</div>
+<!--尾部结束-->
+
+<div id="J_returntop" class="return_top"></div>
+
+<load href="__ASSETS__/js/group.js" />
+
+<script>
+var PINER = {
+    root: "__ROOT__",
+    uid: "<?php echo $visitor['id'];?>", 
+    async_sendmail: "<?php echo $async_sendmail;?>",
+    config: {
+        wall_distance: "<?php echo C('pin_wall_distance');?>",
+        wall_spage_max: "<?php echo C('pin_wall_spage_max');?>"
+    },
+    //URL
+    url: {}
+};
+//语言项目
+var lang = {};
+<volist name=":L('js_lang')" id="val">lang.{$key} = "{$val}";</volist>
+</script>    
+
+<pin:load type="js" href="__STATIC__/js/jquery/plugins/jquery.tools.min.js
+,__STATIC__/js/jquery/plugins/jquery.masonry.js
+,__STATIC__/js/jquery/plugins/jquery.scrollTo.min.js
+,__STATIC__/js/jquery/plugins/formvalidator.js
+,__STATIC__/js/jquery/plugins/jquery.stickyscroll.js
+,__STATIC__/js/jquery/plugins/jquery.easing.min.js
+,__STATIC__/js/fileuploader.js
+,__STATIC__/js/zhiphp.js
+,__STATIC__/js/front.js
+,__STATIC__/js/dialog.js
+,__STATIC__/js/wall.js
+,__STATIC__/js/comment.js
+,__STATIC__/js/user.js
+,__STATIC__/js/setting.js
+,__STATIC__/js/brivio.validate.js
+" />
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=758194" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script> 
+
+</body>
+</html>

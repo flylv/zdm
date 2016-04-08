@@ -1,0 +1,32 @@
+<include file="public:header"/>
+<body id="filter">
+    <div class="header">
+        <div class="left-box"> 
+            <a onclick="window.history.back();"><label>返回</label></a> 
+        </div>
+        <h1>筛选</h1>
+    </div>    
+    <section id="search-box">
+        <form method="get" action="{:U(MODULE_NAME.'/index')}" id="search-form" onsubmit="if(empty($('#keyword').val())||$('#keyword').val()==$('#keyword').attr('data-default')){alert('亲，输点东西吧~');return false;}">
+            <input type="search" data-default="请输入宝贝名称的关键字..." x-webkit-speech="" value="" id="keyword" name="keyword" id="key" class="J_tip"/>
+            <input type="submit" value="搜索"/>
+        </form>
+    </section>
+    <div class="category">
+      <section class="type-all">
+        <div class="types-title"><span class="title"><a href="{:U(MODULE_NAME.'/index')}">全部</a></span>
+          <label><span class="cur"></span></label>
+        </div>
+      </section>
+      <volist name="list" id="val">
+      <section class="type-all">
+        <div class="types-title"><span class="title">{$val.name}</span></div>
+        <table>
+          <tbody>
+            {$val.html}
+          </tbody>
+        </table>
+      </section>
+      </volist>
+    </div>
+<include file="public:footer"/>

@@ -1,0 +1,121 @@
+<include file="public:header_zhao"/>
+<style type="text/css">
+    .brv_validate_msg {
+        margin-top: -35px;
+        margin-left: 477px;
+    }
+</style>
+<!-- 主体内容 -->
+<div class="textcls_add">
+
+    <form id="myForm" method="post" class="mainTableBox" action="{:u(MODULE_NAME.'/'.ACTION_NAME)}"
+          style="width:700px;">
+        <table cellspacing="0" cellpadding="0" border="0" id="bl_table">
+            <tbody>
+            <tr height="45">
+                <td colspan="2">
+                    【<span style="font-size:18px;font-weight:bold;">{$huodongcat.name}</span>】提交商品信息
+                </td>
+            </tr>
+            <tr class="speinfor tab_item">
+                <td class="brokeNewsTitle">联系方式：</td>
+                <td>
+                    <input type="text" name="contact" value="" style="width:460px" class="text text-empty fl"
+                           data-default="此处填写联系方式，以便审核时联系您！"/>
+                </td>
+            </tr>
+            <tr class="speinfor tab_item">
+                <td class="brokeNewsTitle">商品标题：</td>
+                <td>
+                    <input type="text" name="title" value="" style="width:460px" class="text text-empty fl"
+                           data-default="此处填写商品名称"/>
+                </td>
+            </tr>
+            </tr>
+            <tr class="speinfor tab_item">
+                <td class="brokeNewsTitle">商品链接：</td>
+                <td>
+                    <input type="text" name="url" value="" style="width:460px" class="text text-empty fl"
+                           data-default="类似：http://detail.tmall.com/item.htm?id=20286519973"/>
+                </td>
+            </tr>
+            <tr class="speinfor tab_item">
+                <td class="brokeNewsTitle">市场价格：</td>
+                <td>
+                    <input type="text" name="mprice" value="" style="width:160px" class="text text-empty fl"
+                           data-default="此处填写商品原价"/>
+                </td>
+            </tr>
+            <tr class="speinfor tab_item">
+                <td class="brokeNewsTitle">折扣价格：</td>
+                <td>
+                    <input type="text" name="price" value="" style="width:160px" class="text text-empty fl"
+                           data-default="此处填写商品现价"/>
+                </td>
+            </tr>
+            <tr class="speinfor tab_item">
+                <td class="brokeNewsTitle">商品图片1：</td>
+                <td>
+                    <input type="file" name="img" value="" style="width:200px" class="text fl"/><font color=red>（图片大小为 310*180）</font>
+                </td>
+            </tr>
+            <tr class="speinfor tab_item">
+                <td class="brokeNewsTitle">商品图片2：</td>
+                <td>
+                    <input type="file" name="img2" value="" style="width:200px" class="text fl"/><font color=red>（图片大小为 210*210）</font>
+                </td>
+            </tr>
+            <tr class="speinfor tab_item">
+                <td class="brokeNewsTitle">商品描述：<br>
+                    <!-- <span class="grey">（此处请勿粘贴）</span> -->
+                </td>
+                <td>
+                    <textarea class="text text-empty fl" style="width:460px" name="info"
+                              data-default="请录入您的商品描述，包括您认为值得介绍的产品特性、价格优势等">
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="brokeNewsTitle">
+                    &nbsp;
+                </td>
+                <td>
+                    <input type="submit" class="submit" value="提交" id="un-feedback-submit" style="margin-bottom:10px;"/>
+                    <input type="hidden" name="cid" value="{$huodongcat.id}"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+</div>
+<!-- 主体内容 end -->
+<script type="text/javascript">
+    $(function () {
+        $('#myForm').ajaxForm({
+            dataType: 'json',
+            beforeSubmit: function (data) {
+                var rules = [];
+                rules = [
+                    {name: 'contact', max: '255', min: 2, apply: 'string'},
+                    {name: 'title', max: '100', min: 2, apply: 'string'},
+                    {name: 'url', max: '255', min: 2, apply: 'string'},
+                    {name: 'mprice', max: '10', min: '1', apply: 'string'},
+                    {name: 'price', max: '10', min: '1', apply: 'string'},
+                    {name: 'img', min: 2, apply: 'string'},
+                    {name: 'img2', min: 2, apply: 'string'},
+                    {name: 'info', min: 2, apply: 'string'}
+                ];
+                return brv_validate($('#myForm'), rules);
+            },
+            success: function (data) {
+                var onclick = $('input[name="type"]:checked').attr('onclick');
+                data.data = data.status == 1 ? '提交成功' : '提交失败';
+                $('#myForm')[0].reset();
+                $.zhiphp._tip({content: data.data, status: data.status == 1});
+                init_input();
+            }
+        });
+    });
+</script>
+<include file="public:footer"/>

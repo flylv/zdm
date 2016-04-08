@@ -1,0 +1,74 @@
+<a class="wyblbtn" target="_blank" href="{:u('post/submit')}">
+</a>
+<div class="rightBL">
+    <h2>
+        爆料达人排行榜
+    </h2>
+
+    <p>
+		<span>
+			<!-- 2013年7月1日-7月7日 -->当前时时排行
+		</span>
+        <!-- <a target="_blank" href="http://zhi.zhe800.com/type/lipin">
+            往期排行榜
+        </a> -->
+    </p>
+    <ul class="clear">
+        <li class="tit">
+			<span>
+				排名
+			</span>
+            <em>
+                用户名
+            </em>
+            <strong>
+                成功爆料数
+            </strong>
+        </li>
+        <volist name="post_baoliao" id="val" key="k">
+            <li>
+			<span>
+				<i>{$k}</i>
+			</span>
+                <em>
+                    {$val.username}
+                </em>
+                <strong>
+                    {$val.number}
+                </strong>
+            </li>
+        </volist>
+    </ul>
+</div>
+<div class="rightSJ">
+    <h2>
+        热门商家
+    </h2>
+    <ul class="clear">
+        <volist name="quick_mall_list" id="mall">
+            <li>
+                <div class="sjimg">
+                    <a target="_blank" rel="nofollow" href="{:u('mall/info',array('id'=>$mall['id']))}">
+                        <img src="{:attach($mall['img'],'mall')}"
+                             alt="{$mall.title}" title="{$mall.title}"/>
+                    </a>
+                </div>
+            </li>
+        </volist>
+    </ul>
+</div>
+<div class="rightHD">
+    <h2>
+        热门活动
+    </h2>
+    <ul class="clear">
+        <volist name="hot_list" id="val">
+            <li>
+                <a href="{:u('post/index',array('id'=>$val['id']))}" target="_blank" title="{$val.title}"/><img
+                    src="{:attach($val['img'],'post')}" alt="{$val.title}"/></a>
+                <a target="_blank" href="{:u('post/index',array('id'=>$val['id']))}"
+                   title="{$val.title}"/>{$val.title}</a>
+            </li>
+        </volist>
+    </ul>
+</div>

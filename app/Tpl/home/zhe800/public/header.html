@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+    {:C('pin_head_meta')}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <load href="__STATIC__/js/jquery/jquery.js"/>
+    <load href="__ASSETS__/css/base.css"/>
+    <load href="__ASSETS__/css/style.css"/>
+    <load href="__ASSETS__/css/group.css"/>
+    <load href="__ASSETS__/js/uedfocusimg.min.js"/>
+    <load href="__ASSETS__/js/common.js"/>
+    <load href="__ASSETS__/js/merchant-switch.js"/>
+    <load href="__STATIC__/js/jquery/plugins/jquery.cookie.js"/>
+    <load href="__STATIC__/js/common.js"/>
+
+    <title>{$page_seo.title}</title>
+    <meta name="keywords" content="{$page_seo.keywords}"/>
+    <meta name="description" content="{$page_seo.description}"/>
+    <script src="__ROOT__/index.php?m={:MODULE_NAME}&a={:ACTION_NAME}&act=loadjs"></script>
+    <script type="text/javascript">
+        $(function ($) {
+            
+            $(".cate-nav").hover(function () {
+                $(".cate-slide").show();
+            }, function () {
+                $(".cate-slide").hide();
+            });
+        });
+    </script>
+</head>
+<body>
+<!--头部开始-->
+
+<div id="toolbar">
+    <div class="toolbar area">
+        <p id="login" class="l">
+            <a href="__ROOT__/" target="_blank">言商旗下网站</a>
+            |
+            <em id="tblogin">
+                <if condition="empty($visitor)">
+					<a href="{:u('user/login',array('ret_url'=>get_ret_url()))}">登录</a>
+					<a href="{:u('user/register')}">免费注册</a>
+				<else/>
+					您好，<a target="_blank" class="user" href="{:u('user/index')}">{$visitor.username}</a>
+					<a href="{:u('user/score_log')}" class="usz0"></a>，&nbsp;
+					<a href="{:u('user/logout',array('ret_url'=>get_ret_url()))}">退出</a>
+				</if>
+                <span></span>
+            </em>
+            <a href="{:u('exchange/index')}" target="_blank" class="yqhy">
+                邀请好友<i>奖积分</i>
+            </a>
+        </p>
+
+        <div class="right flow">
+            <!-- 微博关注 -->
+            <if condition="C('pin_sina_follow_code')">
+                <style type="text/css">
+                    .WB_widget {
+                        width: 100px;
+                        height: 21px;
+                        overflow: hidden;
+                        float: left;
+                    }
+                </style>
+                <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript"
+                        charset="utf-8"></script>
+                {:C('pin_sina_follow_code')}
+            </if>
+            <if condition="C('pin_qq_follow_code')">
+                {:C('pin_qq_follow_code')}
+            </if>
+            <!-- 微博关注 end -->
+        </div>
+        <div class="right">
+            <a href="javascript:AddFavorite(window.location,def.site_name);" title="添加收藏">
+                收藏
+            </a>
+            &nbsp;|&nbsp;
+            <a target="_blank" href="{:u('post/submit')}">
+                我要爆料
+            </a>
+            &nbsp;|&nbsp;
+        </div>
+    </div>
+</div>
+
+<div class="header">
+    <div class="area">
+        <h1 class="l">
+            <a href="{:U('index/index')}"><img src="__LOGO__" style="height:54px;"></a>
+            <br>
+            zhephp，精选每日优质淘品 </h1>
+        <a href="javascript:AddFavorite(window.location,def.site_name);" title="收藏" class="sc r"></a>
+		<span class="fx r" style="width: 39px; overflow: hidden;">
+			<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="margin:7px 0 0 40px;">
+                <!-- Baidu Button BEGIN -->
+                <include file="public:baidu_share"/>
+                <!-- Baidu Button END -->
+            </div>
+		</span>
+    </div>
+</div>
+
+<div id="head_nav" style="text-align:center;">
+    <div class="head_nav area">
+        <div class="l">
+            <a
+            <if condition="MODULE_NAME eq 'index'">class="on"</if>
+            href="__ROOT__/">首 页</a>
+            <volist name="main_nav_list" id="val">
+                <a
+                <if condition="MODULE_NAME eq $val['alias']">class="on"</if>
+                <if condition="strstr(trim($val['link']),'index.php')">
+                    href="{:U($val['link'])}"
+                <else/>
+                    href="{$val.link}"
+                </if>
+                <if condition="$val['target'] eq 1">target="_blank"</if>
+                >{$val.name}</a>
+            </volist>
+        </div>
+        <div class="r">
+            <div class="topf" id="wztaoid">
+                <a href="__ROOT__/help_faq.html" class="def">新手帮助</a>
+                <dl>
+                    <dt>什么是VIP价</dt>
+                    <dd>
+                        <a target="_blank" href="__ROOT__/help_new.html">新手上路</a>                        
+                        <a target="_blank" href="__ROOT__/help_jifen.html">积分攻略</a>                        
+                        <a target="_blank" href="__ROOT__/help_ju.html">什么是聚实惠</a>
+                        <a target="_blank" href="__ROOT__/help_zdm.html">什么是值得买</a>
+                        <a target="_blank" href="__ROOT__/help_mall.html">商家导航</a>
+                        <a target="_blank" href="__ROOT__/help_exchange.html">积分商城</a>
+                        <a target="_blank" href="__ROOT__/help_faq.html">常见问题</a>
+                    </dd>
+                </dl>
+            </div>
+
+            <a href="__ROOT__/zhaoshang.html" target="_blank" class="alink">卖家报名</a>
+
+            <!-- 签到领积分 -->
+            <div class="signin">
+                <a href="javascript:;" class="signin_a J_qiandao"></a>
+            </div>
+            <!-- 签到领积分 end -->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">        
+    $('.header .fx').hover(function () {
+            if ($(this).hasClass("fxon")) {
+                return false
+            }
+            $(this).stop().addClass("fxon").animate({width: "156px"},150)
+        },
+        function () {
+            $(this).removeClass("topfon");
+            $(this).stop().animate({width: "39px"},150,function () {
+                $(".header .fx").removeClass("fxon")
+            });
+    });
+    /*订阅显示隐藏*/
+    $(".header .dy").hover(function () {
+        if ($(this).hasClass("dyon")) {
+            return false
+        }
+        $(this).stop().addClass("dyon").animate({width: "245px"},150)
+    },
+    function () {
+        $(this).stop().animate({width: "39px"},150,
+            function () {
+                $(".header .dy").removeClass("dyon")
+            })
+    });
+    /*什么是VIP价显示隐藏*/
+    $('#wztaoid').hover(function () {
+        $(this).addClass("topfon");
+    },
+    function () {
+        $(this).removeClass("topfon");
+    });
+</script>
+
+<!--头部结束-->

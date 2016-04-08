@@ -1,0 +1,78 @@
+<include file="public:header" />
+<!--网站设置-->
+<div class="subnav">
+    <h1 class="title_2 line_x">CPS设置</h1>
+</div>
+<div class="pad_10">
+	<form id="info_form" action="{:u('setting/edit')}" method="post">
+    <div class="col_tab">
+        
+        <ul class="J_tabs tab_but cu_li">
+			<li class="current">值得买</li>			
+            <li>商家导航</li>
+		</ul>
+        <div class="J_panes pt20">
+            <div>
+                <table width="100%" class="table_form">
+                    <tr>
+                        <th style="width: 100px;">亿起发掘金链js：</th>
+                        <td>
+                            <textarea name="setting[cps_yqf_js]" style="width: 500px;height: 150px;">{:C('pin_cps_yqf_js')}</textarea>
+                            <span class="gray">参考网址:
+                                <a href="http://www.yiqifa.com/earner/jjlWebsiteFilter.do" target="_blank">
+                                    http://www.yiqifa.com/earner/jjlWebsiteFilter.do(需要登录)
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="width: 100px;">阿里妈妈PID：</th>
+                        <td>
+                            <textarea style="width: 500px;height: 150px;" name="setting[cps_alimama_js]">{:C('pin_cps_alimama_js')}</textarea>
+                            <span class="gray">参考网址:<a href="http://www.cnymk.com" target="_blank">http://www.cnymk.com</a></span>
+                        </td>
+                    </tr>
+            	</table>        
+            </div>            
+            <div style="display: none;">
+                <table width="100%" class="table_form">
+                    <tr>
+                        <th style="width: 100px;">多麦ID:</th>
+                        <td>
+                            <input type="text" name="setting[cps_dm]" class="input-text" value="{:C('pin_cps_dm')}" size="40" />
+                            (多麦会员ID)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>亿起发ID:</th>
+                        <td>
+                            <input type="text" name="setting[cps_yqf]" class="input-text" value="{:C('pin_cps_yqf')}" size="40" />
+                            (亿起发网站ID)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+	
+    <include file="public:_submit" />
+	</form>
+ <div class="tip">
+        <pre>
+<strong>提示说明：</strong>
+    1.CPS设置目前支持的平台有：&lt;阿里妈妈&gt;、&lt;一起发&gt;、&lt;多麦&gt;三个平台；
+    2.B2C商城：支持两个平台是&lt;一起发&gt;、&lt;多麦&gt;；
+    3.值得买:支持的两个平台是&lt;阿里妈妈&gt;的淘点金、&lt;一起发&gt;的淘金链；
+    4.九块邮:支持的两个平台是&lt;阿里妈妈&gt;的淘点金、&lt;一起发&gt;的淘金链；
+    4.详细配置说明请查看文档:《<a href="http://www.zhiphp.com/help.php?m=cps" target="_blank"> ZhiPHP值得买 - FAQ - CPS设置！</a>》
+</pre>
+    </div>
+</div>
+<include file="public:footer" />
+<script type="text/javascript">
+$(function(){
+    $('ul.J_tabs').tabs('div.J_panes > div');
+});
+</script>
+</body>
+</html>

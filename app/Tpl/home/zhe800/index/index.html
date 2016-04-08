@@ -1,0 +1,252 @@
+<include file="public:header"/>
+
+<script type="text/javascript">
+$(function(){
+    var html='<div class="index_collection">\
+                <div class="top">\
+                    <div class="area" style="text-align:center;">\
+                        欢迎来到&nbsp;<b>{:C("pin_site_name")}</b>&nbsp;,请记住域名：{$Think.server.HTTP_HOST} \
+                        按<u onclick="AddFavorite(\'http:\/\/{$Think.server.HTTP_HOST}\')">放入收藏夹</u> <strong>Ctrl+D</strong>，\
+                        将{:C("pin_site_name")}加入收藏夹\
+                        <span><a href="javascript:void(0)" class="close">不再提醒</a></span>\
+                    </div>\
+                </div>\
+            </div>';
+    if(empty($.cookie('show_favor_tip'))){
+        $('body').prepend(html);        
+        $('.index_collection .close').click(function(){
+            $('.index_collection').remove();
+            $.cookie('show_favor_tip',true);
+        });
+    }                        
+});
+</script>
+<!-- 主体内容 -->
+
+<!-- classifi -->
+<div class="classifi">
+    <div class="area">
+        <div class="cL">
+            <span>今日优惠({$total_jky_num})</span>
+            <a href="{:U('jky_item/index',array('c1'=>$c1,'c2'=>0))}"
+            <if condition="$c2 eq 0"> class="on"</if>
+            ><em>全部</em></a>
+            <volist name="cat_list" id="v">
+                <a href="{:U('jky_item/index',array('c1'=>$c1,'c2'=>$v['id']))}"
+                <if condition="$c2 eq $v['id']"> class="on"</if>
+                ><em>{$v.name}</em></a>
+            </volist>
+        </div>
+        <div class="mid">
+            <span>热门专区</span>
+            <a href="{:U('jky_item/index',array('c1'=>0,'c2'=>$c2))}"
+            <if condition="$c1 eq 0">class="on"</if>
+            ><em>全部</em></a>
+            <volist name="type_list" id="v">
+                <a href="{:U('jky_item/index',array('c1'=>$v['id'],'c2'=>$c2))}"
+                <if condition="$c1 eq $v['id']">class="on"</if>
+                ><em>{$v.name}</em></a>
+            </volist>
+        </div>
+        <div class="r">
+            <a href="{:U('jky_item/index',array('state'=>'notstart','c1'=>$c1,'c2'=>$c2))}">明日预告</a>
+        </div>
+    </div>
+</div>
+<!-- classifi end -->
+
+<!-- 首页切换广告 -->
+<div class="area adA" id="adA">
+    {:R('advert/index', array(23), 'Widget')}
+</div>
+<!-- 首页切换广告 end -->
+
+<!-- 9块9专区 -->
+<div class="area">
+    <div class="clearfix jytitle  
+    <if condition="$content_11 eq '正在进行'">
+        <elseif condition="$content_15 eq '正在进行'"/>
+    jytitle_bg
+    <elseif condition="$content_20 eq '正在进行'"/>
+    jytitle_bg2</if>">
+        <span class="fl">9块9包邮 每天<em>3</em>场！</span>
+        <a class="evt fl <if condition="$content_11 eq '正在进行'">on</if>">11:00 <em>{$content_11}</em></a>
+        <a class="fl <if condition="$content_15 eq '正在进行'">on</if>">15:00<em>{$content_15}</em></a>
+        <a class="last fl <if condition="$content_20 eq '正在进行'">on</if>">20:00<em>{$content_20}</em></a>
+    </div>
+    <div class="jylist clearfix">
+        <volist name="today_hot_list" id="val">
+            <div class="timeyow time{$key} clear" style="display: <if condition="$val['title'] eq '正在进行'">block<else/>none</if>;" data-title="{$val.title}">
+            <volist name="val['items']" id="item">
+                <div class="deal jydeal {$item.state}">
+                    <div class="">
+                        <a href="{:jky_go($item)}" target="_blank">
+                            <img src="{:attach($item['img'],'jky_item')}">
+                        </a>        
+                        <h2>
+                            <strong>
+                                <a href="" target="_blank"></a>
+                            </strong>
+                            <a href="{:jky_go($item)}" title="{$item.title} 原价{$item.mprice}元 促销价{$item.price}元"
+                               target="_blank">{$item.title} 原价{$item.mprice}元 促销价{$item.price}元</a>
+                        </h2>
+                        <h4>
+                            <em><i>￥</i><i>{$item.price}</i></em>
+                              <span>
+                                <i><i>{$item.stime|date="H:i",###}开始</i></i>
+                                <a href="{:jky_go($item)}" target="_blank"></a>
+                              </span>
+                        </h4>
+                        <h6>
+                            <p>
+                                <strong>小编：</strong>{:msubstr($item['info'],200)}
+                            </p>
+                        </h6>
+                        <span class="deal_new1"></span>        
+                        <p class="dealbg"></p>
+                    </div>
+                </div>
+            </volist>
+            </div>
+        </volist>
+    </div>
+</div>
+<!-- 9块9专区 end -->
+
+<div class="blank20"></div>
+
+<div class="area">
+    <div class="dealbox home">
+        <!-- 首页商品列表 -->
+        <volist name="jky_item_list" id="item">
+            <div class="deal {$item.state}">
+                <div>
+                    <a href="{:jky_go($item)}" target="_blank" title="{$item.title} 原价{$item.mprice}元 促销价{$item.price}元">
+                        <img src="{:attach($item['img'],'jky_item')}" style="display: block;"/>
+                    </a>
+
+                    <h3><span></span><em>原价：<i>{$item.mprice}</i>元 折扣：<i>{$item.discount}</i>折</em></h3>
+                    <h4>
+                        <span><em>￥</em>{$item.price}</span>
+                        <a href="{:jky_go($item)}" target="_blank"></a>
+                        <strong>{$item.stime|date="H:i",###}开始</strong>
+                    </h4>
+                    <h5>
+                        <p>
+                            <em>
+                                <a><b style="display: none;"></b></a>
+                                <i>{$item.buys}人已参加</i>
+                            </em>
+                              <span class="fenxiang ">
+                                <i>分享</i>
+                    			<em id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"
+                                    data="<literal>{</literal>'bdDes':'{$item.title}','text':'{$item.title}',pic:'{:attach($item['img'],'jky_item',true)}'<literal>}</literal>">
+                                    <!-- Baidu Button BEGIN -->
+                                    <include file="public:baidu_share"/>
+                                    <!-- Baidu Button END -->
+                                </em>
+                              </span>
+                        </p>
+                        <span class="is_icon_list">
+                			<volist name="item['icon_list']" id="val">
+                                <a
+                                <if condition="$val['url']">href="{$val.url}"</if>
+                                class="fl icon_list"><img src="{:attach($val['img'],'jky_icon_type')}"
+                                                          style="width:15px;height:15px;margin:0px;"/></a>
+                            </volist>
+                        </span>
+                    </h5>
+                    <h6>
+                        <p><strong>小编：</strong>
+                            <if condition="$info['info']">
+                                {:msubstr($item['info'],200)}
+                            <else/>
+                                {$item.title}
+                            </if>
+                        </p>
+                    </h6>
+                    <span class="deal_new1" style="top: 4px;"></span>
+                    <p class="dealbg"></p>
+                </div>
+            </div>
+        </volist>
+        <!-- 首页商品列表 end -->
+    </div>
+        
+</div>
+<div class="page index area clearfix">   
+    <span class="current">1</span> 
+    <for start="2" end="6">
+    <a href="{:U('jky_item/index',array('p'=>$i))}">&nbsp;{$i}&nbsp;</a>
+    </for>
+    <a href="{:U('jky_item/index',array('p'=>2))}">下一页</a>    
+    <a href="{:u('jky_item/index')}" class="picnext"></a>    
+</div>
+<!-- 去九块邮页面 -->
+
+<!-- 去九块邮页面 end -->
+
+<!-- 热门活动 -->
+<div class="area hot_tuangou" id="zxt_zheid">
+    <h2 style="text-align:right;"><span><u></u>
+<a href="{:u('post_cate/index',array('id'=>2))}" target="_blank">热门活动</a>
+</span>
+        <a href="{:u('post_cate/index',array('id'=>2))}" target="_blank">查看更多<em></em></a>
+    </h2>
+    <ul>
+        <volist name="hot_list" id="val">
+            <li>
+                <a target="_blank" href="{:u('post/index',array('id'=>$val['id']))}">
+                    <img src="{:attach($val['img'],'post')}" alt="{$val.title}">
+                </a>
+
+                <p>
+                    <a target="_blank" href="{:u('post/index',array('id'=>$val['id']))}">{$val.title}</a>
+                </p>
+
+                <h2><span>￥{$val.prices}</span><em></em></h2>
+            </li>
+        </volist>
+    </ul>
+</div>
+<!-- 热门活动 end -->
+
+<!-- 主体内容 end -->
+
+<script type="text/javascript">    
+    //9块9专区    
+    $(".jytitle a").each(function (f) {
+        $(this).click(function () {            
+            $(this).addClass("on").siblings().removeClass("on");
+            $(".timeyow").hide().eq(f).show();
+            $(".jytitle").removeClass("jytitle_bg jytitle_bg2");
+            if (f == 1) {
+                $(".jytitle").addClass("jytitle_bg")
+            } else {
+                if (f == 2) {
+                    $(".jytitle").addClass("jytitle_bg2")
+                }
+            }
+        })
+    });
+
+    //小编 显示隐藏
+    $(".deal div").hover(
+            function () {
+                $(this).addClass("addborder")
+            },
+            function () {
+                $(this).removeClass("addborder")
+            }
+    );
+    //分享 显示隐藏
+    $(".deal h5 p span").hover(
+            function () {
+                $(this).addClass("on")
+            },
+            function () {
+                $(this).removeClass("on")
+            }
+    );
+</script>
+<include file="public:footer"/>

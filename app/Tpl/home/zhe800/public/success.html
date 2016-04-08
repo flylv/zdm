@@ -1,0 +1,27 @@
+<include file="public:header"/>
+<div id="main" class="pb30 pt20 J_main_page">
+    <!--内容页开始-->
+    <div class="content w1040 clearfix">
+        <!--左侧开始-->
+        <div class="w760 fl">
+            <div class="w720">
+                <div id="login_success">
+                    <strong>{$message}</strong><br/>
+                    </include><a href="{$jumpUrl}">{:L('msg_jump_desc')}</a>
+                </div>
+                <script language="javascript">
+                    setTimeout("location.href='{$jumpUrl}';", {$waitSecond} * 1000);
+                </script>
+            </div>
+        </div>
+        <!--左侧结束-->
+
+        <!--右侧开始-->
+        <div class="w280 fr contentbox_r">
+            <include file="public:find"/>
+        </div>
+        <!--右侧结束-->
+    </div>
+    <!--内容页结束-->
+</div>
+<include file="public:footer"/>

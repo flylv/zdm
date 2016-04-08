@@ -1,0 +1,40 @@
+<volist name="cmt_list" id="val">
+    <div class="singleview-body">
+        <dl class="clearfix">
+            <dt class="fl">
+                <span>{$val.floor}楼</span>
+                <span><a style="color:#CC0000;font-weight: bold;">{$val.uname}</a></span>
+                <span>{:fdate($val['add_time'])}</span>
+            </dt>
+            <dd class="fr">
+                <a class="J_digg" data-id="{$val.id}">顶({$val.digg})</a>
+                <a class="J_burn" data-id="{$val.id}">踩({$val.burn})</a>
+                <a class="J_at" data-id="{$val.id}" data-at="@{$val.uname}" data-to_id="{$val.uid}"
+                   data-to_name="{$val.uname}">@ta</a>
+                <a class="quote J_quote" data-id="{$val.id}" data-uname="{$val.uname}">引用</a>
+            </dd>
+        </dl>
+    </div>
+    <div class="singleview-foot">
+        <ul>
+            <li>
+                <div class="singleviewinfo clearfix">
+                    <div class="singleviewinfo-pic fl">
+                        <a><img src="{:avatar($val['user']['id'],'avatar')}"/></a>
+
+                        <div class="tc">{:user_level($val['user']['score_level'])}</div>
+                    </div>
+                    <div class="singleviewinfo-text fl">
+                        <h3>{$val.info}</h3>
+                        <if condition="$val['quote']">
+                            <div class="singleviewinfo-text-desc">
+                                <span><a href="">{$val.quote.uname}：</a>{$val.quote.info}</span>
+                            </div>
+                        </if>
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</volist>

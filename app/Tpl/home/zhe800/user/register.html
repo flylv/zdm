@@ -1,0 +1,120 @@
+<include file="public:header"/>
+<!--主部开始-->
+<div id="main" class="pb30 pt20">
+
+    <!--登录注册页开始-->
+    <div class="w1040">
+
+        <div class="logincont clearfix">
+
+            <div class="loginbox clearfix">
+
+                <div class="loginbox-left fl">
+
+                    <div class="logininfo">
+
+                        <div class="logininfo-head"><h3 class="ml20">新用户注册</h3></div>
+                        <div class="logininfo-body">
+                            <form id="J_register_form" class="login_form" action="{:U('user/register')}" method="post">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td width="12%" class="tr f14"><b>电子邮箱:</b></td>
+                                        <td width="88%"><input type="text" maxlength="36" name="email" id="J_email"
+                                                               class="login_inputtext"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tr f14"><b>昵称:</b></td>
+                                        <td><input maxlength="36" type="text" name="username" id="J_username"
+                                                   class="login_inputtext"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tr f14"><b>性别:</b></td>
+                                        <td>
+                                            <!-- <form name="form1" method="post" action=""> -->
+                                                <p>
+                                                    <label class="ml10">
+                                                        <input type="radio" name="gender" value="0" checked="checked"
+                                                               class="ck">
+                                                        女</label>
+                                                    <label>
+                                                        <input type="radio" name="gender" value="1" class="ck ml10">
+                                                        男</label>
+                                                </p>
+                                            <!-- </form> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tr f14"><b>密码:</b></td>
+                                        <td><input maxlength="36" type="password" name="password" id="J_password"
+                                                   class="login_inputtext"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tr f14"><b>确认密码:</b></td>
+                                        <td><input type="password" maxlength="36" name="repassword" id="J_repassword"
+                                                   class="login_inputtext"></td>
+                                    </tr>
+                                    <if condition="C('pin_captcha_status')">
+                                    <tr>
+                                        <td class="tr f14"><b>验证码:</b></td>
+                                        <td><input type="text" name="captcha" id="J_captcha" maxlength="10"
+                                                   class="check login_inputtext"><span
+                                                class="ml10 mr10">
+                                         <img src="{:U('captcha/'.time())}" id="J_captcha_img" class="captcha_img"
+                                              alt="{:L('captcha')}" data-url="{:U('captcha/js_rand')}"/>  <a
+                                                href="javascript:;" id="J_captcha_change">{:L('change_captcha')}</a>
+                                        </td>
+                                    </tr>
+                                    </if>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <label>
+                                                <input class="check" name="agreement" type="checkbox" checked="checked">
+                                                <span>我已看过并同意  《<a href="javascript:;" id="J_protocol_btn">{:C('pin_site_name')}{:L('user_protocol')}</a>》</span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <input type="submit" id="J_regsub" class="reg-subbtn"
+                                                   value="{:L('relaxed_register')}">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="loginbox-right fl">
+
+                    <div class="logintip">
+                        <dl>
+                            <dt>注册</dt>
+                            <dd>
+                                <h3>已经有账号？请直接登录！</h3>
+                                <a class="sign-in" href="{:U('user/login')}">登录</a>
+                            </dd>
+                        </dl>
+                        <div class="pbt10 mt30">您也可以用以下方式登录：</div>
+                        <ul>
+                            <volist name="oauth_list" id="val">
+                                <li><a href="{:U('oauth/index', array('mod'=>$val['code']))}" class="{$val.code}">{$val.name}</a></li> 
+                            </volist> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--登录注册页结束-->
+</div>
+<!--主部结束-->
+<script>
+    $(function(){
+        $.zhiphp.user.register_form($('#J_register_form')); //注册验证
+    });
+</script>
+<include file="public:footer"/>

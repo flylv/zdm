@@ -1,0 +1,208 @@
+<include file="public:header" />
+
+<!-- double_main 开始 -->
+<div class="double_main">
+	<div class="big_bg">
+		<div class="father-top-bg"></div>
+		<div class="double_content">
+		<div class="left-content">
+			<a href="#" target="_blank" class="f-a"></a>
+			<a href="#" target="_blank" class="s-a"></a>
+			<a href="#" target="_blank" class="t-a"></a>
+		</div>
+			<div class="right_content">
+				<dl>
+					<dd class="go_visited">
+						推荐好友&#12288;<a href="#" target="_blank">去邀请&gt;&gt;</a>
+						<p class="tips">
+							最高可领 <b>1400</b> 卷豆
+						</p>
+					</dd>
+					<dd class="go_copy">
+						<input type="text" class="links_in" value="http://www.zhiphp.com/#xxxxxx?utm=1035zr">
+						<a href="javascript:copylinks();" class="links_btn">复制</a>
+						<p class="tips"><em></em>
+							<span>复制链接<br>给好友吧！</span>
+						</p>
+					</dd>
+					<dd class="shareto">
+						分享到空间/微博
+						<p class="tips">
+							即可领 <b>950</b> 卷豆
+						</p>
+					</dd>
+					<dd class="share_weibo">
+                       <!--  <a href="javascript:void(0);" data-type="qq" class="l_qzone" >分享到空间</a>
+                        <a href="javascript:void(0);" data-type="sina" class="l_sina">分享到微博</a>  -->
+                          <a target="_blank" class="l_qzone" data-type="qq" href="#">分享到空间</a>
+                        <a target="_blank" class="l_sina" data-type="sina" href="#">分享到微博</a> 
+                        <div class="weibo_alert">
+                        <p>您已经分享过了..</p>
+                        </div>              
+                    </dd>
+					<dd class="go_sign">
+						签到和挖宝&#12288;<a href="#" target="_blank">详情&gt;&gt;</a>
+						<p class="tips">最高可领<b>65 </b>卷豆</p>
+					</dd>
+					<dd class="get_all">
+					    <span>提前看<b>爆款</b>就等您来抢</span>
+					    <a href="#" target="_blank">看爆款</a>						
+					</dd> 
+					<dd class="own_dou">
+					   <span>您最高可领 <b>2415</b> 卷豆</span>
+					   <a href="#" target="_blank">抢红包</a>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- double_main end -->
+
+
+
+<!--内容页 开始-->
+<div class="main">
+	<div class="white_bg">
+		<div class="content">
+			<!--内容页左侧 开始-->
+			<div class="containt" style="padding-top:16px;">
+
+
+<!-- 快速导航 开始 -->
+<div class="white_dh">
+    <div class="daohang">
+        <div class="h_center">
+            <!-- jiu_hd -->
+            <div class="jiu_hd" style="overflow:hidden;width:730px;">
+                <div class="jiu_dao">
+                    <ul>
+                        <li>
+                            <span>
+                                快速导航:
+                            </span>
+                            <i>
+                            </i>
+                        </li>
+                        <li class="current">
+                            <a href="./" <if condition="empty($_GET['id']) && MODULE_NAME eq index">
+                                class="current"
+                                <else />
+                                class="hover"
+                                </if>
+                                >
+                                <span>
+                                    全部商品{$c2}
+                                </span>
+                                <i>
+                                </i>
+                            </a>
+                        </li>
+                        <volist name="recommend_cate" id="val">
+                            <li>
+                                <a href="{:u('post_cate/index',array('id'=>$val['id']))}" <if condition="$_GET['id'] eq $val['id'] && MODULE_NAME eq post_cate">
+                                    class="current"
+                                    <else />
+                                    class="hover"
+                                    </if>
+                                    >
+                                    <span>
+                                        {$val.name}
+                                    </span>
+                                    <i>
+                                    </i>
+                                </a>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+            <!-- jiu_hd end -->
+            <!-- jiu_show -->
+            <div class="jiu_show">
+                <div class="type_detail" style="width:740px;">
+                    <ul id="today_detail">
+						<li>
+                            <a href="">九块邮：<i></i></a>
+                        </li>
+                        <li>
+                            <a href="{:U('jiukuaiyou/index')}"><b>全部<b/></a>
+                        </li>
+						<li>
+                            <a href="{:U('jiukuaiyou/index',array('c1'=>9,'c2'=>0))}"><b>9.9元包邮<b/></a>
+                        </li>
+						<li>
+                            <a href="{:U('jiukuaiyou/index',array('c1'=>10,'c2'=>0))}"><b>19.9元封顶<b/></a>
+                        </li>
+						
+						<li style="float:right;">
+									
+									<div class="zhuangtai">
+										<ul><li class="current">
+												<a href="{:U('jiukuaiyou/index',array('state'=>'all','c2'=>0,'c1'=>0))}">全部</a></li>
+											<li >
+												<a href="{:U('jiukuaiyou/index',array('state'=>'underway','c2'=>0,'c1'=>0))}">进行中</a></li>
+											<li class="last ">
+												<a href="{:U('jiukuaiyou/index',array('state'=>'end','c2'=>0,'c1'=>0))}">抢光了</a></li>
+										</ul>
+									</div>
+								
+                        </li>
+						<li style="float:right;">
+                            <a style="background-color: #FF7A0F;color: #FFFFFF;position: static;" href="{:U('jiukuaiyou/index',array('state'=>'notstart','c2'=>0,'c1'=>0))}">明日预告</a>
+								
+                        </li>
+						
+                    </ul>
+                </div>
+            </div>
+            <!-- jiu_show end -->
+        </div>
+        
+    </div>
+</div>
+<!-- 快速导航 end -->
+
+				<if condition="empty($search['keyword'])">
+					<include file="public:hot_activity" />
+					<div class="sticky mb10" style="background: white;">
+					<volist name="recommend_list" id="val">
+						<h2><b>置顶 »</b> <a href="{:u('post/index',array('id'=>$val['id']))}" target="_blank">{$val.title}</a></h2>
+					</volist>
+					</div>
+				</if>
+				<!--产品展示方式开始-->
+						<div class="product_show" id="J_waterfall" data-uri="__ROOT__index.php?m={:MODULE_NAME}&a=index&sort={$sort}&p={$p}&keyword={$search.keyword}">        
+                            <include file="public:ajax_post_list" />
+                        </div>
+                        <present name="show_load">
+                        <div id="J_wall_loading" class="wall_loading tc gray"><span>{:L('loading')}</span></div>
+                        </present>
+                        <present name="page_bar">
+                        <div id="J_wall_page" class="wall_page" <present name="show_page">style="display:block;"</present>>
+							<!-- 分页 开始 -->
+							<div class="page">
+								<em></em>
+								<div>
+									{$page_bar}
+								</div>
+							</div>
+							<!-- 分页 end -->
+                        </div>
+                        </present>
+				<!--产品展示方式 end -->
+
+			</div>  
+			<!--内容页左侧 end-->
+
+			<!--内容页右侧 开始-->
+			<div class="shop_content jiu_right">
+				<include file="public:find" /> 
+			</div> 
+			<!-- 内容页右侧 end -->
+		</div>
+		
+	</div>
+</div>
+<!--内容页 end -->
+<include file="public:footer" />

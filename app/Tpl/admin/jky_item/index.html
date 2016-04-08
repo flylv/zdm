@@ -1,0 +1,115 @@
+<include file="public:header" />
+
+<div class="pad_10" >
+    <form name="searchform" method="get" >
+    <table width="100%" cellspacing="0" class="search_form">
+        <tbody>
+            <tr>
+            <td>
+            <div class="explain_col">
+                <input type="hidden" name="g" value="{:GROUP_NAME}" />
+                <input type="hidden" name="m" value="{:MODULE_NAME}" />
+                <input type="hidden" name="a" value="{:ACTION_NAME}" />
+                <input type="hidden" name="menuid" value="{$menuid}" />
+                &nbsp;&nbsp;
+                商品类型：
+                {:html_select('cate_id[1]',$cate_list,$search['cate_id[1]'])}                
+                &nbsp;&nbsp;九块邮类型：
+                {:html_select('cate_id[0]',$type_list,$search['cate_id[0]'])}
+                &nbsp;&nbsp;
+                价格区间:
+                <input type="text" class="input-text" name="min_price" value="{$Think.request.min_price}" size="5"/>~
+                <input type="text" class="input-text" name="max_price" value="{$Think.request.max_price}" size="5"/>
+                  
+                &nbsp;&nbsp;
+                推荐状态：
+                {:html_select('is_recommend',C('YESNO'),$Think['request']['is_recommend'])}  
+                &nbsp;&nbsp;
+                热门：
+                {:html_select('is_hot',C('YESNO'),$Think['request']['is_hot'])}
+                &nbsp;&nbsp;
+                审核状态：
+                {:html_select('status',C('YESNO'),$Think['request']['status'])}
+                <br />
+                &nbsp;&nbsp;
+                分类状态：
+                {:html_select('yet_cate',C('YESNO'),$Think['request']['yet_cate'])}
+                关键字 :
+                <input name="keyword" type="text" class="input-text" size="25" value="{$search.keyword}" />
+                <input type="submit" name="search" class="btn" value="搜索" />
+                <input type="hidden" name="collect_flag" value="{$Think.get.collect_flag}">
+            </div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+    <div class="J_tablelist table_list" data-acturi="{:U(MODULE_NAME.'/ajax_edit')}"> 
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="28">序号</th>
+                <th width="10"><input type="checkbox" id="checkall_t" class="J_checkall"></th>
+                <th width="50"><span data-tdtype="order_by" data-field="id">ID</span></th>
+                <th align="center" width="60">产品图片</th>
+                <th align="left"><span>产品名称</span></th>         
+                <th width="140"><span data-tdtype="order_by" data-field="stime">开始、结束</span></th>
+                <th width="80"><span data-tdtype="order_by" data-field="mprice">市场价</span></th>
+                <th width="80"><span data-tdtype="order_by" data-field="price">促销价</span></th>
+                <th width="28"><span data-tdtype="order_by" data-field="ordid">排序</span></th>
+                <th width="28">推荐</th>
+                <th width="28">热门</th>
+                <th width="28"><span data-tdtype="order_by" data-field="status">{:L('status')}</span></th>
+                <th width="80">{:L('operations_manage')}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <volist name="list" id="val" >
+            <tr>
+                <td align="center">{$p*20-20+$i}</td>
+                <td align="center"><input type="checkbox" class="J_checkitem" value="{$val.id}"/></td>
+                <td align="center"><a href="{$val.url}" target="_blank">{$val.id}</a></td>
+                <td align="center">
+					<span class="" file-type="image" file-rel="{$val._img}">
+						<img src="{$val._img}" class="J_preview" data-bimg="{$val._img}" style="width:26px; height:26px;" />
+					</span>
+                </td>
+                <td align="left" title="{:htmlentities($val['url'])}"><span class="tdedit" data-tdtype="edit" data-field="title" data-id="{$val.id}">{$val.title}</span></td>                                
+                <td align="center">
+                    <span class="date" data-tdtype="edit" data-field="stime" data-id="{$val.id}">{:date("Y-m-d H:i:s",$val["stime"])}</span>
+                    <span class="date" data-tdtype="edit" data-type="date" data-field="etime" data-id="{$val.id}">{:date("Y-m-d H:i:s",$val["etime"])}</span>
+                </td>
+                <td align="center"><span class="tdedit" data-tdtype="edit" data-field="mprice" data-id="{$val.id}">{$val.mprice}</span></td>
+                <td align="center" style="color: red;"><span class="tdedit" data-tdtype="edit" data-field="price" data-id="{$val.id}">{$val.price}</span></td>
+                <td align="center"><span data-tdtype="edit" data-field="ordid" data-id="{$val.id}" class="tdedit">{$val.ordid}</span></td>
+                <td align="center"><img data-tdtype="toggle" data-id="{$val.id}" data-field="is_recommend" data-value="{$val.is_recommend}" src="__TMPL__public/images/toggle_<if condition="$val.is_recommend eq 0">disabled<else/>enabled</if>.gif" /></td>
+                <td align="center"><img data-tdtype="toggle" data-id="{$val.id}" data-field="is_hot" data-value="{$val.is_hot}" src="__TMPL__public/images/toggle_<if condition="$val.is_hot eq 0">disabled<else/>enabled</if>.gif" /></td>
+                <td align="center"><img data-tdtype="toggle" data-id="{$val.id}" data-field="status" data-value="{$val.status}" src="__TMPL__public/images/toggle_<if condition="$val.status eq 0">disabled<else/>enabled</if>.gif" /></td>
+                <td align="center">
+                    <a href="{:U(MODULE_NAME.'/edit', array('id'=>$val['id'],'collect_flag'=>$Think['request']['collect_flag']))}" >{:L('edit')}</a> | 
+                    <a href="javascript:;" class="J_confirmurl" data-acttype="ajax" data-uri="{:U(MODULE_NAME.'/delete', array('id'=>$val['id']))}" data-msg="{:sprintf(L('confirm_delete_one'),$val['name'])}">{:L('delete')}</a>
+                    </td>
+            </tr>
+            </volist>
+        </tbody>
+    </table>
+    </div>
+    <div class="btn_wrap_fixed">
+        <label><input type="checkbox" name="checkall" class="J_checkall">{:L('select_all')}/{:L('cancel')}</label>
+        <input type="button" class="btn" data-tdtype="batch_action" data-acttype="ajax" data-uri="{:U(MODULE_NAME.'/delete')}" data-name="id" data-msg="{:L('confirm_delete')}" value="{:L('delete')}" />
+        <input type="button" class="btn" data-tdtype="batch_action" data-acttype="ajax_form"  data-id="batch_action" data-title="{:L('batch_edit')}"
+               data-uri="{:U(MODULE_NAME.'/batch_edit')}" data-name="id"
+               value="{:L('batch_edit')}" data-width="500" value="{:L('batch_action')}" />
+        <if condition="$Think['request']['collect_flag'] eq 0">
+            <input type="button" class="btn" data-tdtype="batch_action" data-acttype="ajax"
+                   data-uri="{:U(MODULE_NAME.'/batch_edit',array('collect_flag'=>1,'act'=>'edit'))}"
+                   data-name="id" data-msg="{:L('confirm_batch_publish')}"
+                   value="{:L('batch_publish')}" />
+        </if>
+        <div id="pages">{$page}</div>
+    </div>
+</div>
+<include file="public:footer" />
+
+</body>
+</html>

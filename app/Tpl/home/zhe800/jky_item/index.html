@@ -1,0 +1,148 @@
+<include file="public:header"/>
+<!-- 主体内容 -->
+
+<script type="text/javascript">
+$(function(){
+    $('.deal .img img').each(function(){
+        $(this).parent().css('background',"url("+$(this).attr('src')+") center center no-repeat");
+    });
+});
+</script>
+<!-- 改变九块邮图片框形状 end-->
+
+<!-- classifi -->
+<div class="classifi">
+    <div class="area">
+        <div class="cL">
+            <span>今日优惠({$total_jky_num})</span>
+            <a href="{:U('jky_item/index',array('c1'=>$c1,'c2'=>0))}"
+            <if condition="$c2 eq 0"> class="on"</if>
+            ><em>全部</em></a>
+            <volist name="cat_list" id="v">
+                <a href="{:U('jky_item/index',array('c1'=>$c1,'c2'=>$v['id']))}"
+                <if condition="$c2 eq $v['id']"> class="on"</if>
+                ><em>{$v.name}</em></a>
+            </volist>
+        </div>
+        <div class="mid">
+            <span>热门专区</span>
+            <a href="{:U('jky_item/index',array('c1'=>0,'c2'=>$c2))}"
+            <if condition="$c1 eq 0">class="on"</if>
+            ><em>全部</em></a>
+            <volist name="type_list" id="v">
+                <a href="{:U('jky_item/index',array('c1'=>$v['id'],'c2'=>$c2))}"
+                <if condition="$c1 eq $v['id']">class="on"</if>
+                ><em>{$v.name}</em></a>
+            </volist>
+        </div>
+        <div class="r">
+            <a href="{:U('jky_item/index',array('state'=>'notstart','c1'=>$c1,'c2'=>$c2))}">明日预告</a>
+        </div>
+    </div>
+</div>
+<!-- classifi end -->
+
+<!-- 首页切换广告 -->
+<div class="area adA" id="adA">
+    {:R('advert/index', array(23), 'Widget')}
+</div>
+<!-- 首页切换广告 end -->
+
+<div class="blank20"></div>
+
+<div class="area">
+    <div class="dealbox">
+        <!-- 首页商品列表 -->
+        <volist name="list" id="item">
+            <div class="deal {$item.state}">
+                <div class="">
+                    <h2>
+                        <strong>
+                            <a href="" target="_blank"></a>
+                        </strong>
+                        <a href="{:jky_go($item)}" title="{$item.title} 原价{$item.mprice}元 促销价{$item.price}元"
+                           target="_blank">{$item.title}</a>
+                    </h2>
+                    <a href="{:jky_go($item)}" target="_blank" class="img">
+                        <img src="{:attach($item['img'],'jky_item')}"/>
+                    </a>
+
+                    <h3><span></span><em>原价：<i>{$item.mprice}</i>元 折扣：<i>{$item.discount}</i>折</em></h3>
+                    <h4>
+                        <span><em>￥</em>{$item.price}</span>
+                        <a href="{:jky_go($item)}" target="_blank"></a>
+                        <strong>{$item.stime|date="H:i",###}开始</strong>
+                    </h4>
+                    <h5>
+                        <p>
+                            <em>
+                                <a><b style="display: none;"></b></a>
+                                <i>{$item.buys}人已参加</i>
+                            </em>
+                          <span class="fenxiang ">
+                            <i>分享</i>
+                			<em id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"
+                                data="<literal>{</literal>'bdDes':'{$item.title}','text':'{$item.title}',pic:'{:attach($item['img'],'jky_item',true)}'<literal>}</literal>">
+                                <!-- Baidu Button BEGIN -->
+                                <include file="public:baidu_share"/>
+                                <!-- Baidu Button END -->
+                            </em>
+                          </span>
+                        </p>
+                        <span class="is_icon_list">
+                			<volist name="item['icon_list']" id="val">
+                                <a
+                                <if condition="$val['url']">href="{$val.url}"</if>
+                                class="fl icon_list"><img src="{:attach($val['img'],'jky_icon_type')}"
+                                                          style="width:15px;height:15px;margin:0px;"/></a>
+                            </volist>
+                        </span>
+                    </h5>
+                    <h6>
+                        <p><strong>小编：</strong>
+                            <if condition="$info['info']">
+                                {:msubstr($item['info'],200)}
+                            <else/>
+                                {$item.title}
+                            </if>
+                        </p>
+                    </h6>
+                    <span class="deal_new1"></span>
+
+                    <p class="dealbg"></p>
+                </div>
+            </div>
+        </volist>
+        <!-- 首页商品列表 end -->
+    </div>
+</div>
+
+<!-- 分页 -->
+<div class="page">{$page}</div>
+<!-- 分页 end -->
+
+<!-- 主体内容 end -->
+
+<script type="text/javascript">
+    <!--
+    //小编 显示隐藏
+    $(".deal div").hover(
+        function () {
+            $(this).addClass("addborder")
+        },
+        function () {
+            $(this).removeClass("addborder")
+        }
+    );
+    //分享 显示隐藏
+    $(".deal h5 p span").hover(
+        function () {
+            $(this).addClass("on")
+        },
+        function () {
+            $(this).removeClass("on")
+        }
+    );
+    //-->
+</script>
+<include file="public:footer"/>

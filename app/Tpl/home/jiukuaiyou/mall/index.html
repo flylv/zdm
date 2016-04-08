@@ -1,0 +1,83 @@
+<include file="public:header"/>
+
+<!--主部开始-->
+<div id="main">
+
+    <!--商家导航开始-->
+    <div class="mernavbox w1040">
+        <div class="mernav clearfix">
+            <div class="w180 fl">
+                <div class="side-mernav">
+                    <dl>
+                        <dt>商家导航</dt>
+                        <dd class="icon1 <if condition="$cate eq ''">current</if>"><a href="{:U('mall/index')}">所有商城</a></dd>
+                        <volist name="li_st" id="val">
+                            <dd class="icon{$i}  <if condition="$cate eq $val['id']">current</if>"><a href="{:U('mall/index',array('cate'=>$val['id']))}">{$val.title}</a>
+                            <b>{$val['mall_nums']}家</b>
+                            </dd>
+                        </volist>
+                    </dl>
+                </div>
+            </div>
+            <div class="w800 fr">
+                <div class="location" style="margin-left:0px;width:96%;"><span>当前位置：</span><a href="{:U('index/index')}">首页</a> &gt;&gt; <a href="{:U('mall/index')}">商家导航</a></div>
+
+                <div class="pinyin-search">
+                    <dl class="clearfix">
+                        <dt>按音首字母查找：</dt>
+                        <dd class="pinyin">
+                            <for start="65" end="90">
+                                <a href="{:U('mall/index',array('word'=>chr($i),'cate'=>$cate))}" <if condition="$text eq chr($i)">class="current"</if>>{:chr($i)}</a>
+                            </for>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="rebatelist">
+                    <script type="text/javascript">
+                        $(function ($) {
+                            $(".business dd").hover(function () {
+                                $(this).children('.businesstipbox').css('visibility', 'visible');
+                            }, function () {
+                                $(this).children('.businesstipbox').css('visibility', 'hidden');
+                            });
+                        });
+                    </script>
+
+                    <div class="rebatelist-head clearfix" id="mall_{$val.id}"><h3 class="fl">分类：<span>{$show_cate_name['title']}</span>
+                    </h3><b class="fr"> 共{$number}{$show_cate_name['title']}</b></div>
+                    <div class="rebatelist-body">
+                        <ul class="clearfix">
+                            <volist name="list" id="v">
+                                <li>
+                                    <div class="rebatestore">
+                                        <div class="rebatestore-head clearfix">
+                                            <a class="rebatestore-logo fl" href="{:u('mall/info',array('id'=>$v['id']))}" target="_blank">
+                                                <img src="__ROOT__data/upload/mall/{$v.img}"/>
+                                            </a>
+                                            <div class="rebatestore-num fl">最高返<span>{$v['rebates']}%</span></div>
+                                        </div>
+                                        <div class="rebatestore-body"><p>{$v.abst}</p></div>
+                                        <div class="rebatestore-foot clearfix">
+                                            <a class="rebate-more fl" href="{:u('mall/info',array('id'=>$v['id']))}"
+                                               target="_blank">商城详情</a>
+                                            <!--<a class="quan fl" href=""></a>-->
+                                            <a class="zhida-link fr" <if condition="preg_match('#http#',mall_url($v))">href="{:mall_url($v)}" <else/> href="http://{:mall_url($v)}"</if> target="_blank">直达商城
+                                                &gt;</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </volist>
+                        </ul>
+                        <div class="page clearfix">{$page}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--商家导航结束-->
+
+</div>
+<!--主部结束-->
+
+<include file="public:footer"/>

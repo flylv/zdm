@@ -1,0 +1,110 @@
+<div class="dialog_content">
+<form id="info_form" action="{:u('zhaoshang_item/edit')}" method="post">
+<div class="common-form">
+	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+		<tr>
+			<th>九块邮图片304*190 :</th>
+			<td>
+				<notempty name="info['img']">
+					<div class="img_border">
+						<img src="{:attach($info['img'],'zhaoshang')}" width="88" class="J_preview" data-bimg="{:attach($info['img'],'zhaoshang')}"/>
+					</div>
+				</notempty>
+			</td>
+		</tr>
+		<tr>
+			<th>值得买图片220*230 :</th>
+			<td>
+				<notempty name="info['img2']">
+					<div class="img_border">
+						<img src="{:attach($info['img2'],'zhaoshang')}" width="88" class="J_preview" data-bimg="{:attach($info['img2'],'zhaoshang')}"/>
+					</div>
+				</notempty>
+			</td>
+		</tr>
+		<tr>
+			<th width="100">商品标题 :</th>
+			<td style="padding-right:20px;">{$info.title}</td>
+		</tr>
+		<tr>
+			<th width="100">商品链接 :</th>
+			<td style="padding-right:20px;">{$info.url}</td>
+		</tr>
+		<tr>
+			<th width="100">市场价格 :</th>
+			<td>{$info.mprice}</td>
+		</tr>
+		<tr>
+			<th width="100">折扣价格 :</th>
+			<td>{$info.price}</td>
+		</tr>
+		<tr>
+			<th width="100">商品描述 :</th>
+			<td style="padding-right:20px;">{$info.info}</td>
+		</tr>
+		<tr>
+			<th width="100">联系方式 :</th>
+			<td style="padding-right:20px;">{$info.contact}</td>
+		</tr>
+		<tr>
+			<th>发布到 :</th>
+			<td>
+				<select name="zs_type" id="zs_type">
+					<option value="">--请选择--</option>
+					<option value="1" <if condition="$info.zs_type eq '1'"> selected="selected"</if>>九块邮</option>
+					<option value="0" <if condition="$info.zs_type eq '0'"> selected="selected"</if>>值得买</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>审核是否通过 :</th>
+			<td>
+				<input type="radio" name="status" class="radio_style" value="1" <if condition="$info.status eq 1"> checked="checked"</if>> {:L('yes')} 
+				<input type="radio" name="status" class="radio_style" value="0" <if condition="$info.status eq 0"> checked="checked"</if>> {:L('no')}
+			</td>
+		</tr>
+	</table>
+    <input type="hidden" name="id" value="{$info.id}" />
+	<input type="hidden" name="stime" value="{:time()}" />
+</div>
+</form>
+</div>
+<script src="__STATIC__/js/fileuploader.js"></script>
+<script type="text/javascript">
+
+$('.J_preview').preview(); //查看大图
+
+$(function(){
+	$.formValidator.initConfig({formid:"info_form",autotip:true});
+	
+	$("#zs_type").formValidator({onshow:"请选择发布到哪",onfocus:"请选择发布到哪"}).inputValidator({min:1,onerror:"请选择发布到哪"}).defaultPassed();
+	$("#zs_status").formValidator({onshow:"请选择发布到哪",onfocus:"请选择发布到哪"}).inputValidator({min:1,onerror:"请选择发布到哪"}).defaultPassed();
+	
+	$('#info_form').ajaxForm({success:complate,dataType:'json'});
+	function complate(result){
+		if(result.status == 1){
+			var zs_type;
+			var zs_status;
+			zs_type = $("#zs_type").val();
+			zs_status = $("input:radio[type='radio'][checked=true]").val();
+
+			$.dialog.get(result.dialog).close();
+			$.zhiphp.tip({content:result.msg});
+			//只有当审核通过时才发布
+			if(zs_status == 1){
+				if(zs_type == 1){
+					//九块邮
+					window.location.href="{:U('jky_item/add', array('menuid'=>'312','zs_type'=>'zs_type_jkyadd','id'=>$info['id']))}";
+				}else if(zs_type == '0'){
+					//值得买
+					window.location.href="{:U('post/add', array('menuid'=>'308','zs_type'=>'zs_type_zdmadd','id'=>$info['id']))}";
+				}
+			}else{
+				window.location.reload();
+			}
+		} else {
+			$.zhiphp.tip({content:result.msg, icon:'alert'});
+		}
+	}
+});
+</script>

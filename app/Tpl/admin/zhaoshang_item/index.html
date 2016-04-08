@@ -1,0 +1,93 @@
+<include file="public:header" />
+<div class="pad_lr_10" >
+    
+    <form name="searchform" method="get" >
+    <table width="100%" cellspacing="0" class="search_form">
+        <tbody>
+            <tr>
+            <td>
+            <div class="explain_col">
+            	<input type="hidden" name="g" value="admin" />
+                <input type="hidden" name="m" value="zhaoshang_item" />
+                <input type="hidden" name="a" value="index" />
+                <input type="hidden" name="menuid" value="{$menuid}" />
+				审核状态：
+                <select name="status">
+                <option value="">-{:L('all')}-</option>
+                <option value="1" <if condition="$search.status eq '1'">selected="selected"</if>>已审核</option>
+                <option value="0" <if condition="$search.status eq '0'">selected="selected"</if>>未审核</option>
+                </select>
+				所属活动：
+                <select name="cate_id">
+                        <option value="">--请选择活动--</option>
+                        <volist name="cate_list" id="val"> <option value="{$val.id}" 
+                            <if condition="$search.cate_id eq $val['id']"> selected="selected" </if>
+                            >{$val.name}
+                         </option>
+                         </volist>
+                </select>&nbsp;
+                关键字 :
+                <input name="keyword" type="text" class="input-text" size="25" value="{$search.keyword}" />
+                <input type="submit" name="search" class="btn" value="搜索" />
+        	</div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+    
+    <div class="J_tablelist table_list" data-acturi="{:U('zhaoshang_item/ajax_edit')}">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width=25><input type="checkbox" id="checkall_t" class="J_checkall"></th>
+                <th><span tdtype="order_by" fieldname="id">ID</span></th>
+				<th align="center">缩略图</th>
+                <th align="left"><span>商品标题</span></th>
+                <th align="center">参加活动</th>
+                <th width="60"><span data-tdtype="order_by" data-field="status">审核{:L('status')}</span></th>
+                <th width="80">{:L('operations_manage')}</th>
+            </tr>
+        </thead>
+    	<tbody>
+            <volist name="list" id="val" >
+            <tr>
+                <td align="center">
+                <input type="checkbox" class="J_checkitem" value="{$val.id}"></td>
+                <td align="center">{$val.id}</td>
+                <td align="center">
+					<notempty name="val['img']">
+                        <div class="img_border">
+                            <img src="{:attach($val['img'],'zhaoshang')}" width="32" class="J_preview" data-bimg="{:attach($val['img'],'zhaoshang')}"/>
+							<notempty name="val['img2']">
+								<img src="{:attach($val['img2'],'zhaoshang')}" width="32" class="J_preview" data-bimg="{:attach($val['img2'],'zhaoshang')}"/>
+							</notempty>
+                        </div>
+                    </notempty>
+				</td>
+                <td align="left"><span title="{$val['title']}">{:msubstr($val['title'],50)}</span></td>
+                <td align="center"><b>{$zhaoshang_cate_list[$val['cid']]}</b></td>
+                <td align="center"><a href="javascript:;" class="J_showdialog" data-uri="{:U('zhaoshang_item/edit', array('id'=>$val['id']))}" data-title="操作 - {$val.title}"  data-id="edit" data-acttype="ajax" data-width="800" data-height="360"><img src="__TMPL__public/images/toggle_<if condition="$val.status eq 0">disabled<else/>enabled</if>.gif" /></a></td>
+                <td align="center">
+					<a href="javascript:;" class="J_showdialog" data-uri="{:U('zhaoshang_item/edit', array('id'=>$val['id']))}" data-title="操作 - {$val.title}"  data-id="edit" data-acttype="ajax" data-width="700">操作</a> | 
+                    <a href="javascript:;" class="J_confirmurl" data-acttype="ajax" data-uri="{:U('zhaoshang_item/delete', array('id'=>$val['id']))}" data-msg="{:sprintf(L('confirm_delete_one'),$val['name'])}">{:L('delete')}</a>
+					</td>
+            </tr>
+            </volist>
+    	</tbody>
+    </table>
+    </div>
+	<div class="btn_wrap_fixed">
+    	<label><input type="checkbox" name="checkall" class="J_checkall">{:L('select_all')}/{:L('cancel')}</label>
+    	<input type="button" class="btn" data-tdtype="batch_action" data-acttype="ajax" data-uri="{:U('zhaoshang_item/delete')}" data-name="id" data-msg="{:L('confirm_delete')}" value="{:L('delete')}" />
+    	<div id="pages">{$page}</div>
+    </div>
+</div>
+<include file="public:footer" />
+<script type="text/javascript">
+<!--
+	$('.J_preview').preview(); //查看大图
+//-->
+</script>
+</body>
+</html>

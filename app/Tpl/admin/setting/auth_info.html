@@ -1,0 +1,40 @@
+<include file="public:header" />
+<!--网站设置-->
+<div class="pad_10">
+    <table width="100%" class="table_form">
+        <tr>
+            <th width="150">授权状态：</th>
+            <td class="auth_msg auth_item">{$auth_data.msg}</td>
+        </tr>
+        <tr>
+            <th>开始时间：</th>
+            <td class="auth_sdate auth_item">{:date('Y-m-d',$auth_data['sdate'])}</td>
+        </tr>
+        <tr>
+             <th>结束时间：</th>
+            <td class="auth_edate auth_item">{:date('Y-m-d',$auth_data['edate'])}</td>
+        </tr>
+    </table>
+    <include file="public:_submit" />
+</div>
+<include file="public:footer" />
+<script>
+    $(function(){
+        $('.btn_submit').click(function(){
+            var $this=$(this),old_val=$(this).val();
+            $this.val('加载中……');
+            $('.auth_info_wrap').html("");
+            $('.auth_item').addClass("fb-loading").html("");
+            $.post(SELF,{act:'domain_auth'},function(data){
+                $('.auth_item').removeClass("fb-loading");
+                $('.auth_msg').html(data.msg);
+                $('.auth_sdate').html(data.sdate);
+                $('.auth_edate').html(data.edate);
+                $this.val(old_val);
+            },'json');
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

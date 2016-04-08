@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    {:C('pin_head_meta')}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <load href="__STATIC__/js/jquery/jquery.js"/>
+    <load href="__ASSETS__/css/base.css"/>
+    <load href="__ASSETS__/css/group.css"/>
+    <load href="__ASSETS__/css/style.css"/>
+    <load href="__ASSETS__/js/uedfocusimg.min.js"/>
+    <load href="__ASSETS__/js/common.js"/>
+    <load href="__ASSETS__/js/merchant-switch.js"/>
+    <load href="__STATIC__/js/jquery/plugins/jquery.cookie.js"/>
+    <load href="__STATIC__/js/common.js"/>
+    <!-- 商家中心 -->
+    <load href="__ASSETS__/css/zhaoshang.css"/>
+    <title>{$page_seo.title}</title>
+    <meta name="keywords" content="{$page_seo.keywords}"/>
+    <meta name="description" content="{$page_seo.description}"/>
+    <script src="__ROOT__/index.php?m={:MODULE_NAME}&a={:ACTION_NAME}&act=loadjs"></script>
+</head>
+<body>
+<!--头部开始-->
+<div id="header">
+	<div class="area">
+		<h1>
+			<a href="__ROOT__/" >29块网，精选每日优质淘品</a>
+			<a class="cls" href="__ROOT__/zhaoshang.html">29块网，商家报名系统</a>
+		</h1>
+		<if condition="$visitor && $visitor['is_merchant']==1">
+			<span id="bmlogin"><em></em>您好!<i>{$visitor.username}[商家用户]</i>
+			[<a href="{:u('zhaoshang/logout',array('ret_url'=>'__ROOT__/zhaoshang.html'))}">退出</a>]</span>
+		<else/>
+			<span id="bmlogin"><a href="{:U('zhaoshang/login')}" class="log"></a></span>
+		</if>
+		
+	</div>
+</div>
+
+<div id="nav">
+    <div class="head_nav area">
+		<span>
+			<a href="__ROOT__/zhaoshang.html" <if condition="MODULE_NAME eq 'zhaoshang' and ACTION_NAME eq 'index'">
+            class="on"
+        </if>>
+				首页
+            </a>
+            <volist name="zs_dahang" id="v">
+                <a href="{:U('zhaoshang/zs_page',array('id'=>$v['id']))}"
+                <if condition="MODULE_NAME eq 'zhaoshang' and ACTION_NAME eq 'zs_page' and $_GET['id'] eq $v['id']">
+                    class="on"
+                </if>
+                >{$v.name}</a>
+            </volist>
+		</span>
+        <em id="boming_nav">
+            <a href="javascript:;">
+                活动报名
+            </a>
+            <i>
+                <volist name="zs_huodong" id="v">
+                    <a href="{:U('zhaoshang/zs_add', array('id'=>$v['id']))}" title="{$v.name}">{$v.name}</a>
+                </volist>
+            </i>
+        </em>
+        <script type="text/javascript">
+            <!--
+            $("#boming_nav").hover(function () {
+                $(this).find("i").show();
+            }, function () {
+                $(this).find("i").hide();
+            });
+            //-->
+        </script>
+        <a class="sh" href="{:U('zhaoshang/zs_list')}">
+            审核结果
+        </a>
+    </div>
+</div>
+
+<!--头部结束-->

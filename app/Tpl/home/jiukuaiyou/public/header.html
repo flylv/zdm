@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+    {:C('pin_head_meta')} 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <load href="__STATIC__/js/jquery/jquery.js" />
+    <load href="__ASSETS__/css/base.css" />
+    <load href="__ASSETS__/css/style.css" />
+    <load href="__ASSETS__/js/common.js" />
+    <load href="__STATIC__/js/jquery/plugins/jquery.cookie.js" />
+    <load href="__STATIC__/js/common.js" />		
+
+	<!-- 原站模板CSS -->
+	<load href="__ASSETS__/css/md-alert.css" />
+	<load href="__ASSETS__/css/pg-worth.css" />
+	<load href="__ASSETS__/css/bdsstyle.css" />
+	<load href="__ASSETS__/css/loginreg.css" />
+	<!-- end -->
+	
+    <title>{$page_seo.title}</title>    
+    <meta name="keywords" content="{$page_seo.keywords}" />
+    <meta name="description" content="{$page_seo.description}" />       
+    <script src="__ROOT__index.php?m={:MODULE_NAME}&a={:ACTION_NAME}&act=loadjs"></script>  
+</head>
+<body>
+
+<!-- 快速导航 开始 -->
+<!-- <div class="sidemenu">
+		<ul>
+            <li class="menu-index"><a href="{:u('post_cate/index',array('id'=>1))}">快速导航</a></li>
+            <li class="menu-sub"><a href="{:u('post_cate/index',array('id'=>2))}">特色推荐</a></li>                
+            <volist name="main_nav_list" id="val">
+                <li class="menu-sub"><a href="{$val.link}">{$val.name}</a></li>
+            </volist>
+			<li class="menu-index">
+                <if condition="empty($visitor)">
+                <a href="{:u('user/login')}" rel="nofollow">登录
+                <a href="{:u('user/register')}" rel="nofollow">注册</a></li>
+              <else/>
+                    <a href="{:u('user/index')}">个人中心</a>
+                    <a href="{:u('user/logout')}">注销</a>
+              </if>
+            </li>
+			<volist name="recommend_cate" id="val">
+                <li class="menu-sub"><a href="{:u('post_cate/index',array('id'=>$val['id']))}">{$val.name}</a></li>
+            </volist>
+		</ul>
+	</div> -->
+<!-- 快速导航 end -->
+
+<!--头部开始-->
+
+<!-- toolbar 开始 -->
+ <div id="toolbar">
+	<div class="toolbar juan_content">
+	<if condition="empty($visitor)">
+		<ul class="juan_login">
+			<li>请<a href="{:u('user/login')}" id="jky_top_login"><b>登录</b></a></li>
+			<li><a href="{:u('user/register')}">免费注册</a></li>
+		</ul>
+	<else/>
+		<ul class="juan_login">
+			<li>
+				<span>{$visitor.username}欢迎您！</span>|
+			</li>
+			<li>
+				<a href="{:u('user/index')}">个人中心</a>|
+                <a href="{:u('user/logout')}">注销</a>
+			</li>
+		</ul>
+    </if>
+		<ul class="juan_menu">
+			<li class="menu">
+				<div class="menu-hd wap">
+					 <a href="{:u('mall/index')}" target="_blank">商家导航</a>
+				</div>
+			</li>
+			<li class="menu">
+				<div class="menu-hd wap">
+					<a href="{:u('post/submit')}" target="_blank">我要爆料</a>
+				</div>
+			</li>
+			<li class="menu collect">
+				<div class="menu-hd collect_to">
+					<a class="col fav J_add_bookmark">收藏九块邮</a><b></b>
+				</div>
+				<div class="menu-client collect_client">
+					<dl>
+						<dd>
+							<div class="add_col">
+								<a href="javascript:AddFavorite(window.location,def.site_name);"><i></i>添加到收藏夹</a> <span>或者(Ctrl+D)</span>
+							</div>
+						</dd>
+						<dd>
+							<div class="add_desktop">
+								<a target="_blank" href="http://www.zhiphp.com/"><i></i>桌面快捷方式</a>
+							</div>
+						</dd>
+						<dd>
+							<div class="add_qq">
+								<a href="javascript:;"><i></i>添加到QQ书签</a>
+							</div>
+						</dd>
+						
+					</dl>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- toolbar end -->
+
+<!-- head 开始 -->
+<DIV class="head">
+	<div class="logo">
+		<h1>
+			<a title="九块邮：全场九块九包邮" href="./"><img src="__ASSETS__/images/logo.jpg"/></a>
+		</h1>
+		<div class="search_box">
+			<form method="get" id="searchform" action="__ROOT__index.php">
+				<span class="area">
+				<input type="text" class="text" x-webkit-speech name="keyword" id="keyword" value="{$search.keyword}" /></span>
+				<input type="hidden" name="m" value="index"/>
+                <input type="hidden" name="a" value="index"/>
+				<input type="submit" class="btn" id="k" name="" value="" />
+			</form>
+		</div>
+	</div>
+	<!-- 导航条	开始 -->
+	<div class="nav">
+		<div class="mask"></div>
+		<ul class="navigation">
+			<li class="attention">
+				<label>分享九块邮：</label> 
+				<!-- Baidu Button BEGIN -->
+				<div data="{'text':'九块邮','name':'九块邮','comment':'九块邮汇集全网九块九包邮商品，除了九块邮独享的上百款精品外，还汇聚了淘宝网天天特价、超优汇等9.9元包邮促销区产品，每天10点更新，持续关注，超值不断！','desc':'全都9.9元包邮哦亲~你也来看一下吧！'}" class="bdshare_t bds_tools get-codes-bdshare" id="bdshare">
+					<a class="bds_qzone" title="分享到QQ空间" href="#"></a> 
+					<a class="bds_tsina" title="分享到新浪微博" href="#"></a>
+					<a class="bds_sqq" title="分享到QQ好友" href="#"></a>
+					<span class="bds_more"></span>
+				</div>
+				<!-- Baidu Button END -->
+             </li>
+
+			<li style="PaDDING-LEFT: 0px" >
+				<a href="./" <if condition="MODULE_NAME eq index">class="daohangcur" style="color:#DC442F"</if> >首页</a>
+		    </li>
+			<li >
+				<a href="{:u('post_cate/index',array('id'=>2))}" <if condition="MODULE_NAME eq 'post_cate' and ACTION_NAME eq 'index' and $_GET['id'] eq 2">class="daohangcur" style="color:#DC442F"<else /> class="navicon"</if>>特色推荐</a>
+			</li>
+		<volist name="main_nav_list" id="val">
+			<li class="dingwei_{$val.alias}"><a href="{$val.link}" <if condition="$val['target'] eq 1">target="_blank"</if>>{$val.name}</a></li>
+		</volist>
+			</li>
+			<script type="text/javascript">
+			<!--
+				if('{:MODULE_NAME}' == 'post_cate' &&'{:ACTION_NAME}' == 'index' && '{$_GET['id']}' == '2'){
+					
+				}else{
+					$(".dingwei_{:MODULE_NAME} a").addClass("daohangcur");
+					$(".dingwei_{:MODULE_NAME} a").attr("style","color:#DC442F");
+				}
+				
+			//-->
+			</script>
+			<li class="discount">
+				<em class="orig_xiu"></em>
+			</li>
+		</ul>
+	</div>
+	<!-- 导航条	end -->
+</div>
+<!-- head end -->
+
+<!--头部结束-->

@@ -1,0 +1,70 @@
+<volist name="post_list" id="val">
+    <div class="ztdeal clear ">
+        <h3>
+		<span>
+			<a href="{:post_url($val)}" target="_blank">
+                [{$val.mall.title}]
+            </a>
+			<a href="{:post_url($val)}" target="_blank" <if condition="$val['tcolor']">style="color:{$val.tcolor};"</if> >{$val.title}<b
+                style="color:#DB1A1A;padding-left:25px;">{$val.prices}</b></a>
+		</span>
+            <em>{:date('Y/m/d H:i', $val['post_time'])}</em>
+        </h3>
+        <p class="stit">
+            <span></span>
+            <em>
+                <b>
+                </b>
+                推荐人:
+                <i>{$val.uname}</i>
+            </em>
+        </p>
+
+        <div class="l">
+            <a href="{:post_go($val)}" target="_blank">
+                <span></span>
+                <img src="{:attach($val['img'],'post')}"/>
+            </a>
+		<span>
+			<a target="_blank" href="{:post_go($val)}" rel="nofollow">
+            </a>
+		</span>
+        </div>
+        <div class="r">
+            <h4>
+                分类：
+                <volist name="val['cate_list']" id="c">
+                    <a href="{:u('post_cate/index',array('id'=>$c['cate_id']))}" target="_blank">
+                        {$c.cate.name}
+                    </a>
+                    <if condition="$i lt count($val['cate_list'])">
+                        |
+                    </if>
+                </volist>
+            </h4>
+            <div class="info">
+                {$val['info']}
+            </div>
+            <h5>
+                <a href="{:post_url($val)}" target="_blank">
+                    查看全文&gt;&gt;
+                </a>
+            </h5>
+
+            <div class="clear">
+                <a class="J_worth_4" href="{:post_url($val)}#J_messagebox" target="_black" title="等您评论">
+                    等您评论
+                </a>
+                &nbsp;|&nbsp;分享：
+                <!-- Baidu Button BEGIN -->
+                <div class="fr" style="margin-top:-3px;">
+                    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"
+                         data="<literal>{</literal>'bdDes':'{$val.title}','text':'{$val.title}',pic:'{:attach($val['img'],'post',true)}'<literal>}</literal>">
+                        <include file="public:baidu_share"/>
+                    </div>
+                </div>
+                <!-- Baidu Button END -->
+            </div>
+        </div>
+    </div>
+</volist>

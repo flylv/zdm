@@ -1,0 +1,59 @@
+<include file="public:header"/>
+<!--主部开始-->
+
+<!-- 特色推荐 -->
+<div id="contentB" class="area">
+    <ul>
+        <li class="hd"><a class="" href="{:u('post_cate/index',array('id'=>2))}">特色推荐</a></li>
+        <volist name="recommend_cate" id="val">
+            <li><a href="{:u('post_cate/index',array('id'=>$val['id']))}" class="">{$val.name}</a></li>
+        </volist>
+    </ul>
+</div>
+<!-- 特色推荐 end -->
+
+<div id="contentA" class="area">
+    <!--左侧开始-->
+    <div class="left">
+        <div class="blockA">
+            <div style="border: medium none;" class="ztdeal">
+                <h3><span>当前位置:</span>
+                    <a href="/" target="_blank">[首页]</a>
+                    >>
+                    <a> {$info.name}</a>
+                </h3>
+            </div>
+        </div>
+        <!--单品列表开始-->
+        <div class="blockB" id="J_waterfall"
+             data-uri="__ROOT__/index.php?m={:MODULE_NAME}&a=index&sort={$sort}&p={$p}&keyword={$search.keyword}">
+            <include file="public:ajax_post_list"/>
+        </div>
+        <present name="show_load">
+            <div id="J_wall_loading" class="wall_loading tc gray">
+				<span>
+					{:L('loading')}
+				</span>
+            </div>
+        </present>
+        <present name="page_bar">
+            <div id="J_wall_page" class="wall_page clearfix"
+            <present name="show_page"> style="display:block;"</present>
+            >
+            <div class="page">
+                {$page_bar}
+            </div>
+    </div>
+    </present>
+    <!--单品列表结束-->
+</div>
+<!--左侧结束-->
+
+<!--右侧开始-->
+<div class="right">
+    <include file="public:find"/>
+</div>
+<!--右侧结束-->
+</div>
+<!--主部结束-->
+<include file="public:footer"/>

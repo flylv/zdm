@@ -1,0 +1,357 @@
+/*登录注册页*/
+.main {
+    margin: 15px auto;
+}
+
+.wrap {
+    clear: both;
+    overflow: hidden;
+    padding: 20px 0;
+    width: 980px;
+}
+.w_login {
+    padding-left: 70px;
+    position: relative;
+    width: 610px;
+}
+.wrap_left {
+    border-right: 1px solid #DDDDDD;
+    float: left;
+    overflow: hidden;
+    padding-left: 40px;
+    width: 640px;
+}
+
+.wrap_left h1 {
+    color: #FF5500;
+    font-family: '微软雅黑','黑体',Arial,'宋体';
+    font-size: 24px;
+}
+
+.w_login ul {
+    list-style: none outside none;
+    padding-bottom: 100px;
+}
+
+.w_login li {
+    font-size: 14px;
+    height: auto;
+    margin-top: 28px;
+    overflow: hidden;
+}
+
+.w_login li span {
+    display: block;
+    float: left;
+    height: 26px;
+    line-height: 26px;
+    width: 56px;
+}
+.w_login li .usergray {
+    border: 1px solid #CCCCCC;
+    color: #999999;
+    float: left;
+    font-size: 14px;
+    height: 26px;
+    line-height: 26px;
+    padding-left: 6px;
+    width: 228px;
+}
+.w_login li .err_name, .w_login li .err_pass {
+    background: url("../images/total_alert.gif") no-repeat scroll -205px -474px transparent;
+    color: #FF6C01;
+    font-size: 12px;
+    font-weight: bold;
+    height: auto;
+    line-height: normal;
+    margin-left: 8px;
+    padding-left: 25px;
+    padding-top: 10px;
+    width: auto;
+}
+
+.w_login li .change_code {
+    display: block;
+    float: left;
+    margin-left: 8px;
+}
+.w_login .fs12 {
+    font-size: 12px;
+}
+
+.w_login .checkbox {
+    float: left;
+    margin-left: 55px;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+.w_login .fs12 span {
+    display: inline;
+    float: none;
+    height: auto;
+    line-height: normal;
+    width: auto;
+}
+
+.wrap_left .smt {
+    background: url("../images/loginreg_total.gif") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    height: 36px;
+    overflow: hidden;
+    width: 122px;
+}
+
+.w_login li .forget1 {
+    font-size: 12px;
+    padding-left: 10px;
+}
+.w_login font {
+    font-size: 12px;
+}
+
+.w_login li .forget1 a {
+    color: #FF6C01;
+    text-decoration: underline;
+}
+.w_login .tips_err {
+    background: url("../images/error_bg.png") no-repeat scroll left center transparent;
+    height: 133px;
+    left: 365px;
+    position: absolute;
+    top: 55px;
+    width: 248px;
+}
+
+.w_login .tips_err .war {
+    background: url("../images/total_alert.gif") no-repeat scroll -190px -474px transparent;
+    height: 16px;
+    padding-left: 35px;
+    padding-top: 10px;
+}
+
+.w_login .tips_err .war span {
+    color: #FF6C01;
+    font-weight: bold;
+    margin-left: 6px;
+}
+
+.w_login .tips_err .content {
+    font-size: 12px;
+    line-height: 20px;
+    margin-left: 25px;
+    margin-top: 8px;
+}
+
+.w_login .tips_err pre {
+    color: #666666;
+    white-space: pre-wrap;
+    width: 99%;
+    word-wrap: break-word;
+}
+.w_login .tips_err1 {
+    top: 110px;
+}
+.w_login .tips_err {
+    background: url("../images/error_bg.png") no-repeat scroll left center transparent;
+    height: 133px;
+    left: 365px;
+    position: absolute;
+    top: 55px;
+    width: 248px;
+}
+.w_login .tips_err .war {
+    background: url("../images/total_alert.gif") no-repeat scroll -190px -474px transparent;
+    height: 16px;
+    padding-left: 35px;
+    padding-top: 10px;
+}
+
+.w_login .tips_err .war span {
+    color: #FF6C01;
+    font-weight: bold;
+    margin-left: 6px;
+}
+
+.w_login .tips_err .content {
+    font-size: 12px;
+    line-height: 20px;
+    margin-left: 25px;
+    margin-top: 8px;
+}
+
+
+.wrap_right {
+    float: left;
+    padding-left: 40px;
+    padding-top: 10px;
+    width: 220px;
+}
+.wrap_right p {
+    clear: both;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.wrap_right p a, .wrap_refer a {
+    background: url("../images/loginreg_total.gif") no-repeat scroll -136px 0 transparent;
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 29px;
+    line-height: 29px;
+    margin-top: 10px;
+    text-align: center;
+    width: 85px;
+}
+
+.wrap_right .union a {
+    background: url("../images/total_alert.gif") no-repeat scroll 0 -189px transparent;
+    display: block;
+    float: left;
+    height: 22px;
+    margin: 5px 15px 5px 0;
+    width: 80px;
+}
+
+.wrap_right .union .qq {
+    background-position: -95px -189px;
+    margin-right: 0;
+}
+
+.wrap_right .union .taobao {
+    background-position: 0 -222px;
+}
+
+.wrap_right .union .qqweibo {
+    background-position: 0 -615px;
+    margin-right: 0;
+}
+
+
+
+.w_reg p {
+    color: #5E5E5E;
+    font-family: '微软雅黑','黑体',Arial,'宋体';
+    line-height: 25px;
+}
+
+.fill {
+    padding-bottom: 40px;
+}
+.fill ul {
+    list-style: none outside none;
+    margin: 20px 0 0;
+}
+
+.fill li {
+    display: block;
+    font-size: 14px;
+    height: 45px;
+    padding: 10px 0 0;
+}
+
+.fill li .input_left {
+    float: left;
+    height: 28px;
+}
+
+.fill li label {
+    display: block;
+    float: left;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    text-align: right;
+    width: 75px;
+}
+.cur_input {
+    border-color: #139C00;
+}
+.cur_input, .bg, .yz {
+    border: 1px solid #CCCCCC;
+    float: left;
+    font-size: 14px;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 6px;
+    width: 228px;
+}
+.cur_input, .bg, .yz {
+    border: 1px solid #CCCCCC;
+    float: left;
+    font-size: 14px;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 6px;
+    width: 228px;
+}
+.fill li .tips-red {
+    background-position: -211px -478px;
+    color: #FF8502;
+}
+.fill li .tips-red, .fill li .tips-green {
+    background: url("../images/total_alert.gif") no-repeat scroll -211px -448px transparent;
+    display: none;
+    float: left;
+    font-size: 12px;
+    line-height: 18px;
+    margin-left: 15px;
+    margin-top: 1px;
+    padding: 5px 10px 5px 20px;
+}
+.fill li span {
+    color: #B5B4B4;
+    display: none;
+    float: left;
+    font-size: 12px;
+}
+
+.fill li .normal {
+    height: 30px;
+    line-height: 30px;
+    margin-left: 15px;
+}
+
+.fill li .input_left .rdo2 {
+    margin-left: 10px;
+    margin-top: 8px;
+}
+.fill li .input_left .rdo1, .fill li .input_left .rdo2 {
+    margin-right: 2px;
+    margin-top: 8px;
+}
+
+.fill .ipt_box {
+    height: 25px;
+    margin-left: 76px;
+    overflow: hidden;
+    padding-top: 5px;
+}
+
+.fill .ipt_box .box {
+    display: inline;
+    float: left;
+    margin-right: 2px;
+}
+
+.fill .ipt_box span {
+    color: #999999;
+    display: inline;
+    float: left;
+    font-size: 12px;
+    line-height: 10px;
+    margin-top: 0;
+}
+
+.fill .ipt_smt {
+    float: left;
+}
+
+.fill li .smt {
+    margin-left: 75px;
+}

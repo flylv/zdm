@@ -1,0 +1,29 @@
+<include file="public:header"/>
+
+<!--主部开始-->
+	<div id="main">
+		
+		<!--关于我们开始-->
+		<div class="w1040 pt20 pb30 ">
+			
+			<div class="linksbox">
+				
+				<dl class="links">
+					<dt>友情链接</dt>
+					<dd>
+                    <volist name="flink_list" id="val">
+                    
+                    <a href="{$val.url}" target="_blank">{$val.name}</a>
+                    </volist>
+                    </dd>
+				</dl>
+				
+				
+			</div>
+			
+		</div>
+		<!--关于我们结束-->
+		
+	</div>
+	<!--主部结束-->
+<include file="public:footer"/>

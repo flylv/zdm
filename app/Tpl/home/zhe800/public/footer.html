@@ -1,0 +1,199 @@
+<div class="w1040">
+    {:R('advert/index', array(17), 'Widget')}
+</div>
+<!--尾部开始-->
+<div id="footer" style="margin-top:20px;">
+    <div class="footerbox">
+        <div class="footerCont w1040 ">
+            <div class="footerCont-head clearfix">
+                <dl>
+                    <dt>关于{:C('pin_site_name')}</dt>
+					 <volist name="main_nav_list" id="val">
+                        <dd>
+						<a href="{$val.link}"
+						<if condition="$val['target'] eq 1">target="_blank"</if>
+						>{$val.name}</a>
+                        </dd>
+					   </volist>					
+                    <dd><a href="{:u('post/submit')}" target="_blank">我要爆料</a></dd>
+                </dl>
+                <dl>
+                    <dt>获取帮助</dt>
+                    <dd><a href="__ROOT__/help_jifen.html" target="_blank">积分攻略</a></dd>                    
+                    <dd><a href="__ROOT__/help_mall.html" target="_blank">商家导航</a></dd>
+                    <dd><a href="__ROOT__/help_exchange.html" target="_blank">积分商城</a></dd>
+                    <dd><a href="__ROOT__/help_faq.html" target="_blank">常见问题</a></dd>                    
+                </dl>
+                <dl>
+                    <a class="bottom-logo" href="{:U('index/index')}">
+                        <img src="__ASSETS__/images/foot_logo.png"/>
+                    </a>
+                </dl>
+                <dl>
+                    <dt>关于网站</dt>
+                    <dd><a href="__ROOT__/help_about.html" target="_blank">关于我们</a></dd>
+                    <dd><a href="__ROOT__/help_contact.html" target="_blank">联系我们</a></dd>
+                    <dd><a href="__ROOT__/help_friends.html" target="_blank">合作伙伴</a></dd>
+                    <dd><a href="__ROOT__/help_rules.html" target="_blank">积分规则</a></dd>
+                    <dd><a href="__ROOT__/help_flink.html" target="_blank">友情链接</a></dd>
+                    <dd><a href="__ROOT__/help_partner.html" target="_blank">商务合作</a></dd>
+                </dl>
+                <ul class="help_list">
+                    {:R('advert/index', array(8), 'Widget')}
+                </ul>
+            </div>
+            <div class="footerCont-body">
+                <ul>
+                    <li>
+                        <span>友情链接：</span>
+                        <volist name="flink_list" id="val">
+                            <a href="{$val.url}" target="_blank">{$val.name}</a>
+                        </volist>
+                    </li>
+                </ul>
+            </div>
+            <div class="footerCont-foot">
+                <p>@copyright 2010-2013 {:C("pin_site_name")}.All rights reserverd.<br>{:C("pin_site_icp")}{:C("pin_statistics_code")}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--尾部结束-->
+
+<!-- 左侧浮动条 -->
+<div class="tao_qjump" id="tao_qjump">
+    <dl class="clear tao800_ju">
+        <dt>
+            <a target="_blank" class="ju">
+            </a>
+        </dt>
+        <dd>
+            <div class="tbg">
+                <h2 class="clear">
+					<span>
+					<volist name="type_list" id="v">
+                        <a href="{:U('jky_item/index',array('c1'=>$v['id'],'c2'=>$c2))}"><em>{$v.name}</em></a>
+                    </volist>
+					</span>
+                    <a href="{:U('jky_item/index',array('state'=>'notstart','c2'=>$c2,'c1'=>$c1))}">
+                        明日预告
+                    </a>
+                </h2>
+				<span>
+					<volist name="cat_list" id="v">
+                        <a href="{:U('jky_item/index',array('c1'=>$c1,'c2'=>$v['id']))}"><em>{$v.name}</em></a>
+                    </volist>
+				</span>
+            </div>
+            <div class="bbg">
+            </div>
+        </dd>
+    </dl>
+    <dl class="clear tao800_zhi">
+        <dt>
+            <a target="_blank" class="zhi">
+            </a>
+        </dt>
+        <dd>
+            <div class="tbg">
+                <h2 class="clear">
+                    <span><a href="{:u('post_cate/index',array('id'=>2))}"><em>特色推荐</em></a></span>
+                </h2>
+				<span>
+				<volist name="tese_cate" id="val">
+                    <a href="{:u('post_cate/index',array('id'=>$val['id']))}" class=""><em>{$val.name}</em></a>
+                </volist>
+				</span>
+            </div>
+            <div class="bbg">
+            </div>
+        </dd>
+    </dl>
+    <dl class="clear">
+        <dt>
+            <a href="javascript:AddFavorite(window.location,def.site_name);" class="sc">
+            </a>
+        </dt>
+    </dl>
+    <dl class="clear">
+        <dt>
+            <a href="#" target="_blank" class="kf"></a>
+        </dt>
+    </dl>
+    <dl class="clear go_top">
+        <dt id="J_returntop"><a class="top"></a></dt>
+    </dl>
+</div>
+<script type="text/javascript">
+    $("#tao_qjump dl").hover(
+            function () {
+                if ($(this).hasClass("dlnone")) {
+                    return false
+                }
+                $(this).addClass("dlon")
+            },
+            function () {
+                $(this).removeClass("dlon")
+            }
+    );
+</script>
+<!-- 左侧浮动条 end -->
+
+<script type="text/javascript">
+    var PINER = {
+        root: "__ROOT__",
+        uid: "<?php echo $visitor['id'];?>",
+        async_sendmail: "<?php echo $async_sendmail;?>",
+        config: {
+            wall_distance: "<?php echo C('pin_wall_distance');?>",
+            wall_spage_max: "<?php echo C('pin_wall_spage_max');?>"
+        },
+        //URL
+        url: {
+            mini_user: "<?php echo U('index/mini_user');?>"
+        }
+    };
+    //语言项目
+    var lang = {};
+<volist name=":L('js_lang')" id="val">lang.{$key} = "{$val}";</volist>
+</script>
+<load href="__STATIC__/js/jquery-ui/themes/base/jquery.ui.all.css"/>
+<load href="__STATIC__/js/jquery-ui/extend/datepicker/jquery-ui-timepicker-addon.css"/>
+	
+<pin:load type="js" href="__STATIC__/js/jquery/plugins/jquery.tools.min.js
+,__STATIC__/js/jquery/plugins/jquery.masonry.js
+,__STATIC__/js/jquery/plugins/jquery.scrollTo.min.js
+,__STATIC__/js/jquery/plugins/formvalidator.js
+,__STATIC__/js/jquery/plugins/jquery.stickyscroll.js
+,__STATIC__/js/jquery/plugins/jquery.easing.min.js
+,__STATIC__/js/jquery/plugins/jquery.artDialog.js
+,__STATIC__/js/jquery/plugins/artDialog.plugins.js
+,__STATIC__/js/jquery-ui/ui/jquery-ui.js
+,__STATIC__/js/jquery-ui/extend/datepicker/jquery-ui-sliderAccess.js
+,__STATIC__/js/jquery-ui/extend/datepicker/jquery-ui-timepicker-addon.js
+,__STATIC__/js/jquery-ui/ui/i18n/jquery.ui.datepicker-zh-CN.js
+,__STATIC__/js/fileuploader.js
+,__STATIC__/js/zhiphp.js
+,__STATIC__/js/front.js
+,__STATIC__/js/dialog.js
+,__STATIC__/js/wall.js
+,__STATIC__/js/comment.js
+,__STATIC__/js/user.js
+,__STATIC__/js/setting.js
+,__STATIC__/js/validate.js
+"/>
+<!--[if lte IE 6]>
+<script src="__STATIC__/js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('div, ul, img, li, input , a,h3,span,em,i,dt,dd,button');
+    </script>
+<![endif]-->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=0" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+
+</body>
+</html>

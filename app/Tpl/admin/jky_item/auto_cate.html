@@ -1,0 +1,26 @@
+<include file="public:header" />
+<form id="info_form" action="{:U(MODULE_NAME.'/'.ACTION_NAME)}" method="post">
+<div class="pad_10">
+	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+        <tr>
+			<th width="100">发布时间:</th>
+			<td>
+                <input title="开始时间" type="text" name="start_time" class="J_date_picker" size="30" value="{:date('Y-m-d H:i:s',time())}"/>~
+                <input title="结束时间" type="text" name="end_time" class="J_date_picker" size="30" value="{:date('Y-m-d H:i:s',time()+3600*24*30)}"/>
+            </td>            
+		</tr>
+        <tr>
+			<th width="100">审核状态:</th>
+			<td>
+                <input type="radio" name="status" value="0"/>否&nbsp;&nbsp;
+                <input type="radio" name="status" value="1" checked="checked"/>是&nbsp;&nbsp;
+            </td>            
+		</tr>
+	</table>
+    <include file="public:_submit" />   
+</div>
+</form>
+<include file="public:footer" />
+
+</body>
+</html>

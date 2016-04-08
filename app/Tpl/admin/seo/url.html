@@ -1,0 +1,77 @@
+<include file="public:header" />
+<!--SEO设置-->
+<div class="subnav">
+    <h1 class="title_2 line_x">伪静态设置</h1>
+</div>
+<div class="pad_10">
+	<form id="info_form" action="{:u('seo/url')}" method="post">
+	<table width="100%" class="table_form">
+        
+        <tr>
+            <th width="150"><strong>是否开启伪静态</strong> :</th>
+            <td>
+                <input type="radio" name="url_model" value="2" <if condition="$config['URL_MODEL'] eq 2">checked="checked"</if>/>开启&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="url_model" value="0" <if condition="$config['URL_MODEL'] eq 0">checked="checked"</if>/>不开启                
+            </td>
+        </tr>
+        <!--
+        <tr>
+            <th>{:L('url_suffix')} :</th>
+            <td>
+                {:html_radio('url_suffix',C('HTML_SUFFIX_LIST'),$config['URL_HTML_SUFFIX'])}
+                
+            </td>
+        </tr>
+        <tr>
+            <th>{:L('url_depr')} :</th>
+            <td>
+                {:html_radio('url_depr',C('PATHINFO_DEPR_LIST'),$config['URL_PATHINFO_DEPR'])}
+            </td>
+        </tr>
+        -->
+        <tr>
+            <th><strong>伪静态模式</strong>：</th>
+            <td class="rewrite_type_list">
+                <div class="item clearfix">
+                    <input type="radio" name="rewrite_detail" value="orig" class="fl"/>
+                    <span class="title fl">常规链接</span>
+                    <code class="fl">__SITEROOT__/index.php?m=post&id=1</code>
+                </div>
+                <div class="item clearfix">
+                    <input type="radio" name="rewrite_detail" value="rewrite" class="fl"/>
+                    <span class="title fl">伪静态</span>
+                    <code class="fl">__SITEROOT__/zhi/detail-1.html</code>
+                </div>
+                <div class="item clearfix">
+                    <input type="radio" name="rewrite_detail" value="date" class="fl"/>
+                    <span class="title fl">日期型</span>
+                    <code class="fl">__SITEROOT__/{:date('Y/m',time())}/detail-1.html</code>
+                </div>
+                <div class="item clearfix">
+                    <input type="radio" name="rewrite_detail" value="dir" class="fl"/>
+                    <span class="title fl">目录型</span>
+                    <code class="fl">__SITEROOT__/zhi/1</code>
+                </div>
+                <div class="item clearfix">
+                    <input type="radio" name="rewrite_detail" value="pinyin" class="fl"/>
+                    <span class="title fl">拼音型</span>
+                    <code class="fl">__SITEROOT__/zhi-zhi_de_mai_001.html</code>
+                </div>
+            </td>
+        </tr>
+	</table>
+    <include file="public:_submit" />
+	</form>
+    <div class="tip">
+<pre><strong>提示说明：</strong>
+    1.伪静态设置目前支持的有:Apache、Nginx以及IIS 6.0以上版本；
+    2.在IIS中需要安装相应的第三方的Rewirte组件；
+    3.Apache、Nginx需求开启相应的ReWrite模块；
+    4.详细配置说明请查看文档:《<a href="http://www.zhiphp.com/help.php?m=rewrite" target="_blank">ZhiPHP值得买 - FAQ - 伪静态设置！</a>》
+</pre>
+    </div>
+</div>
+<include file="public:footer" />
+{:html_radio('rewrite_detail',C('rewrite_detail'))}
+</body>
+</html>

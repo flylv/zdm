@@ -1,0 +1,31 @@
+<volist name="jky_item_list" id="item">
+    <div class="jky_item <if condition='$i%3 eq 0'> no_mr</if> tag_{$item.state}">
+        <h3 style="height:37px;overflow:hidden;">
+            <if condition="$item['orig']['img']">
+                <img class="orig" title="{$item.orig.name}" src="{:attach($item['orig']['img'],'jky_orig')}"/>
+            </if>
+            <a title="{$item.title} 原价{$item.mprice}元 促销价{$item.price}元" class="inform_title" href="{:u('jiukuaiyou/detail',array('id'=>$item['id']))}" target="_blank" >
+                <i <if condition="$item['is_duxiang']">class="tao-d"</if> title="九块邮"></i>{$item.title} 原价{$item.mprice}元 促销价{$item.price}元
+            </a>
+        </h3>
+        <div class="pic">
+            <a href="{:u('jiukuaiyou/detail',array('id'=>$item['id']))}" target="_blank">
+                <img class="img" alt="{$item.title} 原价{$item.mprice}元 促销价{$item.price}元" src="{:attach($item['img'],MODULE_NAME)}"/>
+            </a>
+        </div>
+        <div class="buy_mask"></div>
+        <div class="buy_state clearfix">
+                                <span class="begin_time">
+                                    开始：{:date("m月d日H时i分",$item['stime'])}
+                                </span>
+        </div>
+        <div class="buy_content">
+            <a target="_blank" href="{:u('jiukuaiyou/detail',array('id'=>$item['id']))}" class="buy_action clearfix">
+                                    <span class="price"><em>￥</em>{:intval($item['price'])}<span>.{$item["price"]*100-intval($item['price'])*100}</span>
+                                    </span>
+                <span class="oldprice_1">￥{$item.mprice}</span>
+                <b class="btn"></b>
+            </a>
+        </div>
+    </div>
+</volist>

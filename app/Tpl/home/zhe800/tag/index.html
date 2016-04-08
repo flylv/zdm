@@ -1,0 +1,49 @@
+<include file="public:header"/>
+
+<!--主部开始-->
+<div id="main" class="pb30 pt20 J_main_page">
+
+    <!--内容页开始-->
+    <div class="content w1040 clearfix">
+
+        <!--左侧开始-->
+        <div class="w760 fl">
+            <div class="w720">
+
+                <div class="location mt15">
+                    <span>当前位置：</span>
+                    <a href="__ROOT__/">首页 </a>&gt;&gt;&nbsp;
+                    {$info.name}
+                </div>
+
+                <!--单品列表开始-->
+                <div class="singlepro-box" >
+                    <ul class="singlepro-list" id="J_waterfall" data-uri="__ROOT__/index.php?m={:MODULE_NAME}&a=index&sort={$sort}&p={$p}&id={$id}">
+                        <include file="public:ajax_post_list"/>
+                    </ul>
+                </div>
+                <present name="show_load">
+                    <div id="J_wall_loading" class="wall_loading tc gray"><span>{:L('loading')}</span></div>
+                </present>
+                <present name="page_bar">
+                    <div id="J_wall_page" class="wall_page clearfix" <present name="show_page">style="display:block;"</present>>
+                    <div class="page">{$page_bar}</div>
+            </div>
+            </present>
+            <!--单品列表结束-->
+        </div>
+
+    </div>
+    <!--左侧结束-->
+
+    <!--右侧开始-->
+    <div class="w280 fr contentbox_r">
+        <include file="public:find"/>
+    </div>
+    <!--右侧结束-->
+</div>
+<!--内容页结束-->
+
+</div>
+<!--主部结束-->
+<include file="public:footer"/>

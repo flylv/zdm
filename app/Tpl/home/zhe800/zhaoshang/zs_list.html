@@ -1,0 +1,62 @@
+<include file="public:header_zhao"/>
+<!-- 主体内容 -->
+<div class="nav_label area">
+    <a href="__ROOT__/zhaoshang.html">商家报名系统</a> &gt; 审核结果
+</div>
+<div class="area textcls">
+    <h2>审核结果</h2>
+
+    <div class="blankA"></div>
+    <table cellspacing="0" cellpadding="0" align="center" style="margin:20px auto;">
+        <thead>
+        <tr>
+            <th class="tbor1" width="60px">商品</th>
+            <th>标题</th>
+            <th width="100px">参加活动</th>
+            <th width="100px">审核时间</th>
+            <th width="70px">发布到</th>
+            <th class="tbor2" width="80px">审核结果</th>
+        </tr>
+        </thead>
+        <tbody>
+        <volist name="shenhe_list" id="val" empty="$empty">
+            <tr>
+                <td>
+                    <notempty name="val['img']">
+                        <div class="img_border">
+                            <img src="{:attach($val['img'],'zhaoshang')}" width="50" class="J_preview"
+                                 data-bimg="{:attach($val['img'],'zhaoshang')}"/>
+                            <notempty name="val['img2']">
+                                <img src="{:attach($val['img2'],'zhaoshang')}" width="50" class="J_preview"
+                                     data-bimg="{:attach($val['img2'],'zhaoshang')}"/>
+                            </notempty>
+                        </div>
+                    </notempty>
+                </td>
+                <td>{$val.title}</td>
+                <td>{$zhaoshang_cate_list[$val['cid']]}</td>
+                <td>{:fdate($val['stime'])}</td>
+                <td>
+                    <if condition="$val['zs_type'] eq '0'">值得买
+                        <elseif condition="$val['zs_type'] eq 1"/>
+                        九块邮
+                    </if>
+                </td>
+                <td>
+                    <if condition="$val['status'] eq '0'">未审核
+                        <elseif condition="$val['status'] eq 1"/>
+                        <span style="color:red;">已审核</span></if>
+                </td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+    <div class="clearfix page">{$page}</div>
+</div>
+<!-- 主体内容 end -->
+<script type="text/javascript">
+    <!--
+    $('.J_preview').preview(); //查看大图
+    //-->
+</script>
+<include file="public:footer"/>

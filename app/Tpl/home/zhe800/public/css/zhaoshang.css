@@ -1,0 +1,716 @@
+@charset "utf-8";
+/* CSS Document */
+body > div {
+    text-align: center;
+}
+
+.area {
+    width: 980px;
+}
+
+/*页面属性 */
+
+/*商家报名页头*/
+#header {
+    height: 82px;
+    background: url(../images/zhaoshang/bg-x.png) repeat-x 0 0;
+}
+
+#header h1 {
+    width: 330px;
+    height: 36px;
+    margin-top: 25px;
+    overflow: hidden;
+    float: left;
+    background: url(../images/zhaoshang/bg.png) no-repeat 0 0;
+    text-align: left;
+}
+
+#header h1 a {
+    float: left;
+    display: inline;
+    width: 110px;
+    height: 36px;
+    text-indent: -900px;
+}
+
+#header h1 a.cls {
+    width: 195px;
+    margin-left: 25px;
+}
+
+#header span {
+    float: right;
+    padding-top: 30px;
+    font: 14px/33px "微软雅黑";
+}
+
+#header span a.log {
+    width: 104px;
+    height: 33px;
+    display: inline-block;
+    background: url(../images/zhaoshang/bg2.png) no-repeat -121px -1px;
+}
+
+#header span em {
+    width: 33px;
+    height: 33px;
+    display: inline-block;
+    margin-right: 10px;
+    background: url(../images/zhaoshang/bg2.png) no-repeat -243px -1px;
+    vertical-align: middle;
+}
+
+#header span i {
+    color: #c00;
+    margin: 0 10px;
+}
+
+#nav {
+    height: 50px;
+    background: #222;
+    text-align: right;
+}
+
+#nav .pore {
+    position: relative;
+}
+
+#nav span {
+    float: left;
+}
+
+#nav a, #nav a:hover {
+    display: inline-block;
+    height: 46px;
+    padding: 0 20px;
+    color: #f4ddb2;
+    text-decoration: none;
+    font: 16px/50px "微软雅黑";
+    overflow: hidden;
+    vertical-align: top;
+}
+
+#nav span a, #nav span a:hover {
+    color: #fff;
+}
+
+#nav a.on, #nav a:hover {
+    border-bottom: 4px solid #f4ddb2;
+}
+
+#nav a.sh {
+    background: url(../images/zhaoshang/bg.png) no-repeat -274px -348px;
+    padding: 0 13px 0 27px;
+}
+
+#nav em {
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    vertical-align: middle;
+    text-align: left;
+    position: relative;
+}
+
+#nav em a, #nav em a:hover {
+    background: url(../images/zhaoshang/bg.png) no-repeat -160px -347px;
+    padding: 0 23px 0 17px;
+    width: 80px;
+}
+
+#nav em i {
+    display: none;
+    width: 118px;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-top: none;
+}
+
+#nav em i a, #nav em i a:hover {
+    overflow: hidden;
+    word-break: break-all;
+    width: 118px;
+    display: block;
+    height: 30px;
+    font: 12px/30px "";
+    color: #333;
+    padding: 0;
+    background: none;
+    border: none;
+    border-top: 1px dotted #ccc;
+    text-indent: 13px;
+}
+
+#nav em i a:hover {
+    color: #c00;
+}
+
+#nav em.eon a {
+    border-bottom: 4px solid #f4ddb2;
+}
+
+#nav em.eon i {
+    display: block;
+}
+
+#nav em.eon i a {
+    border-bottom: none;
+}
+
+#nav b.new {
+    position: absolute;
+    left: 78px;
+    top: 4px;
+    display: block;
+    width: 28px;
+    height: 14px;
+    background: url(../images/zhaoshang/new.gif) no-repeat 0 0;
+}
+
+.nav_label {
+    text-align: left;
+    line-height: 50px;
+}
+
+#contentD {
+    margin-top: 20px;
+}
+
+#contentD span {
+    margin: 0 20px;
+}
+
+#contentD img {
+    vertical-align: middle;
+}
+
+#contentD span.jb a {
+    display: inline-block;
+    width: 74px;
+    height: 23px;
+    background: url(../images/zhaoshang/bg.png) no-repeat -169px -72px;
+    vertical-align: middle;
+}
+
+#contentD span.ly a {
+    display: inline-block;
+    width: 44px;
+    height: 19px;
+    background: url(../images/zhaoshang/bg.png) no-repeat -254px -75px;
+    vertical-align: middle;
+}
+
+.textcls_add {
+    width: 980px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #efefef;
+}
+
+.textcls {
+    width: 978px;
+    padding-bottom: 30px;
+    text-align: left;
+    background: #fff;
+    font: 14px/24px "";
+    border: 1px solid #efefef;
+}
+
+.textcls h2 {
+    text-align: left;
+    font: 24px/30px "微软雅黑";
+    color: #333;
+    margin: 10px 30px;
+}
+
+.textcls p.tit, .textcls strong {
+    padding: 10px 30px;
+    display: block;
+}
+
+.textcls strong {
+    color: #cb3445;
+}
+
+.textcls strong i {
+    color: #666;
+    font: 400 14px/24px "";
+}
+
+.textcls p {
+    padding: 10px 60px;
+}
+
+.textcls a {
+    color: #09c;
+}
+
+.textcls a:hover {
+    color: #c00;
+}
+
+.blankA {
+    height: 9px;
+    overflow: hidden;
+    background: url(../images/zhaoshang/bg-x.png) repeat-x 0 -189px;
+    margin: 10px 0;
+}
+
+.textcls .success {
+    font: 800 28px/40px "微软雅黑";
+    color: #390;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.textcls .msgcls {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.textcls h3 {
+    font: 18px/30px "微软雅黑";
+    color: #cb3445;
+    margin: 10px 30px;
+}
+
+.textcls h3 i {
+    color: #666;
+    font: 400 14px/30px "";
+}
+
+.textcls textarea {
+    display: block;
+    width: 700px;
+    height: 40px;
+    padding: 10px;
+    margin: 10px 0;
+    line-height: 20px;
+    resize: none;
+    border: 1px solid #ccc;
+}
+
+.textcls img {
+    display: block;
+    margin: 10px auto;
+}
+
+.textcls table {
+    width: 90%;
+    margin-top: 30px;
+    border: 1px solid #ccc;
+    border-width: 1px 0 0 1px;
+    text-align: center;
+}
+
+.textcls table th, .textcls table td {
+    border: 1px solid #ccc;
+    border-width: 0 1px 1px 0;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.textcls table th, .textcls table td.one {
+    font-weight: 800;
+    background: #f7f7f7;
+}
+
+.textcls table th {
+    background-image: -moz-linear-gradient(top, #fefefe, #f0f0f0); /* Firefox */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fefefe), color-stop(1, #f0f0f0)); /* Saf4+, Chrome */
+}
+
+.textcls table {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.textcls table .tbor1 {
+    -moz-border-radius: 5px 0 0 0;
+    -webkit-border-radius: 5px 0 0 0;
+    border-radius: 5px 0 0 0;
+}
+
+.textcls table .tbor2 {
+    -moz-border-radius: 0 5px 0 0;
+    -webkit-border-radius: 0 5px 0 0;
+    border-radius: 0 5px 0 0;
+}
+
+.textcls table .tbor3 {
+    -moz-border-radius: 0 0 0 5px;
+    -webkit-border-radius: 0 0 0 5px;
+    border-radius: 0 0 0 5px;
+}
+
+.textcls table .tbor4 {
+    -moz-border-radius: 0 0 5px 0;
+    -webkit-border-radius: 0 0 5px 0;
+    border-radius: 0 0 5px 0;
+}
+
+.textcls table tr td {
+    background: #fff;
+}
+
+.textcls table tr.back td {
+    background: #f8f4f1;
+}
+
+.abtn, .abtn em {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    padding-left: 10px;
+    background: url(../images/zhaoshang/bg.png) no-repeat -208px -101px;
+    vertical-align: top;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.abtn em {
+    padding: 0 10px 0 0;
+    background-position: 100% -101px;
+    margin: 0;
+}
+
+.abtn:hover {
+    text-decoration: none;
+}
+
+.bmerr {
+    padding: 80px 0;
+    font: 16px/30px "微软雅黑";
+}
+
+.bmerr em {
+    width: 120px;
+    height: 95px;
+    float: left;
+    display: inline;
+    margin: 5px 30px 0 285px;
+    background: url(../images/zhaoshang/bg2.png) no-repeat 0 0;
+}
+
+.bmerr i {
+    color: #c00;
+}
+
+.bmerr a {
+    width: 234px;
+    height: 36px;
+    display: inline-block;
+    margin-top: 10px;
+    background: url(../images/zhaoshang/bg2.png) no-repeat -121px -36px;
+}
+
+/*报价参考*/
+.bjckcls .nocent {
+    border-top: 1px solid #ebebeb;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.bjckcls h2 {
+    font: 20px/24px "微软雅黑";
+    margin-bottom: 0;
+}
+
+.bjckcls .cktit {
+    font: bold 18px/50px "微软雅黑";
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.bjckcls .cktit em {
+    color: #c33;
+}
+
+.bjckcls li {
+    float: left;
+    width: 449px;
+    height: 144px;
+    padding: 15px 20px;
+    overflow: hidden;
+    border-top: 1px solid #ebebeb;
+}
+
+.bjckcls li img {
+    width: 220px;
+    height: 144px;
+    float: left;
+    margin: 0;
+    margin-right: 10px;
+    display: inline;
+}
+
+.bjckcls li h3 {
+    font: 14px/24px "";
+    margin: 0;
+    height: 48px;
+    overflow: hidden;
+}
+
+.bjckcls li h4 {
+    font: 12px/24px "";
+    padding: 10px 0;
+    height: 48px;
+    overflow: hidden;
+}
+
+.bjckcls li h4 b, .bjckcls li h4 i {
+    font-size: 16px;
+    color: #333;
+}
+
+.bjckcls li h4 b {
+    color: #c33;
+}
+
+.bjckcls li h5 {
+    height: 25px;
+    overflow: hidden;
+    text-align: right;
+}
+
+.bjckcls li h5 a {
+    display: inline-block;
+    width: 79px;
+    height: 25px;
+    background: url(../images/zhaoshang/ck_bg.png) no-repeat 0 0;
+}
+
+.bjckcls .list_page {
+    border-top: 1px solid #ebebeb;
+}
+
+/* 商家报名首页 */
+#contentZSA {
+    background: url(../images/zhaoshang/bg-x.png) repeat-x 0 -198px;
+}
+
+#contentZSA .blockZSA {
+    width: 960px;
+    border-bottom: 0 none;
+}
+
+#contentZSA .blockZSA dl {
+    float: left;
+    width: 280px;
+    height: 209px;
+    padding-left: 40px;
+    background: url(../images/zhaoshang/bg.png) no-repeat -30px -138px;
+    color: #fff;
+    text-align: left;
+    font: 14px/24px "微软雅黑";
+}
+
+#contentZSA .blockZSA dt {
+    font: 800 26px/60px "微软雅黑";
+    padding-top: 10px;
+}
+
+#contentZSA .blockZSB {
+    color: #ca3547;
+    font: 14px/60px "";
+    background: #fff;
+    text-align: left;
+    border: 1px solid #EFEFEF;
+    border-width: 0 1px;
+    width: 978px;
+}
+
+#contentZSA .blockZSB em {
+    float: left;
+    height: 60px;
+    width: 40px;
+    background: url(../images/zhaoshang/bg.png) no-repeat 0 -348px;
+    display: inline;
+    margin-right: 15px;
+}
+
+#contentZSA .blockZSC {
+    width: 978px;
+    border: 1px solid #e5e5e5;
+    background: #f3f3f3;
+    border-color: #e5e5e5 #EFEFEF;
+    font: 20px/60px "微软雅黑";
+    color: #333;
+    text-align: left;
+}
+
+#contentZSA .blockZSC span {
+    padding: 0 100px 0 30px;
+}
+
+#contentZSA .blockZSC em {
+    font-style: italic;
+    color: #999;
+    padding-right: 20px;
+}
+
+#contentZSA .blockZSC i {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: url(../images/zhaoshang/bg.png) no-repeat -55px -348px;
+    vertical-align: middle;
+}
+
+#contentZSA .blockZSD {
+    background: #fff;
+    text-align: left;
+    padding: 0 29px;
+    width: 920px;
+    *padding-bottom: 10px;
+    border: 1px solid #EFEFEF;
+    border-top: none;
+}
+
+#contentZSA .blockZSD dt {
+    font: 20px/50px "微软雅黑";
+    color: #333;
+}
+
+#contentZSA .blockZSD dd a {
+    float: left;
+    border: 5px solid #f3f3f3;
+    height: 50px;
+    width: 110px;
+    overflow: hidden;
+    display: inline;
+    margin: 0 11px 11px 0;
+    text-align: center;
+    line-height: 50px;
+}
+
+#contentZSA .blockZSD dd img {
+    max-width: 110px;
+    max-height: 50px;
+    _width: 110px;
+    _height: 50px;
+    display: inline;
+    vertical-align: middle;
+}
+
+#contentZSA .blockZSD dd span {
+    display: -moz-inline-box !important;
+    *display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#contentZSB {
+    overflow: hidden;
+}
+
+#contentZSB .deallist {
+    width: 990px;
+}
+
+#contentZSB .deal {
+    float: left;
+    width: 318px;
+    height: 231px;
+    margin: 10px 10px 0 0;
+    border: 1px solid #EFEFEF;
+    display: inline;
+    background: #fff;
+    text-align: center;
+}
+
+#contentZSB .deal h3 {
+    background: #fafafa;
+    font: 800 16px/40px "微软雅黑";
+    color: #333;
+    height: 40px;
+    padding: 0 7px;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+#contentZSB .deal p {
+    text-align: left;
+    font: 14px/24px "";
+    margin: 15px 20px;
+    height: 120px;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+#contentZSB .deal h4 {
+    height: 40px;
+    border-top: 1px dotted #ccc;
+    font: 14px/40px "";
+    text-align: right;
+    padding: 0 10px;
+}
+
+#contentZSB .deal h4 span {
+    float: left;
+}
+
+#contentZSB .deal h4 span em {
+    color: #c00;
+}
+
+#contentZSB .deal h4 a {
+    display: inline-block;
+    width: 81px;
+    height: 27px;
+    background: url(../images/zhaoshang/bg.png) no-repeat -127px -101px;
+    vertical-align: top;
+    margin-top: 6px;
+}
+
+#contentD {
+    height: 42px;
+    padding: 35px 0 0 0;
+    margin-top: 20px;
+    background: url(../images/zhaoshang/bg-x.png) repeat-x 0 -112px;
+}
+
+#contentD span {
+    margin: 0 20px;
+}
+
+#contentD img {
+    vertical-align: middle;
+}
+
+#contentD span.jb a {
+    display: inline-block;
+    width: 74px;
+    height: 23px;
+    background: url(../images/zhaoshang/bg.png) no-repeat -169px -72px;
+    vertical-align: middle;
+}
+
+#contentD span.ly a {
+    display: inline-block;
+    width: 44px;
+    height: 19px;
+    background: url(../images/zhaoshang/bg.png) no-repeat -254px -75px;
+    vertical-align: middle;
+}
+
+/*自动滚动*/
+.scroll_div {
+    width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#scroll_begin, #scroll_end, #scroll_begin ul, #scroll_end ul, #scroll_begin ul li, #scroll_end ul li {
+    display: inline;
+}
+
+/* 设置ul和li横排 */

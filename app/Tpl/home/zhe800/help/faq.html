@@ -1,0 +1,58 @@
+<include file="public:header"/>
+	<!--主部开始-->
+	<div id="main">
+		
+		<!--关于我们开始-->
+		<div class="w1040 pt20 pb30">
+			
+			<div class="aboutbox">
+				<div class="w1000">				
+					<div class="location"><span>当前位置：</span><a href="__ROOT__/">首页</a>&gt;&gt;{$cate_info.name}</div>					
+					<div class="aboutus pt20 pb30 clearfix">
+						<div class="aboutus-left fl">
+							<div class="aboutus-side">
+							<include file="cate_tree" />
+							</div>
+						</div>
+						<div class="aboutus-right fr">
+							<div class="aboutdesc">
+								<div class="aboutdesc-head">
+									<h3>{$cate_info.name}<img src="__ASSETS__/images/about_pic.gif"/></h3>
+								</div>
+								<div class="aboutdesc-body ">
+                                <dl class="faqlist">
+                                    <volist name="faq_list" id="val">
+                                        <dt data-id="{$val.id}">{$val.title}<span></span></dt>
+                                        <dd data-id="{$val.id}">{:strip_tags($val['info'],span)}</dd>
+                                    </volist>  
+                                </dir>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+		</div>
+		<!--关于我们结束-->		
+	</div>
+	<!--主部结束-->
+<script type="text/javascript">
+$(function(){
+    $('.faqlist dt').live('click',function(){
+        $this=$(this);
+        $dd=$('dd[data-id="'+$this.attr('data-id')+'"]');
+        
+        if($this.hasClass('unfold')){
+            $this.removeClass('unfold');
+            $dd.hide();
+        }else{
+            $this.addClass('unfold');
+            $dd.show();
+        }
+    });
+    
+});
+</script>
+<include file="public:footer"/>

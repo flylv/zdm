@@ -1,0 +1,41 @@
+<include file="public:header"/>
+<body id="index">
+    <div class="header">
+        <a class="logo" href="{:U('index/index')}"><span>全场九块九包邮<br>Jiukuaiyou.com</span></a>
+        <div class="nav">
+            <a href="{:U(MODULE_NAME.'/search')}" class="filter">筛 选</a>
+        </div>
+    </div>
+    <div class="current-category">
+        <if condition="$cate_info">
+            您所在的分类：{$cate_info.name}
+        <elseif condition="$Think['get']['keyword']">
+            找到 <span>{$Think.get.keyword}</span>相关宝贝 <span>{$list_count}</span>个
+        <else/>
+            您所在的分类：全部
+        </if>
+    </div>
+    <div class="detail">
+    <volist name="list" id="val">
+        <section data-id="{$val.id}">
+            <a href="{$val.url}" target="_blank">
+                <em class="go-buy">去抢购</em>                 
+                <img alt="{$val.title}" src="{$val._img}">
+                <ul class="deals">
+                    <li class="title">{$val.title}</li>
+                    <li class="current-price">￥{$val.price}</li>
+                    <li class="old-price">￥{$val.mprice}</li>
+                </ul>
+            </a>
+        </section>
+    </volist>
+    <if condition="empty($list)">
+        <section class="advance" style="font-size: 14px;">
+            把网站翻了个遍~~<br>依然没有找到你想要的东西~~
+        </section>
+    </if>
+    </div>
+    <div class="detail-page">
+        {$page}
+    </div>
+<include file="public:footer"/>

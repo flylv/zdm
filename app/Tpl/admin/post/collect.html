@@ -1,0 +1,90 @@
+<include file="public:header"/>
+<!--文章列表-->
+<div class="pad_10">
+    <form name="searchform" method="get">
+        <table width="100%" cellspacing="0" class="search_form">
+            <tbody>
+            <tr>
+                <td>
+                    <div class="explain_col">
+                        <input type="hidden" name="g" value="{:GROUP_NAME}"/>
+                        <input type="hidden" name="m" value="{:MODULE_NAME}"/>
+                        <input type="hidden" name="a" value="{:ACTION_NAME}"/>
+                        商城：
+                        <select name="domain" class="J_server_post_domain" data-selected="{$Think.get.domain}"></select>
+                        &nbsp;&nbsp;采集关键字:
+                        <input name="keyword" type="text" class="input-text" size="25" value="{$Think.get.keyword}"/>
+                        &nbsp;&nbsp;
+                        <input type="submit" name="search" class="btn" value="{:L('search')}"/>
+                        &nbsp;
+                        <a href="http://www.zhiphp.com/help.php?m=api" target="_blank" class="gray">如何采集数据与常见问题？</a>
+                        <input type="hidden" name="act" value="search"/>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <div class="J_tablelist table_list" data-acturi="{:U(MODULE_NAME.'/ajax_edit')}">
+        <table width="100%" cellspacing="0">
+            <thead>
+            <tr>
+                <th width="30">序号</th>
+                <th width=25><input type="checkbox" id="checkall_t" class="J_checkall"/></th>
+                <th>ID</th>
+                <th width="40">图片</th>
+                <th align="left">{:L('title')}</th>
+                <th>内容</th>
+                <th width="80">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <volist name="list" id="val">
+                <tr>
+                    <td align="center">{$p*20-20+$i}</td>
+                    <td align="center"><input type="checkbox" <if condition="$val['is_collect']"> disabled="disabled" <else/> class="J_checkitem" value="{$val.id}"</if>/></td>
+                    <td align="center" width="50">{$val.id}</td>
+                    <td>
+                        <notempty name="val['img']">
+                            <div class="img_border">
+                                <img src="{$val.img}" width="32" class="J_preview" data-bimg="{$val['img']}"/>
+                            </div>
+                        </notempty>
+                    </td>
+                    <td align="left">
+                        <a title="{$val.title}" href="{$val.url}" target="_blank">{:msubstr($val["title"],20)}</a>
+                    </td>
+                    <td>
+                        {:msubstr(trim(strip_tags($val["info"])),50)}
+                    </td>
+                    <td align="center">
+                        <if condition="$val['is_collect']">
+                        <span style="color: green;">已添加</span>
+                        <else/>
+                        <a class="J_confirmurl" href="javascript:void(0);"
+                            data-acttype="batch_action"
+                            data-row_id="{$val.id}"
+                            data-id="batch_collect_form"
+                            data-title="添加">
+                            {:L('collect')}
+                        </a>
+                        </if>
+                    </td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+        <div class="btn_wrap_fixed">
+            <label class="select_all"><input type="checkbox" name="checkall" class="J_checkall">{:L('select_all')}/{:L('cancel')}</label>
+            <input type="button" class="btn" data-tdtype="batch_action" data-acttype="ajax_form"  data-id="batch_collect_form" data-title="批量添加"
+                   data-uri="{:U(MODULE_NAME.'/collect',array('act'=>'batch_collect_form','api_params'=>$api_params))}" data-name="id"
+                   value="{:L('collect')}" data-width="500"/>
+            <div id="pages">{$page}</div>
+        </div>
+    </div>
+</div>
+<include file="public:footer"/>
+<script type="text/javascript" src="{:C('ZHIAPI_URL')}/index.php?a=load_def_js"></script>
+</body>
+</html>

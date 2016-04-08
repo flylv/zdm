@@ -1,0 +1,34 @@
+<include file="public:header" />
+
+<div id="main" class="pb30 pt20 J_main_page">
+    <!--内容页开始-->
+    <div class="content w1040 clearfix">
+        <!--左侧开始-->
+        <div class="w760 fl">
+            <div class="w720">
+                <div class="location clearfix mt10">
+    				<span>当前位置:</span>
+                    <a href="__ROOT__/">首页 </a>&gt;&gt;&nbsp;
+                    <span class="grey">{$info.title}</span>
+    			</div>					
+    			<div class="showinfo mt10">						
+                    <div class="clearfix con_title">
+                        <span class="fl">{$info.title}</span>
+                    </div>	
+                    <div class="clearfix">
+                    {$info.info}
+                    </div>					
+    			</div>
+            </div>
+        </div>
+    <!--左侧结束-->
+
+    <!--右侧开始-->
+    <div class="w280 fr contentbox_r">
+        <include file="public:find"/>
+    </div>
+    <!--右侧结束-->
+    </div>
+    <!--内容页结束-->
+</div>
+<include file="public:footer" />

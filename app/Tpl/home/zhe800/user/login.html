@@ -1,0 +1,95 @@
+<include file="public:header"/>
+<!--主部开始-->
+<div id="main" class="pb30 pt20">     
+    <!--登录注册页开始-->
+    <div class="w1040">
+        <div class="logincont clearfix">
+            <div class="loginbox clearfix">
+                <div class="loginbox-left fl">
+                    <div class="logininfo">
+                        <div class="logininfo-head">
+                            <h3 class="ml20">用户登录</h3>
+                        </div>
+                        <div class="logininfo-body">
+                            <form id="J_login_form" action="{:U('user/login')}" method="post" class="login_form">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td width="12%" class="tr f14"><b>用户名:</b></td>
+                                        <td width="88%"><input type="text" name="username" id="J_name" class="login_inputtext"
+                                                   maxlength="20"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tr f14"><b>密码:</b></td>
+                                        <td><input type="password" name="password" id="J_pass" class="login_inputtext"
+                                                   maxlength="32"></td>
+                                    </tr>
+                                    <if condition="C('pin_captcha_status')">
+                                    <tr>
+                                        <td class="tr f14"><b>验证码:</b></td>
+                                        <td>
+                                            <input type="text" name="captcha" id="J_captcha" maxlength="10" class="login_inputtext"/>
+                                            <span class="ml10 mr10"> 
+                                                <img src="{:U('captcha/'.time())}" id="J_captcha_img" class="captcha_img"
+                                                alt="{:L('captcha')}" data-url="{:U('captcha/js_rand')}"/> 
+                                                <a href="javascript:;" id="J_captcha_change">{:L('change_captcha')}</a>
+                                        </td>
+                                    </tr>
+                                    </if>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td><label>
+                                                <input type="checkbox" value="1" name="remember" class="check"
+                                                       checked="checked"/>
+                                                <span>记住我（两周免登录）</span> </label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td><div class="lg_login">
+                                                <input type="submit" value="{:L('login')}" class="sub submit"/>
+                                                <a href="{:U('findpwd/index')}">{:L('forget_password')}</a> </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div class="login-mode">
+                                                <dl>
+                                                    <dt>您还可以用以下方式登录：</dt>
+                                                    <dd>
+                                                        <volist name="oauth_list" id="val">
+                                                        <a href="{:U('oauth/index', array('mod'=>$val['code']))}" class="{$val.code}"></a>
+                                                        </volist> 
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <input type="hidden" name="ret_url" value="{$Think.request.ret_url|urlencode}"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="loginbox-right fl">
+                    <div class="logintip">
+                        <dl>
+                            <dt>注册</dt>
+                            <dd>
+                                <h3>还没有账号？</h3>
+                                <a class="reg-btn" href="{:U('user/register')}">轻松注册</a> 
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--登录注册页结束--> 
+    
+</div>
+<!--主部结束--> 
+<script>
+    $(function(){
+        $.zhiphp.user.login_validate($('#J_login_form')); //登录验证
+    });
+</script> 
+<include file="public:footer"/>

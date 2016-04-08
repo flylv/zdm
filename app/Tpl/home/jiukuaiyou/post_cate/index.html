@@ -1,0 +1,49 @@
+<include file="public:header" />
+
+<!--内容页 开始-->
+<div class="main">
+	<div class="white_bg">
+		<div class="content">
+			<!--内容页左侧 开始-->
+			<div class="containt">
+				<div class="goods_cont localtion mb10">
+					<span>当前位置:</span><a href="__ROOT__">首页</a>>><strong>{$info.name}</strong>
+				</div>
+				
+				<include file="public:hot_activity" />
+				
+				<!--产品展示方式开始-->
+						<div class="product_show" id="J_waterfall" data-uri="__ROOT__?m={:MODULE_NAME}&a=index&sort={$sort}&p={$p}&id={$id}">    
+                            <include file="public:ajax_post_list" />
+                        </div>
+                        <present name="show_load">
+                        <div id="J_wall_loading" class="wall_loading tc gray"><span>{:L('loading')}</span></div>
+                        </present>
+                        <present name="page_bar">
+                        <div id="J_wall_page" class="wall_page" <present name="show_page">style="display:block;"</present>>
+							<!-- 分页 开始 -->
+							<div class="page">
+								<em></em>
+								<div>
+									{$page_bar}
+								</div>
+							</div>
+							<!-- 分页 end -->
+                        </div>
+                        </present>
+				<!--产品展示方式 end -->
+
+			</div>  
+			<!--内容页左侧 end-->
+
+			<!--内容页右侧 开始-->
+			<div class="shop_content jiu_right" style="margin-top:0px;">
+				<include file="public:find" /> 
+			</div> 
+			<!-- 内容页右侧 end -->
+		</div>
+		
+	</div>
+</div>
+<!--内容页 end -->
+<include file="public:footer" />

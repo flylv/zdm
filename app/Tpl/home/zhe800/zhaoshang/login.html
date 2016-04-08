@@ -1,0 +1,70 @@
+<include file="public:header_zhao"/>
+<!--主部开始-->
+<div id="main" class="pb30 pt20">     
+    <!--登录注册页开始-->
+    <div class="w1040">
+        <div class="logincont clearfix">
+            <div class="loginbox clearfix">
+                <div class="loginbox-left fl">
+                    <div class="logininfo">
+                        <div class="logininfo-head">
+                            <h3 class="ml20">商家登录</h3>
+                        </div>
+                        <div class="logininfo-body">
+                            <form id="J_login_form" action="{:U('user/login')}" method="post" class="login_form" style="width:500px;padding:50px;">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td width="12%" class="tr f14"><b>用户名:</b></td>
+                                        <td width="88%"><input type="text" name="username" id="J_name" class="login_inputtext fl"
+                                                   maxlength="20"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tr f14"><b>密码:</b></td>
+                                        <td><input type="password" name="password" id="J_pass" class="login_inputtext fl"
+                                                   maxlength="32"></td>
+                                    </tr>
+									<if condition="C('pin_captcha_status')">
+                                    <tr>
+                                        <td class="tr f14"><b>验证码:</b></td>
+                                        <td><input type="text" name="captcha" id="J_captcha" maxlength="10"
+                                                   class="login_inputtext fl">
+                                            <span class="ml10 mr10"> <img src="{:U('captcha/'.time())}" id="J_captcha_img" class="captcha_img"
+                                 alt="{:L('captcha')}" data-url="{:U('captcha/js_rand')}"/> <a href="javascript:;" id="J_captcha_change">{:L('change_captcha')}</a></td>
+                                    </tr>
+									</if>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td><div class="lg_login">
+                                                <input type="submit" value="{:L('login')}" class="sub submit fl"/>
+                                    </tr>
+                                </table>
+                                <input type="hidden" name="ret_url" value="{$Think.request.ret_url|urlencode}"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="loginbox-right fl">
+                    <div class="logintip">
+                        <dl>
+                            <dt>提示</dt>
+                            <dd>
+                                <h3>还没有账号？</h3>
+
+                                <h3>请联系官方了解相关信息！</h3>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--登录注册页结束-->
+
+</div>
+<!--主部结束-->
+<script>
+    $(function () {
+        $.zhiphp.user.login_validate($('#J_login_form')); //登录验证
+    });
+</script>
+<include file="public:footer"/>

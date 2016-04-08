@@ -1,0 +1,238 @@
+<include file="public:header"/>
+<load href="__ASSETS__/css/group.css"/>
+<!--主部开始-->
+
+<div id="main" class="pb30 pt20">
+<!--内容页开始-->
+<div class="w960">
+<!--团购导航开始-->
+<include file="nav"/>
+<!--团购导航结束-->
+
+<!--团购详情开始-->
+<div class="line-one clearfix">
+    <!-- 左边 -->
+    <div class="fl-box model-tuanlist">
+        <div class="line tuan-info going">
+            <div class="top_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+            <div class="main_line model-tuaninfo taobao">
+                <h3 title="{$info.title}">
+                    <if condition="$info['orig']"><img src="{:attach($info['orig']['img'],'jky_orig')}" class="icon"/>
+                    </if>
+                    {$info.title}
+                </h3>
+                <a href="{:jky_go($info)}" target="_blank" class="imgbox" title="{$info.title}"> 
+                    <img src="{:attach($info['img'],MODULE_NAME)}" alt="{$info.title}"/> 
+                </a>
+
+                <div class="info clearfix">
+                    <span class="price">{$info['price']}</span>
+
+                    <div class="clearfix"></div>
+                    <div class="tuan_item_tag mt10 clearfix">
+                        <span class="no-postage no-red fl" title="{$info.discount}折"> <i class="icon i-l"></i>{$info.discount}折 <i
+                                class="icon i-r"></i> </span>
+                        <volist name="info['icon_list']" id="val">
+                            <a class="fl"
+                            <if condition="$val['url']">href="{$val.url}"</if>
+                            >
+                            <img src="{:attach($val['img'],'jky_icon_type')}"/>
+                            </a>
+                        </volist>
+                    </div>
+                    <del class="oldprice">原价:¥{$info.mprice}</del>
+                    <a class="buttun J_get_anhao" title="去看看" data-id="{$info.id}"></a>
+                                <span class="time time_left">
+                                    <span>剩余时间：</span>
+                                    <span class="J_remain_time" data-time="{$info['etime']-time()}"></span>                                                                    
+                                </span>
+                    <span class="join-people">{$info.join_number}人已参加</span>
+                    <ul class="usericonlist">
+                        <volist name="info['join_user_list']" id="val">
+                            <li><img class="r3 icard" src="{:avatar($val['uid'])}" alt="{$val.uname}"
+                                     title="{$val.uname}"/></li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+            <div class="tbottom_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+        </div>
+        <!-- 怎么参加 -->
+        <div class="line">
+            <div class="top_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+            <div class="main_line howtuan"><span class="title">如何参加团购</span>
+                <ol>
+                    <li class="l01">点击【立即抢购】按钮，获得暗号</li>
+                    <li class="l02">联系客服并报上暗号</li>
+                    <li class="l03">在客服的指导下完成团购</li>
+                </ol>
+            </div>
+            <div class="tbottom_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+        </div>
+        <!-- 信息 -->
+        <div class="line">
+            <div class="top_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+            <div class="main_line shop-detail">
+                <span class="title">详细介绍</span>
+
+                <div class="mt10">
+                    {$info.info}
+                </div>
+            </div>
+            <div class="tbottom_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 右边 -->
+    <div class="fr-box">
+        <!-- 店铺信息 -->
+        <div class="line model-tuanlist">
+            <div class="top_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+            <div class="main_line taobao-info"><a class="img" href="" target="_blank"><img
+                    src="__ASSETS__/images/group/7ycvj_kqyxcm2zl5bdiwkugfjeg5sckzsew_200x60.png"></a> <a class="title"
+                                                                                                         href=""
+                                                                                                         target="_blank"></a>
+            </div>
+            <div class="tbottom_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+        </div>
+        <div class="line model-tuanlist icons">
+            <div class="top_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+            <div class="main_line icons-list">
+                <ol>
+                    <li class="l01"><span class="icon"></span>免邮费</li>
+                    <li class="l02"><span class="icon"></span>实物验证</li>
+                    <li class="l03"><a target="_blank" class="hour_24 hour_24_off"><span class="icon"></span>24小时发货</a>
+                    </li>
+                </ol>
+            </div>
+            <div class="tbottom_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+        </div>
+        <div class="line model-tuanlist">
+            <div class="top_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+            <div class="main_line jky_weixin">
+                <div style="top: 5px;left:150px;font-weight: bold;">值得买团购微信</div>
+                <div style="top: 55px;left:155px;color: #ff72a8;">关注值得买微信，<br/>团宝贝，赢大奖</div>
+            </div>
+            <div class="tbottom_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+        </div>
+        <div class="line model-tuanlist">
+            <div class="top_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+            <div class="main_line good-grab">
+                <div class="grabed">
+                    <h3>已抢拍：</h3>
+
+                    <div class="grab-time">{:date('<b>Y</b>年<b>m</b>月<b>d</b>日<b>H</b>时',$yqp_time)}</div>
+                </div>
+                <div class="grab-user">
+                    <h3>中奖用户：</h3>
+                    <ul class="clearfix">
+                        <volist name="yqp_users" id="val">
+                            <li><img src="{:avatar($val['uid'],48)}"/></li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+            <div class="tbottom_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+        </div>
+        <!-- 更多团购 -->
+        <div class="line model-tuanlist">
+            <div class="top_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+            <div class="main_line more-shop"><span class="title">其他热门团购</span>
+                <ul>
+                    <volist name="like_list" id="val">
+                        <li class="taobao">
+                            <div class="model-tuaninfo">
+                                <h3 title="{$info.title}">
+                                    <span class="icon topicon"></span>
+                                    <a href="{:U(MODULE_NAME.'/'.ACTION_NAME,array('id'=>$val['id']))}" target="_blank"
+                                       title="{$info.title}">{$info.title} </a>
+                                </h3>
+                                <a href="{:U(MODULE_NAME.'/'.ACTION_NAME,array('id'=>$val['id']))}" target="_blank"
+                                   class="imgbox" title="{$info.title}">
+                                    <span class="icon num zhekou" title="{:round($val['price']/$val['mprice'],1)*10}折">{:round($val['price']/$val['mprice'],1)*10}</span>
+                                    <img src="{:attach($val['img'],MODULE_NAME)}" alt="{$info.title}"/>
+                                </a>
+
+                                <div class="info clearfix">
+                                    <span class="price">35</span>
+                                    <a href="{:U(MODULE_NAME.'/'.ACTION_NAME,array('id'=>$val['id']))}" target="_blank"
+                                       class="buttun">去看看<i class="icon i-r"></i></a>
+                                </div>
+                            </div>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+            <div class="tbottom_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+        </div>
+        <div class="line model-tuanlist">
+            <div class="top_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+            <div class="main_line mogu-info">
+                <div class="mogu-p p-01"><span class="mogu-t">买家投诉</span>
+
+                    <p>菇凉们在团购中遇到什么问题，<a target="_blank" href="{:U('post/submit')}#subbug">请到此投诉</a></p>
+                </div>
+            </div>
+            <div class="tbottom_line">
+                <div class="fl_i"></div>
+                <div class="fl_r"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--团购详情结束-->
+</div>
+<!--内容页结束-->
+</div>
+<!--主部结束-->
+<include file="public:footer"/>

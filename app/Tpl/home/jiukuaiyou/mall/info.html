@@ -1,0 +1,226 @@
+<include file="public:header" />
+<!--主部开始-->
+	<div id="main">
+		<!--商家详情开始-->
+		<div class="merchantbox w1040">
+			
+			<div class="merchant">
+				<div class="w1000">
+				
+					<div class="location" style="margin-left:0px;width:97%;"><span>当前位置：</span><a href="{:U('index/index')}">首页</a>&gt;&gt;<a href="{:U('mall/index')}">商家导航</a>&gt;&gt;{$info.title}</div>
+					
+					<div class="merchantlogo clearfix">
+						<div class="merchantlogo-pic fl"><a href="{:mall_url($info)}"><img src="__ROOT__data/upload/mall/{$info.img}"/></a></div>
+						<div class="merchantlogo-text fl">
+							<h3><span>{$info.title}</span><em>最高返利{$info.rebates}%</em></h3>
+							<ul>
+                                <li>商城地址:<a <if condition="preg_match('#http#',mall_url($info))">href="{:mall_url($info)}" <else/> href="http://{:mall_url($info)}"</if> target="_blank">{$info.domain}</a> {$info.abst}</li>
+								<!--<li>商城地址：<a <if condition="preg_match('#http#',mall_url($info))">href="{:mall_url($info)}" <else/> href="http://{:mall_url($info)}"</if> target="_blank">{$info.domain}</a></li>-->
+								<!---<li>特色服务：货到付款，满39元免</li>-->
+							</ul>
+							<dl>
+								<dt>值得买会员去该商城购物后，最高可获得 <b>{$info.rebates}% 的现金返利</b></dt>
+								<dd class="clearfix">
+                                    <a class="fl"  target="_blank"  <if condition="preg_match('#http#',mall_url($info))">href="{:mall_url($info)}" <else/> href="http://{:mall_url($info)}"</if>>去购物，拿返利</a>
+                                    <span class="fl">已有 <b class="pink">{$info.hits}</b> 人通过米折网去往京东商城购物</span>
+                                </dd>
+							</dl>
+						</div>
+					</div>
+
+					
+					<!--商家更多信息开始-->
+					<div class="merchantinfobox clearfix">
+					
+						<!--左侧开始-->
+						<div class="w755 fl">
+							
+							<div class="merchantinfo">
+								<div class="merchantinfo-head">
+									<ul class="clearfix">
+										<li class="current">商家介绍</li>
+										<li>注意事项</li>
+										<li>相关商品</li>
+										<!--<li>用户评论</li>-->
+									</ul>
+								</div>
+								<div class="merchantinfo-body">
+								
+									<!--商家介绍开始-->
+									<div class="merchantinfoCont" style=" display:block;">
+									
+										<div class="merchantdesc clearfix">																						                                       
+											{$info.info}
+										</div>
+										
+									</div>
+									<!--商家介绍结束-->
+									
+									<!--注意事项开始-->
+									<div class="merchantinfoCont">
+									
+										<div class="merchanttips clearfix">
+											<p>1.使用优惠券/礼品卡的订单，优惠券/礼品卡优惠的部分无返利；<br>2.发生退货的订单整个订单不参加返利；<br>3.企业用户不参加返利；<br>
+4.高校代理订单不参加返利；<br>5.如开据增值税发票，则开据增值税发票的订单不参与返利；<br>6.经销商的订单不参加返利；<br>7.京东团购网站推出的商品/活动不参与返利；<br>8.系统自动拆分订单导致订单返利发生变化，以拆分后的订单返利为准；<br>9.运费不计算在有效订单金额之内，不返利；<br>10.通过米折网链接点击进入京东商城长时间后才发生购买行为，或会员中途曾关机或访问其他网站，不返利；<br>
+11.由于不可抗力（包括但不限于，服务器意外关机、网络意外中断、京东商城受到恶意攻击及磁盘意外损坏）而导致销售数据丢失，不返利；<br>12.团购和手机充值、游戏充值订单以及机票，彩票，电影票等虚拟产品订单不参与返利；<br>13.因京东系统问题，部分商品跟类目返利比例有出入，均以实际跟踪到的返利为准；<br>14.如因业务发展，新增品类或活动有可能不参与返利，具体以京东公布为准；<br>
+15.京东电子书为虚拟商品，无返利；<br>16.米折网为导购返利网站，不直接出售商品，您的一切购物操作（包括付款）都是在京东商城上进行；<br>17.购物操作之前，请确保已经通过米折网查询并进入京东商城商城；<br>18.退换货无返利，运费无返利，使用其他同类网站无返利；<br>19.返利仅针对净销售额（即订单总金额扣除优惠券、礼品卡、商城积分、账户余额等抵扣部分，缺货商品金额，以及运费等）；<br>
+20.请确保进入京东商城之前，京东商城的购物车中没有任何商品（如有请先清空购物车）。</p>
+										</div>
+										
+									</div>
+									<!--注意事项结束-->
+									
+									<!--相关商品开始-->
+									<div class="merchantinfoCont">
+									
+										<div class="relatedgood">
+											<ul class="clearfix">
+                                              <volist name="info['post_list']" id="val">
+												<li>
+													<a class="relatedgood-pic" href="{:u('post/index',array('id'=>$val['id']))}" target="_blank"><img src="{:attach($info['img'],'mall')}"></a>
+													<div class="relatedgood-title">
+														<h3><a href="{:u('post/index',array('id'=>$val['id']))}" target="_blank">{$val.title}  </a></h3>
+													
+													</div>
+													<!--<div class="related-zhi">三位网友中的2位认为值得买</div>-->
+													<div class="related-zhibuy">
+														<dl class="clearfix">
+															<dd class="fl">
+																<p data-id="{$val.id}">收藏：{$val.favs}次</p>
+																<!--<p> 已购买：50 件</p>-->
+															</dd>
+															<dt class="fr"><a href="{:U('index/go',array('id'=>$val['id']))}">去购买</a></dt>
+														</dl>
+													</div>
+												</li>
+												</volist>
+											</ul>
+										</div>
+										
+									</div>
+									<!--相关商品结束-->
+									
+									<!--用户评论开始-->
+									<div class="merchantinfoCont">
+									
+										<div class="ucomment clearfix">
+										
+											<!--未登录开始-->
+											<div class="unlogin-tip pb30 clearfix">
+												<h3 class="fl">您必须登录才能发表评论，注册新帐号请按这里 , 合作网站登录：</h3>
+												<a class="qq" href="{:U('oauth/index', array('mod'=>'qq'))}" title="QQ登录"></a>
+												<a class="sina" href="{:U('oauth/index', array('mod'=>'sina'))}" title="新浪微博登录"></a>
+												<a class="tx" href="" title="腾讯微博登录"></a>
+											</div>
+											<!--未登录结束-->
+										
+											<!--登录后开始-->
+											<dl class="ucomment-info clearfix">
+												<dd class="fl"><textarea></textarea></dd>
+												<dt class="fl"><button>评论</button></dt>
+											</dl>
+											<!--登录后结束-->
+											
+											<div class="can-words">还可以输入<b>140</b>个字</div>
+											
+											<ul class="ucomment-list">
+												<li class="clearfix">
+													<a class="ucomment-avatar fl" href=""><img src="__ASSETS__/images/avatar.gif"></a>
+													<div class="ucomment-text fl">
+														<h3><a href="">carlen</a><span>昨天 10:00</span></h3>
+														<p>一直很信赖京东</p>
+													</div>
+												</li>
+												<li class="clearfix">
+													<a class="ucomment-avatar fl" href=""><img src="__ASSETS__/images/avatar.gif"></a>
+													<div class="ucomment-text fl">
+														<h3><a href="">carlen</a><span>昨天 10:00</span></h3>
+														<p>一直很信赖京东</p>
+													</div>
+												</li>
+												<li class="clearfix">
+													<a class="ucomment-avatar fl" href=""><img src="__ASSETS__/images/avatar.gif"></a>
+													<div class="ucomment-text fl">
+														<h3><a href="">carlen</a><span>昨天 10:00</span></h3>
+														<p>一直很信赖京东</p>
+													</div>
+												</li>
+												<li class="clearfix">
+													<a class="ucomment-avatar fl" href=""><img src="__ASSETS__/images/avatar.gif"></a>
+													<div class="ucomment-text fl">
+														<h3><a href="">carlen</a><span>昨天 10:00</span></h3>
+														<p>一直很信赖京东</p>
+													</div>
+												</li>
+												<li class="clearfix">
+													<a class="ucomment-avatar fl" href=""><img src="__ASSETS__/images/avatar.gif"></a>
+													<div class="ucomment-text fl">
+														<h3><a href="">carlen</a><span>昨天 10:00</span></h3>
+														<p>一直很信赖京东</p>
+													</div>
+												</li>
+												<li class="clearfix">
+													<a class="ucomment-avatar fl" href=""><img src="__ASSETS__/images/avatar.gif"></a>
+													<div class="ucomment-text fl">
+														<h3><a href="">carlen</a><span>昨天 10:00</span></h3>
+														<p>一直很信赖京东</p>
+													</div>
+												</li>
+											</ul>
+											
+											<!--分页开始-->
+											<div class="page clearfix"><a class="current" href="">1</a><a href="">2</a><a href="">3</a><a href="">下一页&gt;</a></div>
+											<!--分页结束-->
+										</div>
+										
+									</div>
+									<!--用户评论结束-->
+								
+								</div>
+							</div>
+							
+						</div>
+						<!--左侧结束-->
+						
+						<!--右侧开始-->
+						<div class="w215 fr">
+						
+							<div class="rebatestep">
+								<div class="rebatestep-head"><h3>三步拿返利</h3></div>
+								<div class="rebatestep-body tc"><img src="__ASSETS__/images/fanli_step.gif"></div>
+							</div>
+							
+							<div class="relatedmall">
+								<div class="relatedmall-head"><h3>京东商城相关商城</h3></div>
+								<div class="relatedmall-body">
+									<dl>
+                                        <volist name="re_mall_list" id="mall">
+										<dd class="clearfix">
+											<a class="relatedmall-pic fl" href="{:mall_url($info)}"><img src="__ROOT__data/upload/mall/{$mall.img}"/></a>
+											<div class="relatedmall-text fr">
+												<h3><a href="{:mall_url($info)}">{$mall.title}</a></h3>
+												<p>最高返<span>{$mall.rebates}%</span></p>
+											</div>
+										</dd>
+                                        </volist>
+										<dt class="clearfix"><a class="fr" href="{:U('mall/index',array('cate'=>$info['cid']))}">更多&gt;&gt;</a></dt>
+									</dl>
+								</div>
+							</div>
+							
+						</div>
+						<!--右侧结束-->
+					
+					
+					</div>
+					<!--商家更多信息结束-->
+					
+				</div>
+			</div>
+			
+		</div>
+		<!--商家详情结束-->
+		
+	</div>
+	<!--主部结束-->
+<include file="public:footer" />

@@ -1,0 +1,23 @@
+<include file="public:header" />
+<form id="info_form" action="{:U(MODULE_NAME.'/'.ACTION_NAME)}" method="post">
+<div class="pad_10">
+	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+        <tr>
+			<th width="200">淘宝、天猫商品网址:</th>
+			<td>
+                <input type="text" name="url" class="input-text" size="70"/><br />
+                <span class="gray">如：http://item.taobao.com/item.htm?id=17891314572</span>
+            </td>            
+		</tr>
+        <tr>
+            <th></th>
+            <td>
+                <input type="submit" value="{:L('submit')}" id="dosubmit" name="dosubmit" class="btn btn_submit" style="margin:0px 0px 0px 100px;"/>
+            </td>
+        </tr>
+	</table>
+</div>
+</form>
+<include file="public:footer" />
+</body>
+</html>

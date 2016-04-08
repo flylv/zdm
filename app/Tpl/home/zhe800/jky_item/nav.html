@@ -1,0 +1,49 @@
+<div class="tuan-top">
+    <div class="navbox">
+        <ol class="firsttab">
+            <li class="official current">
+                <span class="icon icon1"></span>
+                <a href="{:u(MODULE_NAME.'/index')}" class="clickbox">官方团购</a>
+                <div class="rigthi"></div>
+            </li>
+            <li class="mytuan ">
+                <span class="icon icon3"></span>
+                <a href="{:U('user/anhao')}" class="clickbox" target="_blank">我的团购</a>
+
+                <div class="lefti"></div>
+                <div class="rigthi"></div>
+            </li>
+        </ol>
+        <ol class="righticon">
+            <li><span class="icon weixin"></span> <a target="_blank" href="#" class="clickbox">微信订阅</a></li>
+            <li><span class="icon phone"></span> <a target="_blank" href="#" class="clickbox">手机团购</a></li>
+            <li class="noicon"><a target="_blank" href="#" class="clickbox">商家入驻</a></li>
+        </ol>
+
+    </div>
+    <!-- 导航结束 -->
+    <!-- 类别开始 -->
+    <div class="categorybox">
+        <ol class="firsttab">
+            <li class="li first ">
+                <span class="icon all"></span>
+                <a class="clickbox" href="{:U(MODULE_NAME.'/index',array('c1'=>$c1,'c2'=>0))}" alt="全部">全部({$total_jky_num})</a>
+            </li>
+
+            <volist name="cat_list" id="v">
+                <li class="li <if condition="$c2 eq $v['id']">current</if>">
+                <span class="icon" style="background: url({:attach($v['img'], 'jky_cate')}) no-repeat center center;"></span>
+                <a class="clickbox" href="{:U(MODULE_NAME.'/index',array('c1'=>$c1,'c2'=>$v['id']))}" alt="{$v.name}">{$v.name}({$v.item_num})</a>
+                </li>
+            </volist>
+        </ol>
+
+        <div class="hotbox">
+            <a href="{:U(MODULE_NAME.'/index',array('sort'=>'hot'))}" class="hot <if condition="$sort eq 'hot'">current</if> item">最热</a>
+            <a href="{:U(MODULE_NAME.'/index',array('sort'=>'new'))}" class="new <if condition="$sort eq 'new'">current</if> item">最新
+                <span class="tips"><span class="sanjiao"></span>每日上新 团购更精彩!</span>
+            </a>
+        </div>
+    </div>
+    <!-- 类别结束 -->
+</div>

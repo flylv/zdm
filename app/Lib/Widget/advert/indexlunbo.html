@@ -1,0 +1,20 @@
+<div id="UED_FocusImage_1" class="fi01"></div>
+<script type="text/javascript">
+<!--
+	//首页切换广告
+	$("#UED_FocusImage_1").focusImg({
+		flag: 'fi01',
+		hoverStop: true,
+		speed: "5000"
+	},
+	[
+	<volist name="ad_list" id="ad">
+	{
+		"t": "{$ad.name}",
+		"l": "{$ad.url}",
+		"p": "__ROOT__/data/upload/ad/{$ad.content}"
+	},
+	</volist>
+	]);
+//-->
+</script>

@@ -1,0 +1,62 @@
+<!--添加广告-->
+<div class="dialog_content">
+<form id="info_form" action="{:u(MODULE_NAME.'/'.ACTION_NAME)}" method="post">
+<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+    <tr>
+      <th width="80">等级名称:</th>
+      <td><input type="text" name="title" id="title" class="input-text" size="30" value="{$info.title}"/></td>
+    </tr>
+    <tr>
+        <th>所需积分:</th>
+        <td><input type="text" name="val" class="input-text" size="30" value="{$info.val}"/></td>
+    </tr>
+    <tr>
+        <th>图片：</th>
+        <td>
+            <input type="text" name="img" id="J_img" class="input-text fl mr10" size="30" value="{$info.img}"/>
+            <div class="btn fl J_user_level"><span>选择系统图标</span></div>
+            <div id="J_upload_img" class="btn upload_btn"><span>{:L('upload')}</span></div>
+        </td>
+    </tr>
+</table>
+    <input type="hidden" name="id" value="{$info.id}"/>
+</form>
+</div>
+<script src="__STATIC__/js/fileuploader.js"></script>
+<script type="text/javascript">
+$(function(){
+    $(".table_form #title").formValidator({onshow:"请填写等级名称",onfocus:"请填写等级名称"}).inputValidator({min:1,onerror:"请填写等级名称"});
+
+   //上传图片
+    var img_uploader = new qq.FileUploaderBasic({
+        allowedExtensions: ['jpg','gif','jpeg','png','bmp','pdg'],
+        button: document.getElementById('J_upload_img'),
+        multiple: false,
+        action: "{:U(MODULE_NAME.'/ajax_upload_img')}",
+        inputName: 'img',
+        forceMultipart: true, //用$_FILES
+        messages: {
+            typeError: lang.upload_type_error,
+            sizeError: lang.upload_size_error,
+            minSizeError: lang.upload_minsize_error,
+            emptyError: lang.upload_empty_error,
+            noFilesError: lang.upload_nofile_error,
+            onLeave: lang.upload_onLeave
+        },
+        showMessage: function(message){
+            $.zhiphp.tip({content:message, icon:'error'});
+        },
+        onSubmit: function(id, fileName){
+            $('#J_upload_img').addClass('btn_disabled').find('span').text(lang.uploading);
+        },
+        onComplete: function(id, fileName, result){
+            $('#J_upload_img').removeClass('btn_disabled').find('span').text(lang.upload);
+            if(result.status == '1'){
+                $('#J_img').val(result.data);
+            } else {
+                $.zhiphp.tip({content:result.msg, icon:'error'});
+            }
+        }
+    });
+})
+</script>
