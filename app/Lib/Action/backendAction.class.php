@@ -44,8 +44,7 @@ class backendAction extends baseAction {
     public function index() {
         $map = $this->_search();
         $mod = D($this->_name);
-        !empty($mod) && $this->_list($mod, $map);
-        
+        !empty($mod) && $this->_list($mod, $map);        
         $this->display();
     }
     public function add() {

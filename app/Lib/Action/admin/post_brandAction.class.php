@@ -26,22 +26,52 @@ class post_brandAction extends backendAction {
     }
 
     public function _before_index() {
-        $res = D("mall")->field('id,title')->select();
-        $mall_list = array();
-        foreach ($res as $val) {
-            $mall_list[$val['id']] = $val['title'];
-        }
-        $this->assign('mall_list', $mall_list);
-        $this->sort = 'id';
-        $this->order = 'desc';
+//        $res = D("mall")->field('id,title')->select();
+//        $mall_list = array();
+//        foreach ($res as $val) {
+//            $mall_list[$val['id']] = $val['title'];
+//        }
+//        $this->assign('mall_list', $mall_list);
+//        $this->sort = 'id';
+//        $this->order = 'desc';
     }
 
     protected function _search() {
         $map = array();
         $collect_flag = $this->_request('collect_flag', 'intval', 1);
         $map['collect_flag'] = $collect_flag;
-        $selected_ids = '';     
+        ($time_start = $this->_request('time_start', 'trim')) && $map['post_time'][] = array('egt', strtotime($time_start));
+        ($time_end = $this->_request('time_end', 'trim')) && $map['post_time'][] = array('elt', strtotime($time_end) + (24 * 60 * 60 - 1));
+        $status = $this->_request('status');
+        if ($status != null) {
+            $map['status'] = $status;
+        }
+        ($keyword = $this->_request('keyword', 'trim')) && $map['title'] = array('like', '%' . $keyword . '%');
+        $cate_id = $this->_request('cate_id', 'intval');
+        $selected_ids = '';
+        if ($cate_id) {
+            $id_arr = $this->_cate_mod->get_child_ids($cate_id, true);
+            $res = D("post_cate_re")->where("cate_id in(" . implode(',', $id_arr) . ")")->select();
+            $ids = "0";
+            foreach ($res as $val) {
+                $ids .= "," . $val['post_id'];
+            }
+            $map['id'] = array('IN', $ids);
+            $spid = $this->_cate_mod->where(array('id' => $cate_id))->getField('spid');
+            $selected_ids = $spid ? $spid . $cate_id : $cate_id;
+        }
+        $mall_id = $this->_request('mall_id', 'intval');
+        if ($mall_id > 0) {
+            $map['mall_id'] = $mall_id;
+        }
         $this->assign('search', array(
+            'time_start' => $time_start,
+            'time_end' => $time_end,
+            'cate_id' => $cate_id,
+            'selected_ids' => $selected_ids,
+            'status' => $status,
+            'keyword' => $keyword,
+            'mall_id' => $mall_id,
             'collect_flag' => $collect_flag,
         ));
         return $map;
@@ -71,112 +101,116 @@ class post_brandAction extends backendAction {
     }
 
     protected function _before_insert($data) {
-        if (!empty($_FILES['img']['name'])) {
-            $art_add_time = date('ym/d');
-            $result = $this->_upload($_FILES['img'], 'post/' . $art_add_time);
-            if ($result['error']) {
-                $this->error($result['info']);
-            } else {
-                $data['img'] = $art_add_time . '/' . $result['info'][0]['savename'];
-            }
-        } else {
-            $data['img'] = $this->_post('img_url', 'trim');
-        }
-        if (!empty($_POST['zs_images'])) {
-            $upload_path = C('pin_attach_path');
-            $savePath = explode("/", $_POST['zs_images']);
-            foreach ($savePath as $k => $value) {
-                if ($k == 2) {
-                    break;
-                }
-                $value2 .= $value . "/";
-                $savePath2 = $upload_path . 'post/' . $value2;
-                if (!is_dir($savePath2)) {
-                    @mkdir($savePath2, 0777);
-                    @chmod($savePath2, 0777);
-                }
-            }
-            @copy($upload_path . 'zhaoshang/' . $_POST['zs_images'], $upload_path . 'post/' . $_POST['zs_images']);
-            $data['img'] = $_POST['zs_images'];
-        }
-        $data['post_time'] = strtotime($this->_request('post_time', 'trim'));
-        $data['post_key'] = $this->get_post_key($data['title']);
-        $data['mall_id'] = $this->_request('mall_id', 'intval');
-        return $data;
+//         $mod = D("post_brand");  
+//        $datatest = array("cover_image_name"=>"mytry","logo_image_name" => "","name_cn"=>  "", "name_fr"=>  "", "num_version"=>  "", "status"=>  "0", "description"=>  "","id"=>  "" ); 
+//         var_dump( $mod->add($datatest));exit;
+//        if (!empty($_FILES['img']['name'])) {
+//            $art_add_time = date('ym/d');
+//            $result = $this->_upload($_FILES['img'], 'post/' . $art_add_time);
+//            if ($result['error']) {
+//                $this->error($result['info']);
+//            } else {
+//                $data['img'] = $art_add_time . '/' . $result['info'][0]['savename'];
+//            }
+//        } else {
+//            $data['img'] = $this->_post('img_url', 'trim');
+//        }
+//        if (!empty($_POST['zs_images'])) {
+//            $upload_path = C('pin_attach_path');
+//            $savePath = explode("/", $_POST['zs_images']);
+//            foreach ($savePath as $k => $value) {
+//                if ($k == 2) {
+//                    break;
+//                }
+//                $value2 .= $value . "/";
+//                $savePath2 = $upload_path . 'post/' . $value2;
+//                if (!is_dir($savePath2)) {
+//                    @mkdir($savePath2, 0777);
+//                    @chmod($savePath2, 0777);
+//                }
+//            }
+//            @copy($upload_path . 'zhaoshang/' . $_POST['zs_images'], $upload_path . 'post/' . $_POST['zs_images']);
+//            $data['img'] = $_POST['zs_images'];
+//        }
+//        $data['post_time'] = strtotime($this->_request('post_time', 'trim'));
+//        $data['post_key'] = $this->get_post_key($data['title']);
+//        $data['mall_id'] = $this->_request('mall_id', 'intval');
+//        return $data;
     }
 
     protected function _after_insert($id) {
-        $cids = $_REQUEST['cate_id'];
-        foreach ($cids as $key => $val) {
-            D("post_cate_re")->add(array(
-                'post_id' => $id,
-                'cate_id' => $val,
-            ));
-        }
-        $where = array('post_id' => $id);
-        $tags = $this->update_tag(D("post_tag"), $where, $data['title']);
-        D("post_tag")->where($where)->delete();
-        foreach ($tags as $key => $val) {
-            D("post_tag")->add(array(
-                'post_id' => $id,
-                'tag_id' => $key,
-            ));
-        }
+//        $cids = $_REQUEST['cate_id'];
+//        var_dump($cids);exit;
+//        foreach ($cids as $key => $val) {
+//            D("post_cate_re")->add(array(
+//                'post_id' => $id,
+//                'cate_id' => $val,
+//            ));
+//        }
+//        $where = array('post_id' => $id);
+//        $tags = $this->update_tag(D("post_tag"), $where, $data['title']);
+//        D("post_tag")->where($where)->delete();
+//        foreach ($tags as $key => $val) {
+//            D("post_tag")->add(array(
+//                'post_id' => $id,
+//                'tag_id' => $key,
+//            ));
+//        }
     }
 
     public function _after_edit($data) {
-        $where = array('post_id' => $data['id']);
-        $ids = array();
-        $list = D("post_cate_re")->where($where)->select();
-        foreach ($list as $key => $val) {
-            $ids[] = $val['cate_id'];
-        }
-        $cate_tree = $this->_get_cate_tree(get_cate_tree(D("post_cate")), $ids);
-        $this->assign('cate_tree', $cate_tree);
-        $this->assign("mall_title", D("mall")->where(array('id' => $data['mall_id']))->getField("title"));
-        $tag_list = D("post_tag")->relation(true)->where($where)->select();
-        foreach ($tag_list as $key => $val) {
-            $tags .= " " . $val['tag']['name'] . " ";
-        }
-        $this->assign("tags", $tags);
+//        $where = array('post_id' => $data['id']);
+//        $ids = array();
+//        $list = D("post_cate_re")->where($where)->select();
+//        foreach ($list as $key => $val) {
+//            $ids[] = $val['cate_id'];
+//        }
+//        $cate_tree = $this->_get_cate_tree(get_cate_tree(D("post_cate")), $ids);
+//        $this->assign('cate_tree', $cate_tree);
+//        $this->assign("mall_title", D("mall")->where(array('id' => $data['mall_id']))->getField("title"));
+//        $tag_list = D("post_tag")->relation(true)->where($where)->select();
+//        foreach ($tag_list as $key => $val) {
+//            $tags .= " " . $val['tag']['name'] . " ";
+//        }
+//        $this->assign("tags", $tags);
     }
 
     protected function _before_update($data) {
-        D("post_cate_re")->where(array('post_id' => $data['id']))->delete();
-        $cids = $_REQUEST['cate_id'];
-        foreach ($cids as $key => $val) {
-            D("post_cate_re")->add(array(
-                'post_id' => $data['id'],
-                'cate_id' => $val,
-            ));
-        }
-        $where = array('post_id' => $data['id']);
-        $tags = $this->update_tag(D("post_tag"), $where, $data['title']);
-        D("post_tag")->where($where)->delete();
-        foreach ($tags as $key => $val) {
-            D("post_tag")->add(array(
-                'post_id' => $data['id'],
-                'tag_id' => $key,
-            ));
-        }
-        if (!empty($_FILES['img']['name'])) {
-            $art_add_time = date('ym/d');
-            $old_img = $this->_mod->where(array('id' => $data['id']))->getField('img');
-            $old_img = $this->_get_imgdir() . $old_img;
-            is_file($old_img) && @unlink($old_img);
-            $result = $this->_upload($_FILES['img'], 'post/' . $art_add_time);
-            if ($result['error']) {
-                $this->error($result['info']);
-            } else {
-                $data['img'] = $art_add_time . '/' . $result['info'][0]['savename'];
-            }
-        } else {
-            $data['img'] = $this->_post('img_url', 'trim');
-        }
-        $data['post_time'] = strtotime($this->_request('post_time', 'trim'));
-        $data['post_key'] = $this->get_post_key($data['title']);
-        $data['mall_id'] = $this->_request('mall_id', 'intval');
-        return $data;
+//        D("post_cate_re")->where(array('post_id' => $data['id']))->delete();
+//        $cids = $_REQUEST['cate_id'];
+//        foreach ($cids as $key => $val) {
+//            D("post_cate_re")->add(array(
+//                'post_id' => $data['id'],
+//                'cate_id' => $val,
+//            ));
+//        }
+//        $where = array('post_id' => $data['id']);
+//        $tags = $this->update_tag(D("post_tag"), $where, $data['title']);
+//        D("post_tag")->where($where)->delete();
+//        foreach ($tags as $key => $val) {
+//            D("post_tag")->add(array(
+//                'post_id' => $data['id'],
+//                'tag_id' => $key,
+//            ));
+//        }
+//        if (!empty($_FILES['img']['name'])) {
+//            $art_add_time = date('ym/d');
+//            $old_img = $this->_mod->where(array('id' => $data['id']))->getField('img');
+//            $old_img = $this->_get_imgdir() . $old_img;
+//            is_file($old_img) && @unlink($old_img);
+//            $result = $this->_upload($_FILES['img'], 'post/' . $art_add_time);
+//            if ($result['error']) {
+//                $this->error($result['info']);
+//            } else {
+//                $data['img'] = $art_add_time . '/' . $result['info'][0]['savename'];
+//            }
+//        } else {
+//            $data['img'] = $this->_post('img_url', 'trim');
+//        }
+//        $data['post_time'] = strtotime($this->_request('post_time', 'trim'));
+//        $data['post_key'] = $this->get_post_key($data['title']);
+//        $data['mall_id'] = $this->_request('mall_id', 'intval');
+//        return $data;
     }
 
     private function _get_imgdir() {

@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1
--- 生成日期: 2016 年 04 月 08 日 19:06
+-- 生成日期: 2016 年 04 月 10 日 13:51
 -- 服务器版本: 5.5.32
--- PHP 版本: 5.3.5
+-- PHP 版本: 5.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `zhi_admin` (
 --
 
 INSERT INTO `zhi_admin` (`id`, `username`, `password`, `role_id`, `last_ip`, `last_time`, `email`, `status`) VALUES
-(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1, '127.0.0.1', 1460127598, 'brivio@qq.com', 1);
+(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1, '0.0.0.0', 1460286503, 'brivio@qq.com', 1);
 
 -- --------------------------------------------------------
 
@@ -1941,7 +1941,7 @@ CREATE TABLE IF NOT EXISTS `zhi_post` (
   `brand_id` bigint(20) DEFAULT NULL,
   `lang` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=320 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=325 ;
 
 --
 -- 转存表中的数据 `zhi_post`
@@ -2271,7 +2271,12 @@ INSERT INTO `zhi_post` (`id`, `key_id`, `title`, `tcolor`, `post_key`, `url`, `p
 (316, 'tb_17891314572', '包邮2013秋装新款显瘦修身纯棉韩版潮黑色白色T恤 女长袖打底衫', '', 'bao_you_2013_qiu_zhuang_xin_kuan_xian_shou_xiu_shen_chun_mian_han_ban_chao_hei_se_bai_se_t_xu_nv_chang_xiu_da_di_shan_1379486053', 'http://item.taobao.com/item.htm?id=17891314572&spm=2014.21069764.21303391.0', '69.00', '', 'http://img03.taobaocdn.com/bao/uploaded/i3/17752021496250113/T1UbpPXp8bXXXXXXXX_!!0-item_pic.jpg', 'admin', 0, 493, 1379408340, 1379408280, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL),
 (317, 'zhe_998121366', '[当当] 49元 SNOOPY/史努比 男婴幼童运动鞋 N89003', '', 'dang_dang_49_yuan_snoopy_shi_nu_bi_nan_ying_you_tong_yun_dong_xie', 'http://union.dangdang.com/transfer.php?from=P-311467&ad_type=10&sys_id=1&backurl=http%3A%2F%2Ftuan.dangdang.com%2Fproduct.php%3Fproduct_id%3D1800175663', '0', '<p>\r\n	　　#穿上新鞋，过新年#SNOOPY/史努比 男婴幼童运动鞋 N89003 当当网现价49元不包邮，共有桃红、咖色2色可选，同款同款京东商城69元。鞋子里面材料是保暖人造绒，让宝宝学步的同时又保暖。 　　这款漂亮舒适的学步鞋，绚丽多姿的色彩是泼翻了的颜料瓶，鬼灵精怪的颜料宝贝畅快地流淌着，一眨眼，天真的小狗崽，甜美的小圈圈，就活灵活现地出现在宝宝的鞋子上，还有可爱的撞色魔术贴，温暖的人造绒，让宝宝从此爱上了走路。\r\n</p>', 'http://z1.tuanimg.com/upload/zhitao_activity/act_image/17694/normal_db4d8db36584b67889a6bd965a69c98d.png', 'admin', 0, 2, 1379487612, 1390922656, 0, 0, 0, 0, 0, 255, 1, 1, 0, 1, 1, '[当当] 49元 SNOOPY/史努比 男婴幼童运动鞋 N89003', 0, '', '', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL),
 (318, '', '商品名称test', '', 'shang_pin_ming_cheng_1460108392', '商品链接：test', '2005', '<p>\r\n	test\r\n</p>', '或者输入外部图片地址', 'admin', 0, 56, 1460107232, 1460107140, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '物流信息test', '2016-04-09 05:00:00', '2016-04-10 14:20:20', NULL, NULL, '提示：test', 1, 2, 'fr'),
-(319, '', 'Plesk or Cpanel configurationv fei', NULL, '_1460131757', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460131757, 1460131740, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-09 00:09:00', '2016-04-09 00:09:00', NULL, NULL, '', 1, 0, '');
+(319, '', 'Plesk or Cpanel configurationv fei', '', '_1460288689', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460131757, 1460131740, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-09 00:09:00', '2016-04-09 00:09:00', NULL, NULL, '', 1, 3, 'fr'),
+(320, '', 'test', NULL, '_1460256859', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460256859, 1460256840, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-10 10:54:00', '2016-04-10 10:54:00', NULL, NULL, '', 1, 0, ''),
+(321, '', 'test', NULL, '_1460285069', '商品链接', '200', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460285069, 1460284980, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '物流信息', '2016-04-10 18:43:00', '2016-04-29 00:00:00', NULL, NULL, '提示', 1, 2, 'cn'),
+(322, '', 'test', NULL, '_1460287604', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460287604, 1460287560, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-10 19:26:00', '2016-04-10 19:26:00', NULL, NULL, '', 1, NULL, ''),
+(323, '', 'new', NULL, '_1460287739', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460287739, 1460287680, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-10 19:28:00', '2016-04-10 19:28:00', NULL, NULL, '', 1, NULL, ''),
+(324, '', 'new', '', '_1460288668', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460287852, 1460287800, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-10 19:30:00', '2016-04-10 19:30:00', NULL, NULL, '', 1, 13, 'cn');
 
 -- --------------------------------------------------------
 
@@ -2375,18 +2380,23 @@ CREATE TABLE IF NOT EXISTS `zhi_post_brand` (
   `info_template_id` bigint(20) NOT NULL,
   `collect_flag` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- 转存表中的数据 `zhi_post_brand`
 --
 
 INSERT INTO `zhi_post_brand` (`id`, `cover_image_name`, `create_time`, `description`, `last_update_time`, `logo_image_name`, `name_cn`, `name_fr`, `num_version`, `status`, `info_template_id`, `collect_flag`) VALUES
-(1, 'test', '2016-04-08 16:03:12', NULL, NULL, 'test', 'test', 'tset', 1, 0, 0, 1),
 (2, 'cover_image_name', '2016-04-08 16:04:43', NULL, NULL, 'ogo_image_nam', 'name_cn', 'name_fr：	', 12, 0, 0, 1),
-(3, 'cover_image_name', '2016-04-08 16:05:29', NULL, NULL, 'ogo_image_nam', 'name_cn', 'name_fr：', 12, 0, 0, 1),
-(4, 'cover_image_name', '2016-04-08 16:06:33', NULL, NULL, 'ogo_image_nam', 'name_cn', 'name_fr：', 12, 0, 0, 1),
-(5, 'cover_image_name', '2016-04-08 16:07:34', 'descriptiondescriptiondescriptiondescriptiondescription', NULL, 'ogo_image_nam', 'name_cn', 'name_fr：', 13, 0, 0, 1);
+(3, 'cover_image_name', '2016-04-08 16:05:29', NULL, NULL, 'ogo_image_nam', 'name_cn', 'name_fr：', 12, 1, 0, 1),
+(4, 'cover_image_name', '2016-04-08 16:06:33', NULL, NULL, 'ogo_image_nam', 'name_cn', 'name_fr：', 12, 1, 0, 1),
+(5, 'cover_image_name', '2016-04-08 16:07:34', 'descriptiondescriptiondescriptiondescriptiondescription', NULL, 'ogo_image_nam', 'name_cns', 'name_fr：', 13, 0, 0, 1),
+(8, 'test', '2016-04-10 02:59:23', '', NULL, '', '', '', 0, 0, 0, 1),
+(9, 'test', '2016-04-10 03:00:06', '', NULL, '', '', '', 0, 0, 0, 1),
+(10, 'test', '2016-04-10 03:00:45', 'test', NULL, 'test', 'test', 'tes', 12, 1, 0, 1),
+(14, 'mytry', '2016-04-10 03:16:08', '', NULL, '', '', '', 0, 0, 0, 1),
+(12, 'test', '2016-04-10 03:03:19', '', NULL, 'test', '', '', 0, 1, 0, 1),
+(13, 'googd', '2016-04-10 03:03:43', 'test', NULL, 'go', 'yes', 'non', 1, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2460,7 +2470,6 @@ INSERT INTO `zhi_post_cate_re` (`post_id`, `cate_id`) VALUES
 (1, 14),
 (1, 15),
 (1, 16),
-(4, 14),
 (7, 5),
 (9, 5),
 (12, 5),
@@ -2983,6 +2992,37 @@ INSERT INTO `zhi_post_favs` (`id`, `post_id`, `rate`, `uid`, `add_time`, `ip`) V
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `zhi_post_image`
+--
+
+CREATE TABLE IF NOT EXISTS `zhi_post_image` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(255) DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `extension` varchar(255) DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
+  `info_template_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `zhi_post_link`
+--
+
+CREATE TABLE IF NOT EXISTS `zhi_post_link` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `click_count` int(11) DEFAULT NULL,
+  `info_template_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `zhi_post_rate`
 --
 
@@ -3011,14 +3051,6 @@ CREATE TABLE IF NOT EXISTS `zhi_post_tag` (
 --
 
 INSERT INTO `zhi_post_tag` (`post_id`, `tag_id`) VALUES
-(6, 42),
-(6, 421),
-(6, 478),
-(6, 479),
-(6, 480),
-(6, 481),
-(6, 482),
-(6, 483),
 (7, 421),
 (7, 472),
 (7, 484),
@@ -3029,23 +3061,6 @@ INSERT INTO `zhi_post_tag` (`post_id`, `tag_id`) VALUES
 (8, 487),
 (8, 488),
 (8, 489),
-(9, 421),
-(9, 490),
-(9, 491),
-(9, 492),
-(9, 493),
-(10, 494),
-(10, 495),
-(10, 496),
-(10, 497),
-(10, 498),
-(10, 499),
-(11, 153),
-(11, 421),
-(11, 500),
-(11, 501),
-(11, 502),
-(11, 503),
 (12, 504),
 (12, 505),
 (12, 506),
@@ -4512,7 +4527,14 @@ INSERT INTO `zhi_post_tag` (`post_id`, `tag_id`) VALUES
 (317, 1403),
 (317, 1404),
 (318, 1405),
-(318, 1406);
+(318, 1406),
+(319, 1408),
+(319, 1409),
+(319, 1410),
+(319, 1411),
+(321, 1406),
+(322, 1406),
+(324, 1407);
 
 -- --------------------------------------------------------
 
@@ -5166,7 +5188,7 @@ CREATE TABLE IF NOT EXISTS `zhi_tag` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1407 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1412 ;
 
 --
 -- 转存表中的数据 `zhi_tag`
@@ -6578,7 +6600,12 @@ INSERT INTO `zhi_tag` (`id`, `name`) VALUES
 (1403, 'N89003'),
 (1404, 'SNOOPY'),
 (1405, '商品标签'),
-(1406, 'test');
+(1406, 'test'),
+(1407, 'new'),
+(1408, 'configurationv'),
+(1409, 'Cpanel'),
+(1410, 'Plesk'),
+(1411, 'fei');
 
 -- --------------------------------------------------------
 

@@ -944,3 +944,36 @@ function create_mall_index($context) {
     }
 
 }
+function create_brand_index($context) {
+    var url = ROOT_PATH + '/index.php',
+    $list=$('.brandlist', $context);
+
+    var params = {
+        g: 'admin',
+        m: 'post',
+        a: 'get_brand_list'
+    };
+    $.get(url, params, function (data) {
+        var html = '<option value="-1">请选择……</option>';
+        for (var i = 0; i < data.length; i++) {
+            html += '<option value="' + data[i].id + '">' + data[i].name_cn + ' / '+  data[i].name_fr + '</option>';
+        }
+        $list.html(html);
+        if(id){
+            $list.val(id);
+        }
+    }, 'json');
+    
+    var selected_id = $context.attr('data-id');
+    if (!empty(selected_id)) {
+        var params = {
+            g: 'admin',
+            m: 'post',
+            a: 'get_brand',
+            id: selected_id
+        };
+        $.get(url, params, function (data) {
+            $list.val(data.id);
+        }, 'json');
+    }
+}

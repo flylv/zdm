@@ -1,6 +1,6 @@
 <?php
 return array (
-  'DB_HOST' => 'localhost',
+  'DB_HOST' => '127.0.0.1',
   'DB_NAME' => 'yifenqian',
   'DB_USER' => 'root',
   'DB_PWD' => '',

@@ -84,12 +84,10 @@
                                     </tr>
                                     <tr>
                                     <th>所属品牌：</th>
-                                    <td><select name="brand_id">
-                                            <option value=""></option>
-                                            <option value="1">品牌1</option>
-                                            <option value="2">品牌2</option>
-                                            <option value="3">品牌3</option>
-                                        </select>                                        
+                                    <td>
+                                        <div class="J_brand_index">
+                                            <select class="brandlist" name="brand_id"></select>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -222,6 +220,7 @@ $(function() {
 		});
 	});
     create_mall_index($('.J_mall_index'));
+    create_brand_index($('.J_brand_index'));
     $('.J_link_tab').each(function(){
         $this=$(this);
         var selected=$this.attr('data-selected');
