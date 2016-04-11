@@ -104,38 +104,33 @@ class post_brandAction extends backendAction {
 //         $mod = D("post_brand");  
 //        $datatest = array("cover_image_name"=>"mytry","logo_image_name" => "","name_cn"=>  "", "name_fr"=>  "", "num_version"=>  "", "status"=>  "0", "description"=>  "","id"=>  "" ); 
 //         var_dump( $mod->add($datatest));exit;
-//        if (!empty($_FILES['img']['name'])) {
-//            $art_add_time = date('ym/d');
-//            $result = $this->_upload($_FILES['img'], 'post/' . $art_add_time);
-//            if ($result['error']) {
-//                $this->error($result['info']);
-//            } else {
-//                $data['img'] = $art_add_time . '/' . $result['info'][0]['savename'];
-//            }
-//        } else {
-//            $data['img'] = $this->_post('img_url', 'trim');
-//        }
-//        if (!empty($_POST['zs_images'])) {
-//            $upload_path = C('pin_attach_path');
-//            $savePath = explode("/", $_POST['zs_images']);
-//            foreach ($savePath as $k => $value) {
-//                if ($k == 2) {
-//                    break;
-//                }
-//                $value2 .= $value . "/";
-//                $savePath2 = $upload_path . 'post/' . $value2;
-//                if (!is_dir($savePath2)) {
-//                    @mkdir($savePath2, 0777);
-//                    @chmod($savePath2, 0777);
-//                }
-//            }
-//            @copy($upload_path . 'zhaoshang/' . $_POST['zs_images'], $upload_path . 'post/' . $_POST['zs_images']);
-//            $data['img'] = $_POST['zs_images'];
-//        }
-//        $data['post_time'] = strtotime($this->_request('post_time', 'trim'));
-//        $data['post_key'] = $this->get_post_key($data['title']);
-//        $data['mall_id'] = $this->_request('mall_id', 'intval');
-//        return $data;
+       if (!empty($_FILES['cover_image_name']['name'])) {
+           $art_add_time = date('ym/d');
+           $result = $this->_upload($_FILES['cover_image_name'], 'post/' . $art_add_time);
+           if ($result['error']) {
+               $this->error($result['info']);
+           } else {
+               $data['cover_image_name'] = $art_add_time . '/' . $result['info'][0]['savename'];
+           }
+       } else {
+           $data['cover_image_name'] = $this->_post('cover_image_name', 'trim');
+       }
+
+       if (!empty($_FILES['logo_image_name']['name'])) {
+           $art_add_time = date('ym/d');
+           $result = $this->_upload($_FILES['logo_image_name'], 'post/' . $art_add_time);
+           if ($result['error']) {
+               $this->error($result['info']);
+           } else {
+               $data['logo_image_name'] = $art_add_time . '/' . $result['info'][0]['savename'];
+           }
+       } else {
+           $data['logo_image_name'] = $this->_post('logo_image_name', 'trim');
+       }
+
+       $data['last_update_time'] = date("Y-m-d H:i:s");
+
+       return $data;
     }
 
     protected function _after_insert($id) {
@@ -176,41 +171,33 @@ class post_brandAction extends backendAction {
     }
 
     protected function _before_update($data) {
-//        D("post_cate_re")->where(array('post_id' => $data['id']))->delete();
-//        $cids = $_REQUEST['cate_id'];
-//        foreach ($cids as $key => $val) {
-//            D("post_cate_re")->add(array(
-//                'post_id' => $data['id'],
-//                'cate_id' => $val,
-//            ));
-//        }
-//        $where = array('post_id' => $data['id']);
-//        $tags = $this->update_tag(D("post_tag"), $where, $data['title']);
-//        D("post_tag")->where($where)->delete();
-//        foreach ($tags as $key => $val) {
-//            D("post_tag")->add(array(
-//                'post_id' => $data['id'],
-//                'tag_id' => $key,
-//            ));
-//        }
-//        if (!empty($_FILES['img']['name'])) {
-//            $art_add_time = date('ym/d');
-//            $old_img = $this->_mod->where(array('id' => $data['id']))->getField('img');
-//            $old_img = $this->_get_imgdir() . $old_img;
-//            is_file($old_img) && @unlink($old_img);
-//            $result = $this->_upload($_FILES['img'], 'post/' . $art_add_time);
-//            if ($result['error']) {
-//                $this->error($result['info']);
-//            } else {
-//                $data['img'] = $art_add_time . '/' . $result['info'][0]['savename'];
-//            }
-//        } else {
-//            $data['img'] = $this->_post('img_url', 'trim');
-//        }
-//        $data['post_time'] = strtotime($this->_request('post_time', 'trim'));
-//        $data['post_key'] = $this->get_post_key($data['title']);
-//        $data['mall_id'] = $this->_request('mall_id', 'intval');
-//        return $data;
+       if (!empty($_FILES['cover_image_name']['name'])) {
+           $art_add_time = date('ym/d');
+           $result = $this->_upload($_FILES['cover_image_name'], 'post/' . $art_add_time);
+           if ($result['error']) {
+               $this->error($result['info']);
+           } else {
+               $data['cover_image_name'] = $art_add_time . '/' . $result['info'][0]['savename'];
+           }
+       } else {
+           $data['cover_image_name'] = $this->_post('cover_image_name', 'trim');
+       }
+
+       if (!empty($_FILES['logo_image_name']['name'])) {
+           $art_add_time = date('ym/d');
+           $result = $this->_upload($_FILES['logo_image_name'], 'post/' . $art_add_time);
+           if ($result['error']) {
+               $this->error($result['info']);
+           } else {
+               $data['logo_image_name'] = $art_add_time . '/' . $result['info'][0]['savename'];
+           }
+       } else {
+           $data['logo_image_name'] = $this->_post('logo_image_name', 'trim');
+       }
+
+       $data['last_update_time'] = date("Y-m-d H:i:s");
+
+       return $data;
     }
 
     private function _get_imgdir() {

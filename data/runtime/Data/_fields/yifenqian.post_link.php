@@ -1,0 +1,1 @@
+{"0":"id","1":"description","2":"url","3":"click_count","4":"info_template_id","5":"post_id","_autoinc":true,"_pk":"id","_type":{"id":"bigint(20)","description":"varchar(255)","url":"varchar(255)","click_count":"int(11)","info_template_id":"bigint(20)","post_id":"int(11)"}}

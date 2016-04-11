@@ -1,0 +1,1 @@
+{"0":"id","1":"full_name","2":"create_time","3":"extension","4":"size","5":"info_template_id","6":"post_id","_autoinc":true,"_pk":"id","_type":{"id":"bigint(20)","full_name":"varchar(255)","create_time":"timestamp","extension":"varchar(255)","size":"int(11)","info_template_id":"bigint(20)","post_id":"int(11)"}}

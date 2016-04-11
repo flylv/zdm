@@ -965,7 +965,7 @@ function create_brand_index($context) {
     }, 'json');
     
     var selected_id = $context.attr('data-id');
-    if (!empty(selected_id)) {
+    if (!empty(selected_id) && selected_id > 0) {
         var params = {
             g: 'admin',
             m: 'post',
@@ -976,4 +976,44 @@ function create_brand_index($context) {
             $list.val(data.id);
         }, 'json');
     }
+}
+
+function get_support_images(context,id) {
+    var url = ROOT_PATH + '/index.php';
+    
+    var params = {
+        g: 'admin',
+        m: 'post',
+        a: 'get_images_list',
+        id: id
+    };
+
+    $.get(url, params, function (data) {
+        var html = '';
+        for (var i = 0; i < data.length; i++) {
+            html += '<div><img src="data/upload/post/' + data[i].full_name + '" width="50"  /><br/><a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="/zdm/index.php?g=admin&m=post&a=deleteimage&id='+data[i].id +'" data-msg="确认删除？">删除</a></div>';
+        }
+        $(context).html(html);
+    }, 'json');
+
+}
+
+function get_support_links(context,id) {
+    var url = ROOT_PATH + '/index.php';
+    
+    var params = {
+        g: 'admin',
+        m: 'post',
+        a: 'get_link_list',
+        id: id
+    };
+
+    $.get(url, params, function (data) {
+        var html = '';
+        for (var i = 0; i < data.length; i++) {
+            html += '<div><label>URL: </label><input type="text" name="moreLink[]" class="input-text" value="'+data[i].url+'" placeholder="链接地址" /><input type="text" name="moreDes[]" class="input-text" placeholder="描述" value="'+data[i].description+'" /><label> 点击数：</label><input type="text" name="moreCount[]" class="input-text" value="'+data[i].click_count+'" style="width:20px" /></div>  <br/>';
+        }
+        $(context).html(html);
+    }, 'json');
+
 }

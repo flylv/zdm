@@ -83,6 +83,39 @@ class postAction extends backendAction {
         $list=D('post_brand')->field("id,name_cn,name_fr")->where($where)->limit("0,500")->select();
         print_r(json_encode($list));
     }
+
+     public function deleteimage() {
+        $mod = D('post_image');
+        $id=$this->_get('id','intval');
+
+        if ($id) {
+            if (false !== $mod->delete($id)) {
+                IS_AJAX && $this->ajaxReturn(1, L('operation_success'));
+                $this->success(L('operation_success'));
+            } else {
+                IS_AJAX && $this->ajaxReturn(0, L('operation_failure'));
+                $this->error(L('operation_failure'));
+            }
+        } 
+    }
+
+    public function get_images_list()
+    {
+        $id=$this->_get('id','intval');
+
+        $where=" `post_id`=$id";
+        $list=D('post_image')->field("id,full_name")->where($where)->limit("0,500")->select();
+        print_r(json_encode($list));
+    }
+
+    public function get_link_list()
+    {
+        $id=$this->_get('id','intval');
+
+        $where=" `post_id`=$id";
+        $list=D('post_link')->field("id,description,url,click_count")->where($where)->limit("0,500")->select();
+        print_r(json_encode($list));
+    }
     
     public function get_brand(){
         $id=$this->_get('id','intval');
@@ -117,6 +150,7 @@ class postAction extends backendAction {
     }
 
     protected function _before_insert($data) {
+
         if (!empty($_FILES['img']['name'])) {
             $art_add_time = date('ym/d');
             $result = $this->_upload($_FILES['img'], 'post/' . $art_add_time);
@@ -152,6 +186,60 @@ class postAction extends backendAction {
     }
 
     protected function _after_insert($id) {
+
+        if (!empty($_FILES['moreImg'] && count($_FILES['moreImg']['name']))) {
+            for ($i=0; $i < count($_FILES['moreImg']['name']); $i++) { 
+               if(!empty($_FILES['moreImg']['name'][$i])){
+
+                    $img = array("name"     => $_FILES['moreImg']['name'][$i],
+                                "type"      => $_FILES['moreImg']['type'][$i],
+                                "tmp_name"  => $_FILES['moreImg']['tmp_name'][$i],
+                                "error"     => $_FILES['moreImg']['error'][$i],
+                                "size"      => $_FILES['moreImg']['size'][$i]);
+
+                    $art_add_time = date('ym/d');
+                    $result = $this->_upload($img, 'post/' . $art_add_time);
+                    if ($result['error']) {
+                        $this->error($result['info']);
+                    } else {
+                        $mod = D("post_image");  
+                        $imageData = array("full_name"  => $art_add_time . '/' . $result['info'][0]['savename'],
+                                            "extension" => $img["type"],
+                                            "size"      =>  $img["size"],
+                                            "post_id"   => (int)$id); 
+                        $mod->add($imageData);
+                    }
+                } elseif(0) {
+                    $data['img'] = $this->_post('img_url', 'trim');
+               }
+            }
+        }
+
+        if(isset($_POST["moreImg"]) && count($_POST["moreImg"])){
+            foreach ($_POST["moreImg"] as $row) {
+                if($row){
+                    $mod = D("post_image");  
+                    $imageData = array("full_name"  => $row,
+                                        "post_id"   => (int)$id); 
+                    $mod->add($imageData);
+                }
+            }
+        }
+
+        if(isset($_POST["moreLink"]) && count($_POST["moreLink"])){
+            for ($i=0; $i < count($_POST["moreLink"]); $i++) { 
+                if($_POST["moreLink"][$i]){
+                    $mod = D("post_link");
+                    $linkData = array("description" => $_POST["moreDes"][$i],
+                                    "click_count"   => (int)$_POST["moreCount"][$i],
+                                    "url"           => $_POST["moreLink"][$i],
+                                    "post_id"       => (int)$id,
+                                ); 
+                    $mod->add($linkData);
+                }
+            }
+        }
+
         $cids = $_REQUEST['cate_id'];
         foreach ($cids as $key => $val) {
             D("post_cate_re")->add(array(
@@ -188,6 +276,74 @@ class postAction extends backendAction {
     }
 
     protected function _before_update($data) {
+
+        if (!empty($_FILES['moreImg'] && count($_FILES['moreImg']['name']))) {
+            for ($i=0; $i < count($_FILES['moreImg']['name']); $i++) { 
+               if(!empty($_FILES['moreImg']['name'][$i])){
+
+                    $img = array("name"     => $_FILES['moreImg']['name'][$i],
+                                "type"      => $_FILES['moreImg']['type'][$i],
+                                "tmp_name"  => $_FILES['moreImg']['tmp_name'][$i],
+                                "error"     => $_FILES['moreImg']['error'][$i],
+                                "size"      => $_FILES['moreImg']['size'][$i]);
+
+                    $art_add_time = date('ym/d');
+                    $result = $this->_upload($img, 'post/' . $art_add_time);
+                    if ($result['error']) {
+                        $this->error($result['info']);
+                    } else {
+                        $mod = D("post_image");  
+                        $imageData = array("full_name"  => $art_add_time . '/' . $result['info'][0]['savename'],
+                                            "extension" => $img["type"],
+                                            "size"      =>  $img["size"],
+                                            "post_id"   => (int)$data['id']); 
+                        $mod->add($imageData);
+                    }
+                } elseif(0) {
+                    $data['img'] = $this->_post('img_url', 'trim');
+               }
+            }
+        }
+
+        if(isset($_POST["moreImg"]) && count($_POST["moreImg"])){
+            foreach ($_POST["moreImg"] as $row) {
+                if($row){
+                    $mod = D("post_image");  
+                    $imageData = array("full_name"  => $row,
+                                        "post_id"   => (int)$data['id']); 
+                    $mod->add($imageData);
+                }
+            }
+        }
+
+        if($data['id']){ 
+            $postId =  (int)$data['id'];          
+            $where = " `post_id`=$postId";
+            $list = D('post_link')->field("id")->where($where)->limit("0,500")->select();
+
+            if(count($list)){
+                $mod = D('post_link');
+                foreach ($list as $row) {
+                    if(isset($row["id"]))
+                        $mod->delete((int)$row["id"]);
+                }
+            }
+        }
+
+        if(isset($_POST["moreLink"]) && count($_POST["moreLink"])){
+            for ($i=0; $i < count($_POST["moreLink"]); $i++) { 
+                if($_POST["moreLink"][$i]){
+                    $mod = D("post_link");
+                    $linkData = array("description" => $_POST["moreDes"][$i],
+                                    "click_count"   => (int)$_POST["moreCount"][$i],
+                                    "url"           => $_POST["moreLink"][$i],
+                                    "post_id"       => (int)$data['id'],
+                                ); 
+                    $mod->add($linkData);
+                }
+            }
+        }
+
         D("post_cate_re")->where(array('post_id' => $data['id']))->delete();
         $cids = $_REQUEST['cate_id'];
         foreach ($cids as $key => $val) {

@@ -19,17 +19,6 @@ select[name="index"]{
                     <tr>
                         <td style="width: 80%;">
             				<table width="100%" cellspacing="0" class="table_form">
-            		            <tr>
-                                        <th style="width: 100px;">封面图片名称：</th>
-                                        <td style="width: 680px;">
-            		                    <input type="text" name="cover_image_name" id="J_cover_image_name" rel="cover_image_name" class="input-text" value="{$info.cover_image_name}"/>
-            		                </td>
-            					</tr>
-                                <tr>
-                                    <th>Logo图片名称：</th>
-                                    <td>
-                                        <input type="text" name="logo_image_name" id="J_logo_image_name" class="input-text" value="{$info.logo_image_name}"/></td>
-                                </tr>
                                 <tr>
                                     <th>中文名称：</th>                                        
                                     <td>
@@ -39,6 +28,28 @@ select[name="index"]{
                                 <tr>
                                     <th>法文名称：</th>
                                     <td><input type="text" name="name_fr" class="input-text" value="{$info.name_fr}"/></td>
+                                </tr>
+                                 <tr>
+                                    <th>封面图片:</th>
+                                    <td>        
+                                        <notempty name="info['cover_image_name']">
+                                            <span class="attachment_icon J_attachment_icon" file-type="image" file-rel="data/upload/post/{$info.cover_image_name}">
+                                            </span><br />
+                                        </notempty>                                                                
+                                        上传：<input type="file" name="cover_image_name" class="input-text"  style="width:200px;" />
+                                        &nbsp;&nbsp;<input type="text" class="input-text J_tip" data-default="或者输入外部图片地址" name="cover_image_name" value="{$info.cover_image_name}" size="55"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Logo图片：</th>
+                                    <td>        
+                                        <notempty name="info['logo_image_name']">
+                                            <span class="attachment_icon J_attachment_icon" file-type="image" file-rel="data/upload/post/{$info.logo_image_name}">
+                                            </span><br />
+                                        </notempty>                                                                
+                                        上传：<input type="file" name="logo_image_name" class="input-text"  style="width:200px;" />
+                                        &nbsp;&nbsp;<input type="text" class="input-text J_tip" data-default="或者输入外部图片地址" name="logo_image_name" value="{$info.logo_image_name}" size="55"/>
+                                    </td>
                                 </tr>
                                     <tr>
             		 		<th>版本：</th>

@@ -8,8 +8,7 @@
                 <th width="30">序号</th>
                 <th width="25"><input type="checkbox" id="checkall_t" class="J_checkall"></th>
                 <th width="30"><span data-tdtype="order_by" data-field="id">ID</span></th>
-                <th>图片</th>
-                <th align="left"><span data-tdtype="order_by" data-field="title">{:L('title')}</span></th> 
+                <th>Logo</th>
                 <th><span data-tdtype="order_by" data-field="中文名称">中文名称</span></th>  
                 <th><span data-tdtype="order_by" data-field="法文名称">法文名称</span></th>  
 		<th width="200"><span data-tdtype="order_by" data-field="add_time">{:L('publish_time')}</span></th>
@@ -23,17 +22,12 @@
                 <td align="center">{$p*20-20+$i}</td>
                 <td align="center"><input type="checkbox" class="J_checkitem" value="{$val.id}"></td>
                 <td align="center">{$val.id}</td>
-                <td>
-                    <notempty name="val['img']">
+                <td align="center">
+                    <notempty name="val['logo_image_name']">
                         <div class="img_border">
-                            <img src="{$val._img}" width="32" class="J_preview" data-bimg="{$val._img}"/>
+                            <img src="data/upload/post/{$val.logo_image_name}" width="32" class="J_preview" data-bimg="{$val.logo_image_name}"/>
                         </div>
                     </notempty>
-                </td>
-                <td align="left">
-                    <span data-tdtype="edit" data-field="title" data-id="{$val.id}" class="tdedit" style="color:{$val.colors};">
-                    {$val.cover_image_name}
-                    </span>
                 </td>
                  <td align="center"><span data-tdtype="edit" data-field="name_cn" data-id="{$val.id}" >{$val['name_cn']}</span></td>
                 <td align="center"><span data-tdtype="edit" data-field="name_fr" data-id="{$val.id}" >{$val['name_fr']}</span></td>
