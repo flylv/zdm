@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.2.10
 -- http://www.phpmyadmin.net
 --
--- 主机: 127.0.0.1
--- 生成日期: 2016 年 04 月 10 日 13:51
--- 服务器版本: 5.5.32
--- PHP 版本: 5.4.16
+-- Host: localhost:3306
+-- Generation Time: Apr 11, 2016 at 07:47 PM
+-- Server version: 5.5.38
+-- PHP Version: 5.5.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,19 +17,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `yifenqian`
+-- Database: `yifenqian`
 --
-CREATE DATABASE IF NOT EXISTS `yifenqian` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `yifenqian`;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_ad`
+-- Table structure for table `zhi_ad`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_ad` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_ad` (
+`id` int(5) NOT NULL,
   `board_id` smallint(5) NOT NULL,
   `type` varchar(20) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -43,12 +41,11 @@ CREATE TABLE IF NOT EXISTS `zhi_ad` (
   `clicks` int(10) NOT NULL DEFAULT '0',
   `add_time` int(10) NOT NULL DEFAULT '0',
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_ad`
+-- Dumping data for table `zhi_ad`
 --
 
 INSERT INTO `zhi_ad` (`id`, `board_id`, `type`, `name`, `url`, `content`, `extimg`, `extval`, `desc`, `start_time`, `end_time`, `clicks`, `add_time`, `ordid`, `status`) VALUES
@@ -76,22 +73,21 @@ INSERT INTO `zhi_ad` (`id`, `board_id`, `type`, `name`, `url`, `content`, `extim
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_adboard`
+-- Table structure for table `zhi_adboard`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_adboard` (
-  `id` smallint(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_adboard` (
+`id` smallint(5) NOT NULL,
   `name` varchar(50) NOT NULL,
   `tpl` varchar(20) NOT NULL,
   `width` smallint(5) NOT NULL,
   `height` smallint(5) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+  `status` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_adboard`
+-- Dumping data for table `zhi_adboard`
 --
 
 INSERT INTO `zhi_adboard` (`id`, `name`, `tpl`, `width`, `height`, `description`, `status`) VALUES
@@ -111,58 +107,54 @@ INSERT INTO `zhi_adboard` (`id`, `name`, `tpl`, `width`, `height`, `description`
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_admin`
+-- Table structure for table `zhi_admin`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_admin` (
-  `id` mediumint(6) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_admin` (
+`id` mediumint(6) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(32) NOT NULL,
   `role_id` smallint(5) NOT NULL,
   `last_ip` varchar(15) NOT NULL,
   `last_time` int(10) NOT NULL DEFAULT '0',
   `email` varchar(50) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_name` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_admin`
+-- Dumping data for table `zhi_admin`
 --
 
 INSERT INTO `zhi_admin` (`id`, `username`, `password`, `role_id`, `last_ip`, `last_time`, `email`, `status`) VALUES
-(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1, '0.0.0.0', 1460286503, 'brivio@qq.com', 1);
+(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1, '0.0.0.0', 1460391126, 'brivio@qq.com', 1);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_admin_auth`
+-- Table structure for table `zhi_admin_auth`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_admin_auth` (
+CREATE TABLE `zhi_admin_auth` (
   `role_id` tinyint(3) NOT NULL,
-  `menu_id` smallint(6) NOT NULL,
-  KEY `role_id` (`role_id`,`menu_id`)
+  `menu_id` smallint(6) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_admin_role`
+-- Table structure for table `zhi_admin_role`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_admin_role` (
-  `id` tinyint(3) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_admin_role` (
+`id` tinyint(3) NOT NULL,
   `name` varchar(50) NOT NULL,
   `remark` text NOT NULL,
   `ordid` tinyint(3) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_admin_role`
+-- Dumping data for table `zhi_admin_role`
 --
 
 INSERT INTO `zhi_admin_role` (`id`, `name`, `remark`, `ordid`, `status`) VALUES
@@ -172,11 +164,11 @@ INSERT INTO `zhi_admin_role` (`id`, `name`, `remark`, `ordid`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_article`
+-- Table structure for table `zhi_article`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_article` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_article` (
+`id` int(11) unsigned NOT NULL,
   `cate_id` smallint(4) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `colors` varchar(10) NOT NULL,
@@ -194,12 +186,11 @@ CREATE TABLE IF NOT EXISTS `zhi_article` (
   `seo_title` varchar(255) NOT NULL,
   `seo_keys` varchar(255) NOT NULL,
   `seo_desc` text NOT NULL,
-  `like_account` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
+  `like_account` int(11) DEFAULT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_article`
+-- Dumping data for table `zhi_article`
 --
 
 INSERT INTO `zhi_article` (`id`, `cate_id`, `title`, `colors`, `author`, `tags`, `img`, `intro`, `info`, `comments`, `hits`, `ordid`, `add_time`, `last_time`, `status`, `seo_title`, `seo_keys`, `seo_desc`, `like_account`) VALUES
@@ -262,16 +253,17 @@ INSERT INTO `zhi_article` (`id`, `cate_id`, `title`, `colors`, `author`, `tags`,
 (56, 33, '审核说明', '', 'admin', '', '', '报名提交后，招商专员会在20个工作日完成审核，请登陆本报名系统查看报名状态，会有具体的审核留言指导您进行下一步。', '<strong>一、审核周期</strong> \r\n<p>\r\n	1、活动报名后请勿催促，我们会在20个工作日内（自提交之日算起）对您的活动进行审核。<br />\r\n2、我们会优先考虑性价比高的商品，您可以自行调整商品活动价格，以便得到更快的审核进度。\r\n</p>\r\n<strong>二、结果查询</strong> \r\n<p>\r\n	1、您可以直接到审核结果查看您报名活动的审核动态，招商专员会将审核结果及操作指导发布在留言区<br />\r\n2、请务必在报名时留下您的常用邮箱，系统还会将审核结果以邮件的形式及时发送到您填写的邮箱中。\r\n</p>\r\n<strong>三、审核状态</strong> \r\n<p>\r\n	1、折800审核条件非常严格，会先后经过7道工序，通过后才能发布上线，这七道工序分别为：初审-复审-洽谈-样品邮寄-样品质检-排期-上线 <br />\r\n2、招商专员会经过两轮的活动筛选，即初审、复审，确定您的商品是否适合在本站进行活动 <br />\r\n3、在待洽谈状态时，请主动点击与该活动对应的招商专员旺旺与其取得联系（必须是对应的旺旺） <br />\r\n4、在样品邮寄状态时，请将快递信息填写到系统中，以便招商专员能够第一时间反馈样品接收状态 <br />\r\n5、招商专员在收到样品时，会将您的活动状态改为“样品质检”，同时会检验您寄来样品的质量 <br />\r\n6、如果您的样品质检合格，招商专员会将对应的活动进行初步的排期，如果出现排期问题您也可以直接联系招商专员进行调整 <br />\r\n7、到达排期时间后，您的活动即成功发布上线，您可以到折800首页查看您的活动，活动结束后，您可以再次报名参与 <br />\r\n8、如果您的活动被设置为“未通过”，请根据招商专员的留言对活动进行调整、或更换符合要求的商品再来报名 <br />\r\n9、如果您报名的活动中连续9款商品均未通过审核，您的店铺将无法再报名参与任何活动 <br />\r\n10、如果您报名的活动被标记为“已锁定”状态，该款商品将无法再次进行报名\r\n</p>\r\n<strong>四、哪些问题导致不被通过</strong> \r\n<p>\r\n	1、9.9包邮秒杀报名要求。<a target="_blank" href="/zhaoshang/yaoqiu">查看详细&gt;&gt;</a><br />\r\n2、20元封顶报名要求。<a target="_blank" href="/zhaoshang/yaoqiu">查看详细&gt;&gt;</a><br />\r\n3、独家折扣报名要求。<a target="_blank" href="/zhaoshang/yaoqiu">查看详细&gt;&gt;</a><br />\r\n4、数码专区合作流程及要求。<a target="_blank" href="/zhaoshang/yaoqiu">查看详细&gt;&gt;</a> \r\n</p>\r\n<strong>五、商家报名规则</strong> \r\n<p>\r\n	1、商家认真查看活动要求说明，符合要求的商家联系我们的客服索要活动报名地址。<br />\r\n2、准确填写报名信息，提交报名，我们会尽快进行审核，请关注自己的报名后台查看审核结果。<br />\r\n3、审核通过的活动，我们会联系商家，沟通活动准备工作及上线排期等问题。\r\n</p>\r\n<strong>六、关于样品</strong> \r\n<p>\r\n	1、在活动组织过程中，招商专员会酌情收取样品，请给与配合。<br />\r\n2、邮递样品时，请附一张清单，写明 店铺名称、商品地址、活动价格、联系人、联系旺旺、手机，对应联系的招商专员姓名。<br />\r\n3、样品一经发出不予退还，快递费用由您承担，不支持到付。<br />\r\n4、样品仅供审核参考，裁定商品是否可以上活动，请不要误认为邮递样品后就一定能上活动，最终解释权归本活动所有。<br />\r\n5、样品收取后，我们有权自行处理及做其用途使用。<br />\r\n6、所有跟折800达成合作的商家在提交样品前请联系折800官方QQ：800001276，确认合作以及提交样品地址，其它任何通过QQ、旺旺等方式向商家索取样品的行为均未得到折800授权，谨防上当！\r\n</p>\r\n<strong>七、黑名单</strong> \r\n<p>\r\n	1、拉黑原因（重要） <br />\r\n如果商家有以下行为，我们将终止与该商家合作，并将该商家列入黑名单永不合作。 我们真诚的提醒您，诚信合作，拉黑对您对我们都是损失！ <br />\r\n· 绕圈报名上活动，同款商品刻意联系不同专员审核者，发现即拉黑，活动随时终止； <br />\r\n· 未按约定排期上架宝贝，修改宝贝价格、宝贝标题，活动时间以及添加我们的宣传图片； <br />\r\n· 活动中单方面将宝贝下架； <br />\r\n· 活动中单方面修改价格或包邮情况； <br />\r\n· 活动中删除宝贝标题中的“【折800独家优惠】”，或是删除我们的宣传图片或链接； <br />\r\n· 活动期间同时参加其他促销活动； <br />\r\n· 售卖假货或劣质产品等欺骗消费者的行为； <br />\r\n· 未履行相应的售后服务，未能及时恰当处理用户投诉问题； <br />\r\n· 活动期间悬挂过多其他活动宣传图片，恶意引导用户，造成用户误解的行为； <br />\r\n· 其他不诚信以及违规行为，最终解释权归本活动所有。\r\n    2、其他说明加入黑名单的商家，本活动永不合作，且无法删除此黑名单。<br />\r\n3、黑名单由招商专员或活动排查专员添加。\r\n</p>', 0, 0, 255, 1374735343, 0, 1, '审核说明', '', '', NULL),
 (57, 34, '合作说明', '', 'admin', '', '', '关于费用和审核：折800活动完全免费，凡声称活动审核通过后再付款均为骗子，他们只是代你提交报名等待审核，审核时间无任何优先权利，跟自己报名等待审核无任何区别，也请诸商家不要想走捷径，这里没有捷径，还这里一片净土。', '<strong>一、展示推广</strong> \r\n<p>\r\n	1、展示在折800网 (地址百度搜索"折800")     并同步在淘宝应用中心：<a target="_blank" href="http://yingyong.taobao.com/show.htm?app_id=6153005">点此进入</a> <br />\r\n2、同步展示在折800网IPhone手机客户端、Andriod手机客户端 (<a target="_blank" href="http://www.tuan800.com/m/tao800">详情</a>) <br />\r\n3、展示规则：第一、二排 9.9包邮推荐专区   第二排 20元封顶专区    其他位置：独家折扣展示专区\r\n</p>\r\n<strong>二、基本要求：</strong> \r\n<p>\r\n	1、关于淘客佣金，我们不强制一定要开通淘宝客，但如果您开通了我们系统会默认使用淘客链接。 <br />\r\n2、集市店铺必须已加入淘宝消费者保障计划。 <br />\r\n3、将活动Logo及横幅悬挂在店内左侧及宝贝详情顶部。 <a target="_blank" href="/zhaoshang/zhunbei">点此查看设置教程</a> <br />\r\n4、集市店铺动态评分全绿的店铺暂不能参与活动。\r\n</p>\r\n<strong>三、报名审核：</strong> \r\n<p>\r\n	1、注册、登陆本系统提交报名表，提交后等待审核，请勿催促客服。 <br />\r\n2、审核时间：20个工作日内会给予答复，感谢您的耐心等待和支持。 <br />\r\n3、审核通过：审核通过后，客服会将联系方式贴在审核留言中，请尽快与客服取得联系沟通具体活动内容。 <br />\r\n4、审核未通过：请根据客服审核留言进行调整、更换其他符合要求的商品报名。 <br />\r\n5、审核查询：登陆本系统查询已提交的报名表状态。\r\n</p>\r\n<strong>四、各活动形式报名要求：</strong> \r\n<p>\r\n	1、9.9包邮秒杀报名要求。 <a target="_blank" href="/zhaoshang/yaoqiu">查看详细&gt;&gt;</a><br />\r\n2、20元封顶报名要求。 <a target="_blank" href="/zhaoshang/yaoqiu">查看详细&gt;&gt;</a> <br />\r\n3、独家折扣报名要求。 <a target="_blank" href="/zhaoshang/yaoqiu">查看详细&gt;&gt;</a><br />\r\n4、暗号团合作流程及要求。 <a target="_blank" href="/zhaoshang/yaoqiu">查看详细&gt;&gt;</a> <br />\r\n5、免费赞助（积分兑换、论坛踩楼）合作说明。 <a target="_blank" href="/zhaoshang/yaoqiu">查看详细&gt;&gt;</a> \r\n</p>\r\n<strong>五、订阅活动通知：</strong> \r\n<p>\r\n	务必订阅：用常用邮箱订阅最新活动通知 <a target="_blank" href="http://list.qq.com/cgi-bin/qf_invite?id=5be91e837af3823e985df9efb8bc529596427db871de2c66">点此订阅&gt;&gt;</a> 请务必确定您已激活并验证后才可以收到我们的通知。\r\n</p>', 0, 0, 255, 1374735401, 0, 1, '合作说明', '', '', NULL),
 (58, 35, '报价参考', '', 'admin', '', '', '报价参考', '报价参考', 0, 0, 255, 1374735443, 0, 1, '报价参考', '', '', NULL),
-(59, 45, '新手上路', '', 'admin', '', '', '', '', 0, 0, 255, 1377069387, 0, 0, '', '', '', NULL);
+(59, 45, '新手上路', '', 'admin', '', '', '', '', 0, 0, 255, 1377069387, 0, 0, '', '', '', 20),
+(60, 5, 'test', '', 'admin', '', '', '', 'test', 0, 0, 255, 1460384379, 0, 1, '', '', '', 49);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_article_cate`
+-- Table structure for table `zhi_article_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_article_cate` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_article_cate` (
+`id` smallint(4) unsigned NOT NULL,
   `type` tinyint(1) NOT NULL DEFAULT '0',
   `name` varchar(100) NOT NULL,
   `alias` varchar(50) NOT NULL,
@@ -282,12 +274,11 @@ CREATE TABLE IF NOT EXISTS `zhi_article_cate` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `seo_title` varchar(255) NOT NULL,
   `seo_keys` varchar(255) NOT NULL,
-  `seo_desc` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+  `seo_desc` text NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_article_cate`
+-- Dumping data for table `zhi_article_cate`
 --
 
 INSERT INTO `zhi_article_cate` (`id`, `type`, `name`, `alias`, `img`, `pid`, `spid`, `ordid`, `status`, `seo_title`, `seo_keys`, `seo_desc`) VALUES
@@ -327,22 +318,21 @@ INSERT INTO `zhi_article_cate` (`id`, `type`, `name`, `alias`, `img`, `pid`, `sp
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_article_page`
+-- Table structure for table `zhi_article_page`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_article_page` (
+CREATE TABLE `zhi_article_page` (
   `cate_id` smallint(4) unsigned NOT NULL DEFAULT '0',
   `title` varchar(120) NOT NULL,
   `info` text NOT NULL,
   `seo_title` varchar(255) NOT NULL,
   `seo_keys` varchar(255) NOT NULL,
   `seo_desc` text NOT NULL,
-  `last_time` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`cate_id`)
+  `last_time` int(10) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_article_page`
+-- Dumping data for table `zhi_article_page`
 --
 
 INSERT INTO `zhi_article_page` (`cate_id`, `title`, `info`, `seo_title`, `seo_keys`, `seo_desc`, `last_time`) VALUES
@@ -360,10 +350,10 @@ INSERT INTO `zhi_article_page` (`cate_id`, `title`, `info`, `seo_title`, `seo_ke
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_article_re`
+-- Table structure for table `zhi_article_re`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_article_re` (
+CREATE TABLE `zhi_article_re` (
   `article_id` int(10) NOT NULL DEFAULT '0',
   `cate_id` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -371,18 +361,17 @@ CREATE TABLE IF NOT EXISTS `zhi_article_re` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_auto_user`
+-- Table structure for table `zhi_auto_user`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_auto_user` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_auto_user` (
+`id` smallint(4) unsigned NOT NULL,
   `name` varchar(100) NOT NULL,
-  `users` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `users` text NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_auto_user`
+-- Dumping data for table `zhi_auto_user`
 --
 
 INSERT INTO `zhi_auto_user` (`id`, `name`, `users`) VALUES
@@ -391,37 +380,35 @@ INSERT INTO `zhi_auto_user` (`id`, `name`, `users`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_badword`
+-- Table structure for table `zhi_badword`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_badword` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_badword` (
+`id` int(10) unsigned NOT NULL,
   `word_type` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '1：禁用；2：替换；3：审核',
   `badword` varchar(100) NOT NULL,
   `replaceword` varchar(100) NOT NULL,
-  `add_time` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `add_time` int(10) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_flink`
+-- Table structure for table `zhi_flink`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_flink` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_flink` (
+`id` smallint(4) unsigned NOT NULL,
   `name` varchar(50) NOT NULL,
   `img` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `cate_id` smallint(5) NOT NULL,
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+  `status` tinyint(1) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_flink`
+-- Dumping data for table `zhi_flink`
 --
 
 INSERT INTO `zhi_flink` (`id`, `name`, `img`, `url`, `cate_id`, `ordid`, `status`) VALUES
@@ -435,19 +422,18 @@ INSERT INTO `zhi_flink` (`id`, `name`, `img`, `url`, `cate_id`, `ordid`, `status
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_flink_cate`
+-- Table structure for table `zhi_flink_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_flink_cate` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_flink_cate` (
+`id` smallint(4) unsigned NOT NULL,
   `name` varchar(50) NOT NULL,
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_flink_cate`
+-- Dumping data for table `zhi_flink_cate`
 --
 
 INSERT INTO `zhi_flink_cate` (`id`, `name`, `ordid`, `status`) VALUES
@@ -458,25 +444,24 @@ INSERT INTO `zhi_flink_cate` (`id`, `name`, `ordid`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_ipban`
+-- Table structure for table `zhi_ipban`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_ipban` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_ipban` (
+`id` int(10) unsigned NOT NULL,
   `name` varchar(30) NOT NULL,
   `type` varchar(30) NOT NULL,
-  `expires_time` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `expires_time` int(10) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_item_site`
+-- Table structure for table `zhi_item_site`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_item_site` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_item_site` (
+`id` smallint(4) unsigned NOT NULL,
   `code` varchar(20) NOT NULL,
   `name` varchar(100) NOT NULL,
   `domain` varchar(255) NOT NULL,
@@ -485,12 +470,11 @@ CREATE TABLE IF NOT EXISTS `zhi_item_site` (
   `config` text NOT NULL,
   `author` varchar(50) NOT NULL,
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_item_site`
+-- Dumping data for table `zhi_item_site`
 --
 
 INSERT INTO `zhi_item_site` (`id`, `code`, `name`, `domain`, `url`, `desc`, `config`, `author`, `ordid`, `status`) VALUES
@@ -499,21 +483,20 @@ INSERT INTO `zhi_item_site` (`id`, `code`, `name`, `domain`, `url`, `desc`, `con
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_jky_anhao`
+-- Table structure for table `zhi_jky_anhao`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_jky_anhao` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_jky_anhao` (
+`id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL DEFAULT '0',
   `key` varchar(20) DEFAULT NULL,
   `uid` int(10) DEFAULT NULL,
   `uname` varchar(50) DEFAULT NULL,
-  `add_time` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+  `add_time` int(10) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_jky_anhao`
+-- Dumping data for table `zhi_jky_anhao`
 --
 
 INSERT INTO `zhi_jky_anhao` (`id`, `item_id`, `key`, `uid`, `uname`, `add_time`) VALUES
@@ -535,11 +518,11 @@ INSERT INTO `zhi_jky_anhao` (`id`, `item_id`, `key`, `uid`, `uname`, `add_time`)
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_jky_cate`
+-- Table structure for table `zhi_jky_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_jky_cate` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_jky_cate` (
+`id` int(10) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `alias` varchar(50) NOT NULL,
   `pid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -552,12 +535,11 @@ CREATE TABLE IF NOT EXISTS `zhi_jky_cate` (
   `seo_title` varchar(255) DEFAULT NULL,
   `seo_keys` varchar(255) DEFAULT NULL,
   `seo_desc` text,
-  `tags` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+  `tags` text
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_jky_cate`
+-- Dumping data for table `zhi_jky_cate`
 --
 
 INSERT INTO `zhi_jky_cate` (`id`, `name`, `alias`, `pid`, `spid`, `img`, `remark`, `items`, `ordid`, `status`, `seo_title`, `seo_keys`, `seo_desc`, `tags`) VALUES
@@ -575,17 +557,16 @@ INSERT INTO `zhi_jky_cate` (`id`, `name`, `alias`, `pid`, `spid`, `img`, `remark
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_jky_cate_re`
+-- Table structure for table `zhi_jky_cate_re`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_jky_cate_re` (
+CREATE TABLE `zhi_jky_cate_re` (
   `item_id` int(10) NOT NULL,
-  `cate_id` smallint(4) NOT NULL,
-  UNIQUE KEY `post_id` (`item_id`,`cate_id`)
+  `cate_id` smallint(4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_jky_cate_re`
+-- Dumping data for table `zhi_jky_cate_re`
 --
 
 INSERT INTO `zhi_jky_cate_re` (`item_id`, `cate_id`) VALUES
@@ -638,11 +619,11 @@ INSERT INTO `zhi_jky_cate_re` (`item_id`, `cate_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_jky_comment`
+-- Table structure for table `zhi_jky_comment`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_jky_comment` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_jky_comment` (
+`id` int(10) unsigned NOT NULL,
   `uid` int(10) NOT NULL,
   `item_id` int(10) DEFAULT '0',
   `pid` int(10) DEFAULT '0',
@@ -652,12 +633,11 @@ CREATE TABLE IF NOT EXISTS `zhi_jky_comment` (
   `digg` int(10) NOT NULL DEFAULT '0',
   `burn` int(10) NOT NULL DEFAULT '0',
   `status` tinyint(4) NOT NULL DEFAULT '1',
-  `client` varchar(20) DEFAULT 'pc',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
+  `client` varchar(20) DEFAULT 'pc'
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_jky_comment`
+-- Dumping data for table `zhi_jky_comment`
 --
 
 INSERT INTO `zhi_jky_comment` (`id`, `uid`, `item_id`, `pid`, `uname`, `info`, `add_time`, `digg`, `burn`, `status`, `client`) VALUES
@@ -711,18 +691,17 @@ INSERT INTO `zhi_jky_comment` (`id`, `uid`, `item_id`, `pid`, `uname`, `info`, `
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_jky_icon`
+-- Table structure for table `zhi_jky_icon`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_jky_icon` (
+CREATE TABLE `zhi_jky_icon` (
   `item_id` int(10) unsigned NOT NULL,
   `type_id` int(10) unsigned NOT NULL,
-  `ordid` int(10) unsigned NOT NULL DEFAULT '0',
-  UNIQUE KEY `jky_id` (`item_id`,`type_id`)
+  `ordid` int(10) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_jky_icon`
+-- Dumping data for table `zhi_jky_icon`
 --
 
 INSERT INTO `zhi_jky_icon` (`item_id`, `type_id`, `ordid`) VALUES
@@ -814,21 +793,20 @@ INSERT INTO `zhi_jky_icon` (`item_id`, `type_id`, `ordid`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_jky_icon_type`
+-- Table structure for table `zhi_jky_icon_type`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_jky_icon_type` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_jky_icon_type` (
+`id` smallint(4) unsigned NOT NULL,
   `title` varchar(100) NOT NULL,
   `url` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_jky_icon_type`
+-- Dumping data for table `zhi_jky_icon_type`
 --
 
 INSERT INTO `zhi_jky_icon_type` (`id`, `title`, `url`, `img`, `ordid`, `status`) VALUES
@@ -841,11 +819,11 @@ INSERT INTO `zhi_jky_icon_type` (`id`, `title`, `url`, `img`, `ordid`, `status`)
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_jky_item`
+-- Table structure for table `zhi_jky_item`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_jky_item` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_jky_item` (
+`id` int(10) NOT NULL,
   `title` varchar(150) DEFAULT NULL,
   `key_id` varchar(50) DEFAULT NULL,
   `tcolor` varchar(10) DEFAULT NULL,
@@ -875,90 +853,88 @@ CREATE TABLE IF NOT EXISTS `zhi_jky_item` (
   `is_localimg` tinyint(1) DEFAULT '0',
   `seo_keys` varchar(255) DEFAULT NULL,
   `seo_desc` text,
-  `fei` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=112 ;
+  `fei` text
+) ENGINE=MyISAM AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_jky_item`
+-- Dumping data for table `zhi_jky_item`
 --
 
 INSERT INTO `zhi_jky_item` (`id`, `title`, `key_id`, `tcolor`, `post_key`, `img`, `cate_id`, `orig_id`, `info`, `mprice`, `price`, `url`, `uid`, `uname`, `add_time`, `stime`, `etime`, `hits`, `comments`, `buys`, `ordid`, `is_best`, `is_hot`, `is_recommend`, `status`, `seo_title`, `collect_flag`, `is_localimg`, `seo_keys`, `seo_desc`, `fei`) VALUES
-(100, '欧式简约家居装饰插花摆件 原价58元 拍下价格29元多数地区包邮', 'zhe_997358252', '', 'ou_shi_jian_yue_jia_ju_zhuang_shi_cha_hua_bai_jian_yuan_jia_58_yuan_pai_xia_jia_ge_29_yuan_duo_shu_di_qu_bao_you', 'http://p12.tuan800.net/upload/deal/image/64529/normal_64418253767eba8816b0c70509001840.jpg', 0, 0, '', '0.00', '29.00', 'http://detail.tmall.com/item.htm?id=14298386831', 0, 'admin', 1379475066, 1379475064, 1382067064, 0, 0, 0, 255, 0, 0, 0, 1, '欧式简约家居装饰插花摆件 原价58元 拍下价格29元多数地区包邮', 1, 0, '', '', NULL),
-(72, '【母婴】 婴儿沐浴露洗发水2合1 原价68元 秒杀价9元多数地区包邮', '', '', 'mu_ying_ying_er_yu_lu_xi_fa_shui_2_he_1_yuan_jia_68_yuan_miao_sha_jia_9_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4eeb0723cf.jpg', 0, 2, '恩贝氏二合一洗发沐浴露120ml，温和滋养不刺激，适合婴儿娇嫩肌肤！', '68.00', '9.00', 'http://detail.tmall.com/item.htm?id=20020115763', 0, 'Jay', 1373957786, 1374328800, 1420156800, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(71, '【配饰】 民族风金枝玉叶耳环 原价28元 秒杀价7.98元多数地区包邮', '', '', 'pei_shi_min_zu_feng_jin_zhi_yu_ye_er_huan_yuan_jia_28_yuan_miao_sha_jia_7_98_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4e2bb99d59.jpg', 0, 1, '寓意（红）鸿运当头，吉祥，富贵，平安。', '28.00', '7.98', 'http://item.taobao.com/item.htm?id=15918656191', 0, '小茉莉', 1373954747, 1374321600, 1420156800, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(70, '【居家】 LED灯条送插头 原价19.6元 秒杀价4.9元多数地区包邮', '', '', 'ju_jia_led_deng_tiao_song_cha_tou_yuan_jia_19_6_yuan_miao_sha_jia_4_9_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4e135e549b.jpg', 0, 2, '更多的芯片，更高的亮度，更奢的体验。', '19.60', '4.90', 'http://detail.tmall.com/item.htm?id=12222275598', 0, '花花', 1373954357, 1374289200, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(69, '【居家】 餐具三件套 原价21.25元 秒杀价8.5元多数地区包邮', '', '', 'ju_jia_can_ju_san_jian_tao_yuan_jia_21_25_yuan_miao_sha_jia_8_5_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4e050d8dd4.jpg', 0, 1, '环保三件套，鱼尾设计，高档有品位，勺筷叉采用优质不锈钢材质，经久耐用，健康安全', '21.25', '8.50', 'http://item.taobao.com/item.htm?id=25833904581', 0, '小茉莉', 1373954128, 1374120000, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(68, '【配饰】 韩版耳钉 原价78元 秒杀价9.9元多数地区包邮', '', '', 'pei_shi_han_ban_er_ding_yuan_jia_78_yuan_miao_sha_jia_9_9_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4df82acaea.jpg', 0, 2, '&nbsp;Mineka倾力打造，完美展现耳尖那抹柔美风情，精致闪耀百搭，恰到好处的性感。', '78.00', '9.90', 'http://detail.tmall.com/item.htm?id=23934388149', 0, '蕾蕾', 1373953922, 1374116400, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(67, '复古与时尚的结合，男女皆可佩戴，佛珠已不是佛家独有，也成为一股时尚潮流，随身佩戴，福报人生！', '', '', 'fu_gu_yu_shi_shang_de_jie_he_nan_nv_jie_ke_pei_dai_fo_zhu_yi_bu_shi_fo_jia_du_you_ye_cheng_wei_yi_gu_shi_shang_chao_liu_sui_shen_pei_dai_fu_bao_ren_sheng', '1307/16/51e4ddba40b85.jpg', 0, 2, '多彩铱金笔，握感妥帖自如，使书写成为一种享受，且书写起来让您挥洒自如。', '39.00', '8.90', 'http://detail.tmall.com/item.htm?id=25853556820&unid=458021968', 0, '小茉莉', 1373953466, 1374130800, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(66, '【配饰】 108颗佛珠藏式手链 原价68元 秒杀价6.5元多数地区包邮', '', '', 'pei_shi_108_ke_fo_zhu_cang_shi_shou_lian_yuan_jia_68_yuan_miao_sha_jia_6_5_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4dd38b13c4.jpg', 0, 1, '复古与时尚的结合，男女皆可佩戴，佛珠已不是佛家独有，也成为一股时尚潮流，随身佩戴，福报人生！', '58.00', '6.50', 'http://item.taobao.com/item.htm?id=18957282862&unid=458011963', 0, '花花', 1373953336, 1374134400, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(43, 'iphone5手机贴膜', '', '', 'iphone5_shou_ji_tie_mo_1378463381', '1307/16/51e4dcc45ab70.jpg', 0, 1, '<p>\r\n	高清晰，手机贴膜\r\n</p>', '5.00', '2.50', 'http://item.taobao.com/item.htm?id=20398308534', 0, 'admin', 0, 1378543979, 1378543986, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(44, '艾尚莉菁萃清润系列4件套护肤品补水保湿控油', '', '', '_1370082509', '1307/16/51e4de73dcc5f.jpg', 0, 2, '艾尚莉菁萃清润系列套装，清爽控油让您舒爽一夏。补水保湿清爽控油，特别适合痘痘肌！', '368.00', '34.00', 'http://detail.tmall.com/item.htm?id=23407692504', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(45, '【鞋包】 民族风金色水钻罗马鞋 原价190元 折扣价29.9元多数地区包邮', '', '', 'xie_bao_min_zu_feng_jin_se_shui_zuan_luo_ma_xie_yuan_jia_190_yuan_zhe_kou_jia_299_yuan_duo_shu_di_qu_bao_you', '1307/06/51d7e2b01cfac.jpeg', 0, 1, '<p>\r\n	天然的草编条带.古铜圆环链条，正面的柳丁纽扣，锯齿状的车线，共同营造出了古朴天然纯粹的民族风格！\r\n</p>', '190.00', '19.00', 'http://item.taobao.com/item.htm?id=19360108963', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(46, '【居家】 长方形加厚可水洗地毯 原价40元 折扣价18元多数地区包邮', '', '', 'ju_jia_chang_fang_xing_jia_hou_ke_shui_xi_di_tan_yuan_jia_40_yuan_zhe_kou_jia_18_yuan_duo_shu_di_qu_bao_you', '1307/06/51d7e29512ff6.jpg', 0, 1, '化纤丝毛地毯，手感柔软舒适、颜色艳丽美观，还可以手洗和机洗，清洁更方便哦！', '40.00', '18.00', 'http://item.taobao.com/item.htm?id=19360108963', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(47, '【女装】 新款显瘦休闲七分哈伦裤 原价118元 折扣价18.8元多数地区包邮', '', '', 'nv_zhuang_xin_kuan_xian_shou_xiu_xian_qi_fen_ha_lun_ku_yuan_jia_118_yuan_zhe_kou_jia_188_yuan_duo_shu_di_qu_bao_you', '1307/06/51d7e27b5f91b.jpg', 0, 2, '<p>\r\n	&nbsp;面料舒服柔软，垮裤的设计，不贴身~水墨喷绘图案，个性又舒适~胖瘦都可，时尚百搭款哦~\r\n</p>', '118.00', '18.80', 'http://detail.tmall.com/item.htm?id=18348460287', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(50, '【配饰】 多彩可爱糖果串珠手链 原价25.82元 秒杀价7元多数地区包邮', '', '', 'pei_shi_duo_cai_ke_ai_tang_guo_chuan_zhu_shou_lian_yuan_jia_25_82_yuan_miao_sha_jia_7_yuan_duo_shu_di_qu_bao_you', '1307/06/51d7e2629ca52.jpeg', 0, 1, '六种不同的几何形状，配上七彩的石头糖果色彩，使我们成为夏日里最美的风景！', '25.80', '7.00', 'http://item.taobao.com/item.htm?spm=0.0.0.0.T3PVMT&id=19141047151', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(51, '【男装】 男士紧身背心 汗背心 原价30元 秒杀价8.01元多数地区包邮', '', '', 'nan_zhuang_nan_shi_jin_shen_bei_xin_han_bei_xin_yuan_jia_30_yuan_miao_sha_jia_8_01_yuan_duo_shu_di_qu_bao_you', '1307/06/51d7e24c892d4.jpeg', 0, 2, '打底必不可少的背心，单穿更帅气哦！', '30.00', '18.00', 'http://detail.tmall.com/item.htm?id=9976800800', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(52, '【居家】 浪漫心形线帘 宽1米*高2米 原价19.8元 秒杀价9元多数地区包邮', '', '', 'ju_jia_lang_man_xin_xing_xian_lian_kuan_1_mi_gao_2_mi_yuan_jia_19_8_yuan_miao_sha_jia_9_yuan_duo_shu_di_qu_bao_you', '1307/18/51e7cecd2433f.jpg', 0, 2, '心与心相连，充满了浪漫与情谊，花语的蕴义代表着阳光、开朗、放松的气氛~~~', '19.80', '9.00', 'http://detail.tmall.com/item.htm?id=18719225617', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(53, '【配饰】 镀银字印儿童手镯一个 原价129元 秒杀价9.8元多数地区包邮', '', '', 'pei_shi_du_yin_zi_yin_er_tong_shou_yi_ge_yuan_jia_129_yuan_miao_sha_jia_9_8_yuan_duo_shu_di_qu_bao_you', '1307/18/51e7dcee8cd86.jpg', 0, 1, '宝宝手镯是宝宝出生，满月，百天，周岁最好的礼物，0到6岁的宝宝最适合哦！', '129.00', '9.80', 'http://item.taobao.com/item.htm?id=20746499026', 0, 'admin', 0, 1378543775, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(54, '【配饰】 夏季冰丝汽车头枕 原价26元 秒杀价7元多数地区包邮', '', '', 'pei_shi_xia_ji_bing_si_qi_che_tou_zhen_yuan_jia_26_yuan_miao_sha_jia_7_yuan_duo_shu_di_qu_bao_you', '1307/18/51e7cf2cc6ded.jpg', 0, 1, '选用亚麻亚草制作而成,清凉舒适,具有防霉、防潮、 防螨、防水、抗耐磨等特点', '26.00', '7.00', 'http://item.taobao.com/item.htm?id=15936394492', 0, 'admin', 0, 1378543772, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(55, '【居家】 多功能厨房剪刀买一送一 原价25元 秒杀价9.9元多数地区包邮', '', '', 'ju_jia_duo_gong_neng_chu_fang_jian_dao_mai_yi_song_yi_yuan_jia_25_yuan_miao_sha_jia_9_9_yuan_duo_shu_di_qu_bao_you', '1307/04/51d55cfb8e981.jpg', 0, 1, '多功能剪刀，可以用来剪、夹、启、切等，家庭必备。9.9包邮2把哦', '25.00', '9.90', 'http://item.taobao.com/item.htm?id=26072096208', 0, 'admin', 0, 1378543766, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(58, '马卡龙色强势来袭！清新甜美大口袋宽松T恤！好品质！夏天必备超凉爽！', '', '', 'dakoudaithirt', '1307/04/51d55cd64a78c.jpg', 0, 1, '马卡龙色强势来袭！清新甜美大口袋宽松T恤！好品质！夏天必备超凉爽', '59.00', '29.00', 'http://item.taobao.com/item.htm?spm=a1z10.3.w17-1169010992.29.TczVvZ&id=23392660277&', 0, '花花', 1371113322, 1374238800, 1443830400, 0, 3, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(62, '【折800独家秒杀】蜜炼山楂茶水果茶山楂膏酸酸甜甜蜂蜜果味茶', '', '', 'zhe_800_du_jia_miao_sha_mi_lian_shan_cha_shui_guo_cha_shan_gao_suan_suan_tian_tian_feng_mi_guo_wei_cha', '1307/05/51d639c39aedc.jpg', 0, 2, '<p>\r\n	山楂去籽，剥皮，然后在与蜂蜜一起调试制作而成，口味很好，酸酸甜甜的，非常开胃。\r\n</p>', '58.00', '9.90', 'http://detail.tmall.com/item.htm?id=20736884873', 0, '阿花', 1372993196, 1374120000, 1439092800, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(59, '仅28包邮 超好质地的印花宽松露肩T恤 洋溢青春的微笑 百搭洋气', '', '', 'yinhuatshirt', '1307/04/51d544ebcca02.jpg', 0, 1, '不错的哦，仅28包邮！超好质地的印花宽松露肩T恤，洋溢青春的微笑，百搭洋气。', '68.00', '28.00', 'http://item.taobao.com/item.htm?spm=a1z10.3.w4002-1437382719.38.18hrKl&id=24885408585', 0, 'aa', 1371117097, 1374217200, 1438646400, 0, 1, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(60, '达人推荐，补水法宝！进口玻尿酸精华蚕丝面膜，纯植物精华成分、补水提亮肤色、分解色斑、嫩白肌肤、调节肌肤水油平衡', '', '', 'da_ren_tui_jian_bu_shui_fa_bao_jin_kou_bo_niao_suan_jing_hua_can_si_mian_mo_chun_zhi_wu_jing_hua_cheng_fen_bu_shui_ti_liang_fu_se_fen_jie_se_ban_nen_bai_ji_fu_diao_jie_ji_fu_shui_you_ping_heng', '1307/04/51d544c343c8d.jpg', 0, 1, '达人推荐，补水法宝！进口玻尿酸精华蚕丝面膜，纯植物精华成分、补水提亮肤色、分解色斑、嫩白肌肤、调节肌肤水油平衡。', '111.00', '11.00', 'http://item.taobao.com/item.htm?spm=a1z10.3.w17-304691592.50.5zeN36&id=21486308650&', 0, 'fafa', 1371629956, 1058590800, 1438473600, 0, 5, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(61, '2013的夏季流行荧光撞色大包包。加厚材质，承重力强。适合夏季MM去海边、游泳场或短期休闲游玩。', '', '', '2013_de_xia_ji_liu_xing_ying_guang_zhuang_se_da_bao_bao_jia_hou_cai_zhi_cheng_zhong_li_qiang_shi_he_xia_ji_mm_qu_hai_bian_you_yong_chang_huo_duan_qi_xiu_xian_you_wan', '1307/18/51e7dcd756129.jpg', 0, 2, '2013的夏季流行荧光撞色大包包。加厚材质，承重力强。适合夏季MM去海边、游泳场或短期休闲游玩。', '123.00', '90.00', 'http://item.taobao.com/item.htm?id=18424633389&ali_trackid=2:mm_28757764_0_0,tuan:1371630182_6k2_1586694959&spm=2014.12425299.1.0', 0, '花花', 1371630110, 1374220800, -2147483648, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(63, '【居家】 创意制冰盒4色 2个装 原价14.14元 秒杀价9.9元多数地区包邮', '', '', 'ju_jia_chuang_yi_zhi_bing_he_4_se_2_ge_zhuang_yuan_jia_14_14_yuan_miao_sha_jia_9_9_yuan_duo_shu_di_qu_bao_you', '1307/18/51e7dd4449aeb.jpg', 0, 1, '独特的设计，创意的造型，可同时制作四只冰棒，满足全家需要，自己在家就可动手制作', '14.14', '9.90', 'http://item.taobao.com/item.htm?spm=989.1000764.1000415.3.NUylgz&id=25594800880', 0, '花花', 1373020048, 1374235200, 1438776000, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(64, '【化妆品】 丝瓜水320ml 原价168元 秒杀价9.5元多数地区包邮', '', '', 'hua_zhuang_pin_si_gua_shui_320ml_yuan_jia_168_yuan_miao_sha_jia_9_5_yuan_duo_shu_di_qu_bao_you', '1307/12/51e01a079a8b0.jpg', 0, 2, '优质廉价平民化的保湿补水产品。', '168.00', '9.90', 'http://detail.tmall.com/item.htm?id=19247460859', 0, '小茉莉', 1373641223, 1374130800, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
-(65, '【居家】 美甲6件套 原价21元 秒杀价7.99元多数地区包邮', '', '', 'ju_jia_mei_jia_6_jian_tao_yuan_jia_21_yuan_miao_sha_jia_7_99_yuan_duo_shu_di_qu_bao_you', '1307/12/51e01b51e2855.jpg', 0, 2, '美甲6件套，修甲美足，夏天必备产品，让您开启浪漫邂逅 。', '21.00', '7.99', 'http://detail.tmall.com/item.htm?id=2118701544', 0, '淘气包', 1373641553, 1374116400, 1420070400, 0, 0, 0, 255, 0, 0, 0, 1, '', 1, 0, '', '', NULL),
-(76, '8双包邮 防臭男士棉袜 正品李宁男袜 李宁袜子中薄夏季吸汗纯棉袜', 'zhiapi_502494', '', '8_shuang_bao_you_fang_chou_nan_shi_mian_wa_zheng_pin_li_ning_nan_wa_li_ning_wa_zi_zhong_bao_xia_ji_xi_han_chun_mian_wa', 'http://img02.taobaocdn.com/bao/uploaded/i2/14081023736027807/T1HKSeXqhaXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '4.95', 'http://item.taobao.com/item.htm?id=17371808169', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '8双包邮 防臭男士棉袜 正品李宁男袜 李宁袜子中薄夏季吸汗纯棉袜', 0, 0, '', '', NULL),
-(77, '6-18个月男童纯棉短袜 带防滑底宝宝袜 秋冬儿童袜子 性价比蛮高', 'zhiapi_502490', '', '6_18_ge_yue_nan_tong_chun_mian_duan_wa_dai_fang_hua_di_bao_bao_wa_qiu_dong_er_tong_wa_zi_xing_jia_bi_man_gao', 'http://img04.taobaocdn.com/bao/uploaded/i4/T1QN82XgxXXXX.2uw9_103212.jpg_sum.jpg', 0, 0, '', '0.00', '3.50', 'http://item.taobao.com/item.htm?id=9454108893', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '6-18个月男童纯棉短袜 带防滑底宝宝袜 秋冬儿童袜子 性价比蛮高', 0, 0, '', '', NULL),
-(78, '10双包邮 男袜子 商务中筒中统男袜绅士菱形格全棉纯棉袜子  M4', 'zhiapi_502489', '', '10_shuang_bao_you_nan_wa_zi_shang_wu_zhong_tong_zhong_tong_nan_wa_shen_shi_ling_xing_ge_quan_mian_chun_mian_wa_zi', 'http://img01.taobaocdn.com/bao/uploaded/i1/16911020827156747/T1RFtSXA8XXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '6.20', 'http://item.taobao.com/item.htm?id=19504631968', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '10双包邮 男袜子 商务中筒中统男袜绅士菱形格全棉纯棉袜子  M4', 0, 0, '', '', NULL),
-(79, '正品阿迪达斯adidas男士袜子全纯棉短袜运动低帮船袜夏季薄款', 'zhiapi_502488', '', 'zheng_pin_a_di_da_si_adidas_nan_shi_wa_zi_quan_chun_mian_duan_wa_yun_dong_di_bang_chuan_wa_xia_ji_bao_kuan', 'http://img01.taobaocdn.com/bao/uploaded/i1/14223024683987595/T1upWlXs0fXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '16.00', 'http://item.taobao.com/item.htm?id=24796796745', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '正品阿迪达斯adidas男士袜子全纯棉短袜运动低帮船袜夏季薄款', 0, 0, '', '', NULL),
-(80, '夏季薄棉NK袜子男士纯棉全棉男袜船袜短袜短统袜运动袜子 N0016', 'zhiapi_502485', '', 'xia_ji_bao_mian_nk_wa_zi_nan_shi_chun_mian_quan_mian_nan_wa_chuan_wa_duan_wa_duan_tong_wa_yun_dong_wa_zi', 'http://img01.taobaocdn.com/bao/uploaded/i1/17827021092018060/T1pwh0XA8aXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '4.99', 'http://item.taobao.com/item.htm?id=9979143839', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '夏季薄棉NK袜子男士纯棉全棉男袜船袜短袜短统袜运动袜子 N0016', 0, 0, '', '', NULL),
-(81, '10双包邮夏季新款男士运动袜全棉防臭袜子男袜纯棉短袜船袜子批发', 'zhiapi_502481', '', '10_shuang_bao_you_xia_ji_xin_kuan_nan_shi_yun_dong_wa_quan_mian_fang_chou_wa_zi_nan_wa_chun_mian_duan_wa_chuan_wa_zi_pi_fa', 'http://img01.taobaocdn.com/bao/uploaded/i1/10379023336578565/T1MJ9JXAFdXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '3.99', 'http://item.taobao.com/item.htm?id=20578119951', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '10双包邮夏季新款男士运动袜全棉防臭袜子男袜纯棉短袜船袜子批发', 0, 0, '', '', NULL),
-(82, '10双包邮情侣船袜男士女士纯棉夏季吸汗除臭全棉袜子限时特价促销', 'zhiapi_502480', '', '10_shuang_bao_you_qing_lv_chuan_wa_nan_shi_nv_shi_chun_mian_xia_ji_xi_han_chu_chou_quan_mian_wa_zi_xian_shi_te_jia_cu_xiao', 'http://img03.taobaocdn.com/bao/uploaded/i3/10893020383179146/T1DPlGXwFgXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '4.59', 'http://item.taobao.com/item.htm?id=15874941718', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '10双包邮情侣船袜男士女士纯棉夏季吸汗除臭全棉袜子限时特价促销', 0, 0, '', '', NULL),
-(83, '男袜子2013新品纯棉袜子男纯棉厂家批发男船袜短筒袜子加厚毛巾袜', 'zhiapi_502478', '', 'nan_wa_zi_2013_xin_pin_chun_mian_wa_zi_nan_chun_mian_chang_jia_pi_fa_nan_chuan_wa_duan_tong_wa_zi_jia_hou_mao_jin_wa', 'http://img03.taobaocdn.com/bao/uploaded/i3/19793021145255940/T1t_gBXildXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '7.95', 'http://item.taobao.com/item.htm?id=18735551885', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '男袜子2013新品纯棉袜子男纯棉厂家批发男船袜短筒袜子加厚毛巾袜', 0, 0, '', '', NULL),
-(84, '井竹男袜子 男士夏季比纯棉袜薄透气/浅口船袜/春夏短袜/苎麻防臭', 'zhiapi_502476', '', 'jing_zhu_nan_wa_zi_nan_shi_xia_ji_bi_chun_mian_wa_bao_tou_qi_qian_kou_chuan_wa_chun_xia_duan_wa_ma_fang_chou', 'http://img01.taobaocdn.com/bao/uploaded/i1/16451037706484491/T1YfOJXs4jXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '14.80', 'http://item.taobao.com/item.htm?id=23710352684', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '井竹男袜子 男士夏季比纯棉袜薄透气/浅口船袜/春夏短袜/苎麻防臭', 0, 0, '', '', NULL),
-(85, '薄棉儿童袜子纯棉婴儿男女宝宝短袜子网眼松口花边春夏', 'zhiapi_502474', '', 'bao_mian_er_tong_wa_zi_chun_mian_ying_er_nan_nv_bao_bao_duan_wa_zi_wang_yan_song_kou_hua_bian_chun_xia', 'http://img02.taobaocdn.com/bao/uploaded/i2/19901024628764726/T1nDlsFn4aXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '3.50', 'http://item.taobao.com/item.htm?id=25482896391', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '薄棉儿童袜子纯棉婴儿男女宝宝短袜子网眼松口花边春夏', 0, 0, '', '', NULL),
-(86, '10双包邮 阿迪男士白色运动袜子 AD纯棉全棉袜子 中筒袜子男袜子', 'zhiapi_502473', '', '10_shuang_bao_you_a_di_nan_shi_bai_se_yun_dong_wa_zi_ad_chun_mian_quan_mian_wa_zi_zhong_tong_wa_zi_nan_wa_zi', 'http://img03.taobaocdn.com/bao/uploaded/i3/13191032974452480/T1_6JqXCXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '6.50', 'http://item.taobao.com/item.htm?id=17320861369', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '10双包邮 阿迪男士白色运动袜子 AD纯棉全棉袜子 中筒袜子男袜子', 0, 0, '', '', NULL),
-(87, '捷米 超薄纯棉短袜 商务休闲袜 男士全棉船袜 夏季运动短袜 特价', 'zhiapi_502471', '', 'jie_mi_chao_bao_chun_mian_duan_wa_shang_wu_xiu_xian_wa_nan_shi_quan_mian_chuan_wa_xia_ji_yun_dong_duan_wa_te_jia', 'http://img04.taobaocdn.com/bao/uploaded/i4/T10VTwXfJiXXc05Qw._083140.jpg_sum.jpg', 0, 0, '', '0.00', '3.89', 'http://item.taobao.com/item.htm?id=18827092662', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '捷米 超薄纯棉短袜 商务休闲袜 男士全棉船袜 夏季运动短袜 特价', 0, 0, '', '', NULL),
-(88, '阿迪达斯秒杀特价袜子 adidas男运动袜 男纯棉袜男短袜 8双包邮', 'zhiapi_502464', '', 'a_di_da_si_miao_sha_te_jia_wa_zi_adidas_nan_yun_dong_wa_nan_chun_mian_wa_nan_duan_wa_8_shuang_bao_you', 'http://img01.taobaocdn.com/bao/uploaded/i1/T1LHupXXplXXc8INIW_023652.jpg_sum.jpg', 0, 0, '', '0.00', '6.50', 'http://item.taobao.com/item.htm?id=12701259916', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '阿迪达斯秒杀特价袜子 adidas男运动袜 男纯棉袜男短袜 8双包邮', 0, 0, '', '', NULL),
-(89, '热卖新品 全棉薄款 男士纯棉 纯色四季通用 休闲防臭袜子 6083', 'zhiapi_502463', '', 're_mai_xin_pin_quan_mian_bao_kuan_nan_shi_chun_mian_chun_se_si_ji_tong_yong_xiu_xian_fang_chou_wa_zi', 'http://img08.taobaocdn.com/bao/uploaded/i8/T1yUHAXgtlXXXXOlfX_085858.jpg_sum.jpg', 0, 0, '', '0.00', '5.52', 'http://item.taobao.com/item.htm?id=21833484140', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '热卖新品 全棉薄款 男士纯棉 纯色四季通用 休闲防臭袜子 6083', 0, 0, '', '', NULL),
-(90, '1-2-3-5-6-8-10-12岁男女童袜秋冬款厚 宝宝幼儿袜子纯棉全棉童袜', 'zhiapi_502460', '', '1_2_3_5_6_8_10_12_sui_nan_nv_tong_wa_qiu_dong_kuan_hou_bao_bao_you_er_wa_zi_chun_mian_quan_mian_tong_wa', 'http://img02.taobaocdn.com/bao/uploaded/i2/18722025525657661/T1zNX0FkRdXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '2.99', 'http://item.taobao.com/item.htm?id=20231092878', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '1-2-3-5-6-8-10-12岁男女童袜秋冬款厚 宝宝幼儿袜子纯棉全棉童袜', 0, 0, '', '', NULL),
-(91, '棉乎男全棉毛圈袜 纯棉运动毛巾袜 短筒毛巾底棉袜', 'zhiapi_502457', '', 'mian_hu_nan_quan_mian_mao_quan_wa_chun_mian_yun_dong_mao_jin_wa_duan_tong_mao_jin_di_mian_wa', 'http://img01.taobaocdn.com/bao/uploaded/i1/T1AVfZXkxaXXbGZYfa_120235.jpg_sum.jpg', 0, 0, '', '0.00', '6.50', 'http://item.taobao.com/item.htm?id=20383692314', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '棉乎男全棉毛圈袜 纯棉运动毛巾袜 短筒毛巾底棉袜', 0, 0, '', '', NULL),
-(92, '纯棉时尚高档中筒商务男袜四季潮流舒适简洁直销正品吸汗透气柔软', 'zhiapi_502455', '', 'chun_mian_shi_shang_gao_dang_zhong_tong_shang_wu_nan_wa_si_ji_chao_liu_shu_shi_jian_jie_zhi_xiao_zheng_pin_xi_han_tou_qi_rou_ruan', 'http://img03.taobaocdn.com/bao/uploaded/i3/17820027081591638/T1e.JCFf8fXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '2.60', 'http://item.taobao.com/item.htm?id=19053497035', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '纯棉时尚高档中筒商务男袜四季潮流舒适简洁直销正品吸汗透气柔软', 0, 0, '', '', NULL),
-(93, '袜子纯棉儿童袜可爱彼得兔糖果色条纹全棉男童女童宝宝袜夏薄批发', 'zhiapi_502433', '', 'wa_zi_chun_mian_er_tong_wa_ke_ai_bi_de_tu_tang_guo_se_tiao_wen_quan_mian_nan_tong_nv_tong_bao_bao_wa_xia_bao_pi_fa', 'http://img04.taobaocdn.com/bao/uploaded/i4/14721023996930457/T1R1y5Xx8eXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '2.70', 'http://item.taobao.com/item.htm?id=20918811377', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '袜子纯棉儿童袜可爱彼得兔糖果色条纹全棉男童女童宝宝袜夏薄批发', 0, 0, '', '', NULL),
-(101, '凝水草本精华液送旅行套装+6片面膜 原价118 折扣价19.71元多数地区包邮', 'zhe_987961369', '', 'ning_shui_cao_ben_jing_hua_ye_song_lv_xing_tao_zhuang_6_pian_mian_mo_yuan_jia_118_zhe_kou_jia_1971_yuan_duo_shu_di_qu_bao_you', 'http://p12.tuan800.net/upload/deal/image/67763/normal_98afd4f65276b2bcf3f119f752bd3a37.jpg', 0, 2, '', '9.90', '9.90', 'http://detail.tmall.com/item.htm?id=26412796068', 0, 'admin', 1379483743, 1390847132, 1390897533, 0, 0, 0, 255, 0, 1, 1, 1, '凝水草本精华液送旅行套装+6片面膜 原价118 折扣价19.71元多数地区包邮', 1, 0, '', '', NULL),
-(102, '婴儿短袖连衣裙 原价60元 拍下价格12元多数地区包邮', 'zhe_986203446', '', 'ying_er_duan_xiu_lian_yi_qun_yuan_jia_60_yuan_pai_xia_jia_ge_12_yuan_duo_shu_di_qu_bao_you', 'http://p12.tuan800.net/upload/deal/image/68335/normal_5b37a6fb5bb8cc526c4c486bfc5d7fec.jpg', 0, 2, '', '9.90', '9.90', 'http://detail.tmall.com/item.htm?id=26028996716', 0, 'admin', 1379483763, 1390911827, 1390998230, 0, 0, 0, 255, 0, 1, 1, 1, '婴儿短袖连衣裙 原价60元 拍下价格12元多数地区包邮', 1, 0, '', '', NULL),
-(96, '静脉袜医用弹力袜子静脉曲张瘦腿裤薄护士女三级连裤男女薄款强效', 'zhiapi_502160', '', 'jing_mai_wa_yi_yong_dan_li_wa_zi_jing_mai_qu_zhang_shou_tui_ku_bao_hu_shi_nv_san_ji_lian_ku_nan_nv_bao_kuan_qiang_xiao', 'http://img01.taobaocdn.com/bao/uploaded/i1/19497025751393642/T1Vb05FkFdXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', '0.00', '160.00', 'http://item.taobao.com/item.htm?id=18183318517', 0, 'admin', 1377328713, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '静脉袜医用弹力袜子静脉曲张瘦腿裤薄护士女三级连裤男女薄款强效', 0, 0, '', '', NULL),
-(103, '色彩地带化妆刷 猸子毛眉刷 专柜彩妆正品 专业美妆工具', 'tb_9999739839', '', 'se_cai_di_dai_hua_zhuang_shua_zi_mao_mei_shua_zhuan_gui_cai_zhuang_zheng_pin_zhuan_ye_mei_zhuang_gong_ju_1390911804', 'http://img03.taobaocdn.com/bao/uploaded/i3/T18zN9XlldXXaZsYzc_125843.jpg_sum.jpg', 0, 1, '', '9.90', '9.90', 'http://item.taobao.com/item.htm?id=9999739839', 0, 'admin', 1379491234, 1390911659, 1391008835, 0, 0, 0, 255, 0, 1, 1, 1, '色彩地带化妆刷 猸子毛眉刷 专柜彩妆正品 专业美妆工具', 1, 0, '', '', NULL),
-(104, 'Plesk or Cpanel configuration', '', '', '_1459436376', '1603/31/56fd3ab002343.png', 0, -1, '<p>\r\n	test\r\n</p>', '200.00', '2000.00', '', 0, 'admin', 1459436208, 1459436065, 1462028065, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
-(105, 'Plesk or Cpanel configurationv fei', '', '', '', '或者输入外部图片地址', 0, -1, '', '0.00', '0.00', '', 0, 'admin', 1459436550, 1459436526, 1462028526, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
-(106, 'Plesk or Cpanel configurationv fei', '', '', '_1459437441', '或者输入外部图片地址', 0, -1, '', '0.00', '0.00', '', 0, 'admin', 1459437441, 1459437438, 1462029438, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', 'fei'),
-(107, 'Plesk or Cpanel configurationv fei', '', '', '_1459437763', '或者输入外部图片地址', 0, -1, '', '0.00', '0.00', '', 0, 'admin', 1459437763, 1459437559, 1462029559, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
-(108, 'test', '', '', '_1459437799', '或者输入外部图片地址', 0, -1, '', '0.00', '0.00', '', 0, 'admin', 1459437799, 1459437797, 1462029797, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
-(109, 'test', '', '', '_1459438071', '或者输入外部图片地址', 0, -1, '', '0.00', '0.00', '', 0, 'admin', 1459438071, 1459438069, 1462030069, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
-(110, 'Plesk or Cpanel configurationv fei', '', '', '_1459440322', '或者输入外部图片地址', 0, -1, '', '0.00', '0.00', '', 0, 'admin', 1459440322, 1459440317, 1462032317, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
-(111, 'Plesk or Cpanel configurationv fei', '', '', '_1459440643', '或者输入外部图片地址', 0, -1, '', '0.00', '0.00', '', 0, 'admin', 1459440610, 1459440605, 1462032605, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', 'good to go be');
+(100, '欧式简约家居装饰插花摆件 原价58元 拍下价格29元多数地区包邮', 'zhe_997358252', '', 'ou_shi_jian_yue_jia_ju_zhuang_shi_cha_hua_bai_jian_yuan_jia_58_yuan_pai_xia_jia_ge_29_yuan_duo_shu_di_qu_bao_you', 'http://p12.tuan800.net/upload/deal/image/64529/normal_64418253767eba8816b0c70509001840.jpg', 0, 0, '', 0.00, 29.00, 'http://detail.tmall.com/item.htm?id=14298386831', 0, 'admin', 1379475066, 1379475064, 1382067064, 0, 0, 0, 255, 0, 0, 0, 1, '欧式简约家居装饰插花摆件 原价58元 拍下价格29元多数地区包邮', 1, 0, '', '', NULL),
+(72, '【母婴】 婴儿沐浴露洗发水2合1 原价68元 秒杀价9元多数地区包邮', '', '', 'mu_ying_ying_er_yu_lu_xi_fa_shui_2_he_1_yuan_jia_68_yuan_miao_sha_jia_9_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4eeb0723cf.jpg', 0, 2, '恩贝氏二合一洗发沐浴露120ml，温和滋养不刺激，适合婴儿娇嫩肌肤！', 68.00, 9.00, 'http://detail.tmall.com/item.htm?id=20020115763', 0, 'Jay', 1373957786, 1374328800, 1420156800, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(71, '【配饰】 民族风金枝玉叶耳环 原价28元 秒杀价7.98元多数地区包邮', '', '', 'pei_shi_min_zu_feng_jin_zhi_yu_ye_er_huan_yuan_jia_28_yuan_miao_sha_jia_7_98_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4e2bb99d59.jpg', 0, 1, '寓意（红）鸿运当头，吉祥，富贵，平安。', 28.00, 7.98, 'http://item.taobao.com/item.htm?id=15918656191', 0, '小茉莉', 1373954747, 1374321600, 1420156800, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(70, '【居家】 LED灯条送插头 原价19.6元 秒杀价4.9元多数地区包邮', '', '', 'ju_jia_led_deng_tiao_song_cha_tou_yuan_jia_19_6_yuan_miao_sha_jia_4_9_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4e135e549b.jpg', 0, 2, '更多的芯片，更高的亮度，更奢的体验。', 19.60, 4.90, 'http://detail.tmall.com/item.htm?id=12222275598', 0, '花花', 1373954357, 1374289200, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(69, '【居家】 餐具三件套 原价21.25元 秒杀价8.5元多数地区包邮', '', '', 'ju_jia_can_ju_san_jian_tao_yuan_jia_21_25_yuan_miao_sha_jia_8_5_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4e050d8dd4.jpg', 0, 1, '环保三件套，鱼尾设计，高档有品位，勺筷叉采用优质不锈钢材质，经久耐用，健康安全', 21.25, 8.50, 'http://item.taobao.com/item.htm?id=25833904581', 0, '小茉莉', 1373954128, 1374120000, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(68, '【配饰】 韩版耳钉 原价78元 秒杀价9.9元多数地区包邮', '', '', 'pei_shi_han_ban_er_ding_yuan_jia_78_yuan_miao_sha_jia_9_9_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4df82acaea.jpg', 0, 2, '&nbsp;Mineka倾力打造，完美展现耳尖那抹柔美风情，精致闪耀百搭，恰到好处的性感。', 78.00, 9.90, 'http://detail.tmall.com/item.htm?id=23934388149', 0, '蕾蕾', 1373953922, 1374116400, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(67, '复古与时尚的结合，男女皆可佩戴，佛珠已不是佛家独有，也成为一股时尚潮流，随身佩戴，福报人生！', '', '', 'fu_gu_yu_shi_shang_de_jie_he_nan_nv_jie_ke_pei_dai_fo_zhu_yi_bu_shi_fo_jia_du_you_ye_cheng_wei_yi_gu_shi_shang_chao_liu_sui_shen_pei_dai_fu_bao_ren_sheng', '1307/16/51e4ddba40b85.jpg', 0, 2, '多彩铱金笔，握感妥帖自如，使书写成为一种享受，且书写起来让您挥洒自如。', 39.00, 8.90, 'http://detail.tmall.com/item.htm?id=25853556820&unid=458021968', 0, '小茉莉', 1373953466, 1374130800, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(66, '【配饰】 108颗佛珠藏式手链 原价68元 秒杀价6.5元多数地区包邮', '', '', 'pei_shi_108_ke_fo_zhu_cang_shi_shou_lian_yuan_jia_68_yuan_miao_sha_jia_6_5_yuan_duo_shu_di_qu_bao_you', '1307/16/51e4dd38b13c4.jpg', 0, 1, '复古与时尚的结合，男女皆可佩戴，佛珠已不是佛家独有，也成为一股时尚潮流，随身佩戴，福报人生！', 58.00, 6.50, 'http://item.taobao.com/item.htm?id=18957282862&unid=458011963', 0, '花花', 1373953336, 1374134400, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(43, 'iphone5手机贴膜', '', '', 'iphone5_shou_ji_tie_mo_1378463381', '1307/16/51e4dcc45ab70.jpg', 0, 1, '<p>\r\n	高清晰，手机贴膜\r\n</p>', 5.00, 2.50, 'http://item.taobao.com/item.htm?id=20398308534', 0, 'admin', 0, 1378543979, 1378543986, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(44, '艾尚莉菁萃清润系列4件套护肤品补水保湿控油', '', '', '_1370082509', '1307/16/51e4de73dcc5f.jpg', 0, 2, '艾尚莉菁萃清润系列套装，清爽控油让您舒爽一夏。补水保湿清爽控油，特别适合痘痘肌！', 368.00, 34.00, 'http://detail.tmall.com/item.htm?id=23407692504', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(45, '【鞋包】 民族风金色水钻罗马鞋 原价190元 折扣价29.9元多数地区包邮', '', '', 'xie_bao_min_zu_feng_jin_se_shui_zuan_luo_ma_xie_yuan_jia_190_yuan_zhe_kou_jia_299_yuan_duo_shu_di_qu_bao_you', '1307/06/51d7e2b01cfac.jpeg', 0, 1, '<p>\r\n	天然的草编条带.古铜圆环链条，正面的柳丁纽扣，锯齿状的车线，共同营造出了古朴天然纯粹的民族风格！\r\n</p>', 190.00, 19.00, 'http://item.taobao.com/item.htm?id=19360108963', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(46, '【居家】 长方形加厚可水洗地毯 原价40元 折扣价18元多数地区包邮', '', '', 'ju_jia_chang_fang_xing_jia_hou_ke_shui_xi_di_tan_yuan_jia_40_yuan_zhe_kou_jia_18_yuan_duo_shu_di_qu_bao_you', '1307/06/51d7e29512ff6.jpg', 0, 1, '化纤丝毛地毯，手感柔软舒适、颜色艳丽美观，还可以手洗和机洗，清洁更方便哦！', 40.00, 18.00, 'http://item.taobao.com/item.htm?id=19360108963', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(47, '【女装】 新款显瘦休闲七分哈伦裤 原价118元 折扣价18.8元多数地区包邮', '', '', 'nv_zhuang_xin_kuan_xian_shou_xiu_xian_qi_fen_ha_lun_ku_yuan_jia_118_yuan_zhe_kou_jia_188_yuan_duo_shu_di_qu_bao_you', '1307/06/51d7e27b5f91b.jpg', 0, 2, '<p>\r\n	&nbsp;面料舒服柔软，垮裤的设计，不贴身~水墨喷绘图案，个性又舒适~胖瘦都可，时尚百搭款哦~\r\n</p>', 118.00, 18.80, 'http://detail.tmall.com/item.htm?id=18348460287', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(50, '【配饰】 多彩可爱糖果串珠手链 原价25.82元 秒杀价7元多数地区包邮', '', '', 'pei_shi_duo_cai_ke_ai_tang_guo_chuan_zhu_shou_lian_yuan_jia_25_82_yuan_miao_sha_jia_7_yuan_duo_shu_di_qu_bao_you', '1307/06/51d7e2629ca52.jpeg', 0, 1, '六种不同的几何形状，配上七彩的石头糖果色彩，使我们成为夏日里最美的风景！', 25.80, 7.00, 'http://item.taobao.com/item.htm?spm=0.0.0.0.T3PVMT&id=19141047151', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(51, '【男装】 男士紧身背心 汗背心 原价30元 秒杀价8.01元多数地区包邮', '', '', 'nan_zhuang_nan_shi_jin_shen_bei_xin_han_bei_xin_yuan_jia_30_yuan_miao_sha_jia_8_01_yuan_duo_shu_di_qu_bao_you', '1307/06/51d7e24c892d4.jpeg', 0, 2, '打底必不可少的背心，单穿更帅气哦！', 30.00, 18.00, 'http://detail.tmall.com/item.htm?id=9976800800', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(52, '【居家】 浪漫心形线帘 宽1米*高2米 原价19.8元 秒杀价9元多数地区包邮', '', '', 'ju_jia_lang_man_xin_xing_xian_lian_kuan_1_mi_gao_2_mi_yuan_jia_19_8_yuan_miao_sha_jia_9_yuan_duo_shu_di_qu_bao_you', '1307/18/51e7cecd2433f.jpg', 0, 2, '心与心相连，充满了浪漫与情谊，花语的蕴义代表着阳光、开朗、放松的气氛~~~', 19.80, 9.00, 'http://detail.tmall.com/item.htm?id=18719225617', 0, 'admin', 0, 0, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(53, '【配饰】 镀银字印儿童手镯一个 原价129元 秒杀价9.8元多数地区包邮', '', '', 'pei_shi_du_yin_zi_yin_er_tong_shou_yi_ge_yuan_jia_129_yuan_miao_sha_jia_9_8_yuan_duo_shu_di_qu_bao_you', '1307/18/51e7dcee8cd86.jpg', 0, 1, '宝宝手镯是宝宝出生，满月，百天，周岁最好的礼物，0到6岁的宝宝最适合哦！', 129.00, 9.80, 'http://item.taobao.com/item.htm?id=20746499026', 0, 'admin', 0, 1378543775, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(54, '【配饰】 夏季冰丝汽车头枕 原价26元 秒杀价7元多数地区包邮', '', '', 'pei_shi_xia_ji_bing_si_qi_che_tou_zhen_yuan_jia_26_yuan_miao_sha_jia_7_yuan_duo_shu_di_qu_bao_you', '1307/18/51e7cf2cc6ded.jpg', 0, 1, '选用亚麻亚草制作而成,清凉舒适,具有防霉、防潮、 防螨、防水、抗耐磨等特点', 26.00, 7.00, 'http://item.taobao.com/item.htm?id=15936394492', 0, 'admin', 0, 1378543772, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(55, '【居家】 多功能厨房剪刀买一送一 原价25元 秒杀价9.9元多数地区包邮', '', '', 'ju_jia_duo_gong_neng_chu_fang_jian_dao_mai_yi_song_yi_yuan_jia_25_yuan_miao_sha_jia_9_9_yuan_duo_shu_di_qu_bao_you', '1307/04/51d55cfb8e981.jpg', 0, 1, '多功能剪刀，可以用来剪、夹、启、切等，家庭必备。9.9包邮2把哦', 25.00, 9.90, 'http://item.taobao.com/item.htm?id=26072096208', 0, 'admin', 0, 1378543766, 0, 0, 0, 10, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(58, '马卡龙色强势来袭！清新甜美大口袋宽松T恤！好品质！夏天必备超凉爽！', '', '', 'dakoudaithirt', '1307/04/51d55cd64a78c.jpg', 0, 1, '马卡龙色强势来袭！清新甜美大口袋宽松T恤！好品质！夏天必备超凉爽', 59.00, 29.00, 'http://item.taobao.com/item.htm?spm=a1z10.3.w17-1169010992.29.TczVvZ&id=23392660277&', 0, '花花', 1371113322, 1374238800, 1443830400, 0, 3, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(62, '【折800独家秒杀】蜜炼山楂茶水果茶山楂膏酸酸甜甜蜂蜜果味茶', '', '', 'zhe_800_du_jia_miao_sha_mi_lian_shan_cha_shui_guo_cha_shan_gao_suan_suan_tian_tian_feng_mi_guo_wei_cha', '1307/05/51d639c39aedc.jpg', 0, 2, '<p>\r\n	山楂去籽，剥皮，然后在与蜂蜜一起调试制作而成，口味很好，酸酸甜甜的，非常开胃。\r\n</p>', 58.00, 9.90, 'http://detail.tmall.com/item.htm?id=20736884873', 0, '阿花', 1372993196, 1374120000, 1439092800, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(59, '仅28包邮 超好质地的印花宽松露肩T恤 洋溢青春的微笑 百搭洋气', '', '', 'yinhuatshirt', '1307/04/51d544ebcca02.jpg', 0, 1, '不错的哦，仅28包邮！超好质地的印花宽松露肩T恤，洋溢青春的微笑，百搭洋气。', 68.00, 28.00, 'http://item.taobao.com/item.htm?spm=a1z10.3.w4002-1437382719.38.18hrKl&id=24885408585', 0, 'aa', 1371117097, 1374217200, 1438646400, 0, 1, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(60, '达人推荐，补水法宝！进口玻尿酸精华蚕丝面膜，纯植物精华成分、补水提亮肤色、分解色斑、嫩白肌肤、调节肌肤水油平衡', '', '', 'da_ren_tui_jian_bu_shui_fa_bao_jin_kou_bo_niao_suan_jing_hua_can_si_mian_mo_chun_zhi_wu_jing_hua_cheng_fen_bu_shui_ti_liang_fu_se_fen_jie_se_ban_nen_bai_ji_fu_diao_jie_ji_fu_shui_you_ping_heng', '1307/04/51d544c343c8d.jpg', 0, 1, '达人推荐，补水法宝！进口玻尿酸精华蚕丝面膜，纯植物精华成分、补水提亮肤色、分解色斑、嫩白肌肤、调节肌肤水油平衡。', 111.00, 11.00, 'http://item.taobao.com/item.htm?spm=a1z10.3.w17-304691592.50.5zeN36&id=21486308650&', 0, 'fafa', 1371629956, 1058590800, 1438473600, 0, 5, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(61, '2013的夏季流行荧光撞色大包包。加厚材质，承重力强。适合夏季MM去海边、游泳场或短期休闲游玩。', '', '', '2013_de_xia_ji_liu_xing_ying_guang_zhuang_se_da_bao_bao_jia_hou_cai_zhi_cheng_zhong_li_qiang_shi_he_xia_ji_mm_qu_hai_bian_you_yong_chang_huo_duan_qi_xiu_xian_you_wan', '1307/18/51e7dcd756129.jpg', 0, 2, '2013的夏季流行荧光撞色大包包。加厚材质，承重力强。适合夏季MM去海边、游泳场或短期休闲游玩。', 123.00, 90.00, 'http://item.taobao.com/item.htm?id=18424633389&ali_trackid=2:mm_28757764_0_0,tuan:1371630182_6k2_1586694959&spm=2014.12425299.1.0', 0, '花花', 1371630110, 1374220800, -2147483648, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(63, '【居家】 创意制冰盒4色 2个装 原价14.14元 秒杀价9.9元多数地区包邮', '', '', 'ju_jia_chuang_yi_zhi_bing_he_4_se_2_ge_zhuang_yuan_jia_14_14_yuan_miao_sha_jia_9_9_yuan_duo_shu_di_qu_bao_you', '1307/18/51e7dd4449aeb.jpg', 0, 1, '独特的设计，创意的造型，可同时制作四只冰棒，满足全家需要，自己在家就可动手制作', 14.14, 9.90, 'http://item.taobao.com/item.htm?spm=989.1000764.1000415.3.NUylgz&id=25594800880', 0, '花花', 1373020048, 1374235200, 1438776000, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(64, '【化妆品】 丝瓜水320ml 原价168元 秒杀价9.5元多数地区包邮', '', '', 'hua_zhuang_pin_si_gua_shui_320ml_yuan_jia_168_yuan_miao_sha_jia_9_5_yuan_duo_shu_di_qu_bao_you', '1307/12/51e01a079a8b0.jpg', 0, 2, '优质廉价平民化的保湿补水产品。', 168.00, 9.90, 'http://detail.tmall.com/item.htm?id=19247460859', 0, '小茉莉', 1373641223, 1374130800, 1420070400, 0, 0, 0, 255, 0, 0, 1, 1, '', 1, 0, '', '', NULL),
+(65, '【居家】 美甲6件套 原价21元 秒杀价7.99元多数地区包邮', '', '', 'ju_jia_mei_jia_6_jian_tao_yuan_jia_21_yuan_miao_sha_jia_7_99_yuan_duo_shu_di_qu_bao_you', '1307/12/51e01b51e2855.jpg', 0, 2, '美甲6件套，修甲美足，夏天必备产品，让您开启浪漫邂逅 。', 21.00, 7.99, 'http://detail.tmall.com/item.htm?id=2118701544', 0, '淘气包', 1373641553, 1374116400, 1420070400, 0, 0, 0, 255, 0, 0, 0, 1, '', 1, 0, '', '', NULL),
+(76, '8双包邮 防臭男士棉袜 正品李宁男袜 李宁袜子中薄夏季吸汗纯棉袜', 'zhiapi_502494', '', '8_shuang_bao_you_fang_chou_nan_shi_mian_wa_zheng_pin_li_ning_nan_wa_li_ning_wa_zi_zhong_bao_xia_ji_xi_han_chun_mian_wa', 'http://img02.taobaocdn.com/bao/uploaded/i2/14081023736027807/T1HKSeXqhaXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 4.95, 'http://item.taobao.com/item.htm?id=17371808169', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '8双包邮 防臭男士棉袜 正品李宁男袜 李宁袜子中薄夏季吸汗纯棉袜', 0, 0, '', '', NULL),
+(77, '6-18个月男童纯棉短袜 带防滑底宝宝袜 秋冬儿童袜子 性价比蛮高', 'zhiapi_502490', '', '6_18_ge_yue_nan_tong_chun_mian_duan_wa_dai_fang_hua_di_bao_bao_wa_qiu_dong_er_tong_wa_zi_xing_jia_bi_man_gao', 'http://img04.taobaocdn.com/bao/uploaded/i4/T1QN82XgxXXXX.2uw9_103212.jpg_sum.jpg', 0, 0, '', 0.00, 3.50, 'http://item.taobao.com/item.htm?id=9454108893', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '6-18个月男童纯棉短袜 带防滑底宝宝袜 秋冬儿童袜子 性价比蛮高', 0, 0, '', '', NULL),
+(78, '10双包邮 男袜子 商务中筒中统男袜绅士菱形格全棉纯棉袜子  M4', 'zhiapi_502489', '', '10_shuang_bao_you_nan_wa_zi_shang_wu_zhong_tong_zhong_tong_nan_wa_shen_shi_ling_xing_ge_quan_mian_chun_mian_wa_zi', 'http://img01.taobaocdn.com/bao/uploaded/i1/16911020827156747/T1RFtSXA8XXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 6.20, 'http://item.taobao.com/item.htm?id=19504631968', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '10双包邮 男袜子 商务中筒中统男袜绅士菱形格全棉纯棉袜子  M4', 0, 0, '', '', NULL),
+(79, '正品阿迪达斯adidas男士袜子全纯棉短袜运动低帮船袜夏季薄款', 'zhiapi_502488', '', 'zheng_pin_a_di_da_si_adidas_nan_shi_wa_zi_quan_chun_mian_duan_wa_yun_dong_di_bang_chuan_wa_xia_ji_bao_kuan', 'http://img01.taobaocdn.com/bao/uploaded/i1/14223024683987595/T1upWlXs0fXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 16.00, 'http://item.taobao.com/item.htm?id=24796796745', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '正品阿迪达斯adidas男士袜子全纯棉短袜运动低帮船袜夏季薄款', 0, 0, '', '', NULL),
+(80, '夏季薄棉NK袜子男士纯棉全棉男袜船袜短袜短统袜运动袜子 N0016', 'zhiapi_502485', '', 'xia_ji_bao_mian_nk_wa_zi_nan_shi_chun_mian_quan_mian_nan_wa_chuan_wa_duan_wa_duan_tong_wa_yun_dong_wa_zi', 'http://img01.taobaocdn.com/bao/uploaded/i1/17827021092018060/T1pwh0XA8aXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 4.99, 'http://item.taobao.com/item.htm?id=9979143839', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '夏季薄棉NK袜子男士纯棉全棉男袜船袜短袜短统袜运动袜子 N0016', 0, 0, '', '', NULL),
+(81, '10双包邮夏季新款男士运动袜全棉防臭袜子男袜纯棉短袜船袜子批发', 'zhiapi_502481', '', '10_shuang_bao_you_xia_ji_xin_kuan_nan_shi_yun_dong_wa_quan_mian_fang_chou_wa_zi_nan_wa_chun_mian_duan_wa_chuan_wa_zi_pi_fa', 'http://img01.taobaocdn.com/bao/uploaded/i1/10379023336578565/T1MJ9JXAFdXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 3.99, 'http://item.taobao.com/item.htm?id=20578119951', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '10双包邮夏季新款男士运动袜全棉防臭袜子男袜纯棉短袜船袜子批发', 0, 0, '', '', NULL),
+(82, '10双包邮情侣船袜男士女士纯棉夏季吸汗除臭全棉袜子限时特价促销', 'zhiapi_502480', '', '10_shuang_bao_you_qing_lv_chuan_wa_nan_shi_nv_shi_chun_mian_xia_ji_xi_han_chu_chou_quan_mian_wa_zi_xian_shi_te_jia_cu_xiao', 'http://img03.taobaocdn.com/bao/uploaded/i3/10893020383179146/T1DPlGXwFgXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 4.59, 'http://item.taobao.com/item.htm?id=15874941718', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '10双包邮情侣船袜男士女士纯棉夏季吸汗除臭全棉袜子限时特价促销', 0, 0, '', '', NULL),
+(83, '男袜子2013新品纯棉袜子男纯棉厂家批发男船袜短筒袜子加厚毛巾袜', 'zhiapi_502478', '', 'nan_wa_zi_2013_xin_pin_chun_mian_wa_zi_nan_chun_mian_chang_jia_pi_fa_nan_chuan_wa_duan_tong_wa_zi_jia_hou_mao_jin_wa', 'http://img03.taobaocdn.com/bao/uploaded/i3/19793021145255940/T1t_gBXildXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 7.95, 'http://item.taobao.com/item.htm?id=18735551885', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '男袜子2013新品纯棉袜子男纯棉厂家批发男船袜短筒袜子加厚毛巾袜', 0, 0, '', '', NULL),
+(84, '井竹男袜子 男士夏季比纯棉袜薄透气/浅口船袜/春夏短袜/苎麻防臭', 'zhiapi_502476', '', 'jing_zhu_nan_wa_zi_nan_shi_xia_ji_bi_chun_mian_wa_bao_tou_qi_qian_kou_chuan_wa_chun_xia_duan_wa_ma_fang_chou', 'http://img01.taobaocdn.com/bao/uploaded/i1/16451037706484491/T1YfOJXs4jXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 14.80, 'http://item.taobao.com/item.htm?id=23710352684', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '井竹男袜子 男士夏季比纯棉袜薄透气/浅口船袜/春夏短袜/苎麻防臭', 0, 0, '', '', NULL),
+(85, '薄棉儿童袜子纯棉婴儿男女宝宝短袜子网眼松口花边春夏', 'zhiapi_502474', '', 'bao_mian_er_tong_wa_zi_chun_mian_ying_er_nan_nv_bao_bao_duan_wa_zi_wang_yan_song_kou_hua_bian_chun_xia', 'http://img02.taobaocdn.com/bao/uploaded/i2/19901024628764726/T1nDlsFn4aXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 3.50, 'http://item.taobao.com/item.htm?id=25482896391', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '薄棉儿童袜子纯棉婴儿男女宝宝短袜子网眼松口花边春夏', 0, 0, '', '', NULL),
+(86, '10双包邮 阿迪男士白色运动袜子 AD纯棉全棉袜子 中筒袜子男袜子', 'zhiapi_502473', '', '10_shuang_bao_you_a_di_nan_shi_bai_se_yun_dong_wa_zi_ad_chun_mian_quan_mian_wa_zi_zhong_tong_wa_zi_nan_wa_zi', 'http://img03.taobaocdn.com/bao/uploaded/i3/13191032974452480/T1_6JqXCXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 6.50, 'http://item.taobao.com/item.htm?id=17320861369', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '10双包邮 阿迪男士白色运动袜子 AD纯棉全棉袜子 中筒袜子男袜子', 0, 0, '', '', NULL),
+(87, '捷米 超薄纯棉短袜 商务休闲袜 男士全棉船袜 夏季运动短袜 特价', 'zhiapi_502471', '', 'jie_mi_chao_bao_chun_mian_duan_wa_shang_wu_xiu_xian_wa_nan_shi_quan_mian_chuan_wa_xia_ji_yun_dong_duan_wa_te_jia', 'http://img04.taobaocdn.com/bao/uploaded/i4/T10VTwXfJiXXc05Qw._083140.jpg_sum.jpg', 0, 0, '', 0.00, 3.89, 'http://item.taobao.com/item.htm?id=18827092662', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '捷米 超薄纯棉短袜 商务休闲袜 男士全棉船袜 夏季运动短袜 特价', 0, 0, '', '', NULL),
+(88, '阿迪达斯秒杀特价袜子 adidas男运动袜 男纯棉袜男短袜 8双包邮', 'zhiapi_502464', '', 'a_di_da_si_miao_sha_te_jia_wa_zi_adidas_nan_yun_dong_wa_nan_chun_mian_wa_nan_duan_wa_8_shuang_bao_you', 'http://img01.taobaocdn.com/bao/uploaded/i1/T1LHupXXplXXc8INIW_023652.jpg_sum.jpg', 0, 0, '', 0.00, 6.50, 'http://item.taobao.com/item.htm?id=12701259916', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '阿迪达斯秒杀特价袜子 adidas男运动袜 男纯棉袜男短袜 8双包邮', 0, 0, '', '', NULL),
+(89, '热卖新品 全棉薄款 男士纯棉 纯色四季通用 休闲防臭袜子 6083', 'zhiapi_502463', '', 're_mai_xin_pin_quan_mian_bao_kuan_nan_shi_chun_mian_chun_se_si_ji_tong_yong_xiu_xian_fang_chou_wa_zi', 'http://img08.taobaocdn.com/bao/uploaded/i8/T1yUHAXgtlXXXXOlfX_085858.jpg_sum.jpg', 0, 0, '', 0.00, 5.52, 'http://item.taobao.com/item.htm?id=21833484140', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '热卖新品 全棉薄款 男士纯棉 纯色四季通用 休闲防臭袜子 6083', 0, 0, '', '', NULL),
+(90, '1-2-3-5-6-8-10-12岁男女童袜秋冬款厚 宝宝幼儿袜子纯棉全棉童袜', 'zhiapi_502460', '', '1_2_3_5_6_8_10_12_sui_nan_nv_tong_wa_qiu_dong_kuan_hou_bao_bao_you_er_wa_zi_chun_mian_quan_mian_tong_wa', 'http://img02.taobaocdn.com/bao/uploaded/i2/18722025525657661/T1zNX0FkRdXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 2.99, 'http://item.taobao.com/item.htm?id=20231092878', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '1-2-3-5-6-8-10-12岁男女童袜秋冬款厚 宝宝幼儿袜子纯棉全棉童袜', 0, 0, '', '', NULL),
+(91, '棉乎男全棉毛圈袜 纯棉运动毛巾袜 短筒毛巾底棉袜', 'zhiapi_502457', '', 'mian_hu_nan_quan_mian_mao_quan_wa_chun_mian_yun_dong_mao_jin_wa_duan_tong_mao_jin_di_mian_wa', 'http://img01.taobaocdn.com/bao/uploaded/i1/T1AVfZXkxaXXbGZYfa_120235.jpg_sum.jpg', 0, 0, '', 0.00, 6.50, 'http://item.taobao.com/item.htm?id=20383692314', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '棉乎男全棉毛圈袜 纯棉运动毛巾袜 短筒毛巾底棉袜', 0, 0, '', '', NULL),
+(92, '纯棉时尚高档中筒商务男袜四季潮流舒适简洁直销正品吸汗透气柔软', 'zhiapi_502455', '', 'chun_mian_shi_shang_gao_dang_zhong_tong_shang_wu_nan_wa_si_ji_chao_liu_shu_shi_jian_jie_zhi_xiao_zheng_pin_xi_han_tou_qi_rou_ruan', 'http://img03.taobaocdn.com/bao/uploaded/i3/17820027081591638/T1e.JCFf8fXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 2.60, 'http://item.taobao.com/item.htm?id=19053497035', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '纯棉时尚高档中筒商务男袜四季潮流舒适简洁直销正品吸汗透气柔软', 0, 0, '', '', NULL),
+(93, '袜子纯棉儿童袜可爱彼得兔糖果色条纹全棉男童女童宝宝袜夏薄批发', 'zhiapi_502433', '', 'wa_zi_chun_mian_er_tong_wa_ke_ai_bi_de_tu_tang_guo_se_tiao_wen_quan_mian_nan_tong_nv_tong_bao_bao_wa_xia_bao_pi_fa', 'http://img04.taobaocdn.com/bao/uploaded/i4/14721023996930457/T1R1y5Xx8eXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 2.70, 'http://item.taobao.com/item.htm?id=20918811377', 0, 'admin', 1376990349, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '袜子纯棉儿童袜可爱彼得兔糖果色条纹全棉男童女童宝宝袜夏薄批发', 0, 0, '', '', NULL),
+(101, '凝水草本精华液送旅行套装+6片面膜 原价118 折扣价19.71元多数地区包邮', 'zhe_987961369', '', 'ning_shui_cao_ben_jing_hua_ye_song_lv_xing_tao_zhuang_6_pian_mian_mo_yuan_jia_118_zhe_kou_jia_1971_yuan_duo_shu_di_qu_bao_you', 'http://p12.tuan800.net/upload/deal/image/67763/normal_98afd4f65276b2bcf3f119f752bd3a37.jpg', 0, 2, '', 9.90, 9.90, 'http://detail.tmall.com/item.htm?id=26412796068', 0, 'admin', 1379483743, 1390847132, 1390897533, 0, 0, 0, 255, 0, 1, 1, 1, '凝水草本精华液送旅行套装+6片面膜 原价118 折扣价19.71元多数地区包邮', 1, 0, '', '', NULL),
+(102, '婴儿短袖连衣裙 原价60元 拍下价格12元多数地区包邮', 'zhe_986203446', '', 'ying_er_duan_xiu_lian_yi_qun_yuan_jia_60_yuan_pai_xia_jia_ge_12_yuan_duo_shu_di_qu_bao_you', 'http://p12.tuan800.net/upload/deal/image/68335/normal_5b37a6fb5bb8cc526c4c486bfc5d7fec.jpg', 0, 2, '', 9.90, 9.90, 'http://detail.tmall.com/item.htm?id=26028996716', 0, 'admin', 1379483763, 1390911827, 1390998230, 0, 0, 0, 255, 0, 1, 1, 1, '婴儿短袖连衣裙 原价60元 拍下价格12元多数地区包邮', 1, 0, '', '', NULL),
+(96, '静脉袜医用弹力袜子静脉曲张瘦腿裤薄护士女三级连裤男女薄款强效', 'zhiapi_502160', '', 'jing_mai_wa_yi_yong_dan_li_wa_zi_jing_mai_qu_zhang_shou_tui_ku_bao_hu_shi_nv_san_ji_lian_ku_nan_nv_bao_kuan_qiang_xiao', 'http://img01.taobaocdn.com/bao/uploaded/i1/19497025751393642/T1Vb05FkFdXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 0, 0, '', 0.00, 160.00, 'http://item.taobao.com/item.htm?id=18183318517', 0, 'admin', 1377328713, 0, 0, 0, 0, 0, 255, 0, 0, 0, 1, '静脉袜医用弹力袜子静脉曲张瘦腿裤薄护士女三级连裤男女薄款强效', 0, 0, '', '', NULL),
+(103, '色彩地带化妆刷 猸子毛眉刷 专柜彩妆正品 专业美妆工具', 'tb_9999739839', '', 'se_cai_di_dai_hua_zhuang_shua_zi_mao_mei_shua_zhuan_gui_cai_zhuang_zheng_pin_zhuan_ye_mei_zhuang_gong_ju_1390911804', 'http://img03.taobaocdn.com/bao/uploaded/i3/T18zN9XlldXXaZsYzc_125843.jpg_sum.jpg', 0, 1, '', 9.90, 9.90, 'http://item.taobao.com/item.htm?id=9999739839', 0, 'admin', 1379491234, 1390911659, 1391008835, 0, 0, 0, 255, 0, 1, 1, 1, '色彩地带化妆刷 猸子毛眉刷 专柜彩妆正品 专业美妆工具', 1, 0, '', '', NULL),
+(104, 'Plesk or Cpanel configuration', '', '', '_1459436376', '1603/31/56fd3ab002343.png', 0, -1, '<p>\r\n	test\r\n</p>', 200.00, 2000.00, '', 0, 'admin', 1459436208, 1459436065, 1462028065, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
+(105, 'Plesk or Cpanel configurationv fei', '', '', '', '或者输入外部图片地址', 0, -1, '', 0.00, 0.00, '', 0, 'admin', 1459436550, 1459436526, 1462028526, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
+(106, 'Plesk or Cpanel configurationv fei', '', '', '_1459437441', '或者输入外部图片地址', 0, -1, '', 0.00, 0.00, '', 0, 'admin', 1459437441, 1459437438, 1462029438, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', 'fei'),
+(107, 'Plesk or Cpanel configurationv fei', '', '', '_1459437763', '或者输入外部图片地址', 0, -1, '', 0.00, 0.00, '', 0, 'admin', 1459437763, 1459437559, 1462029559, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
+(108, 'test', '', '', '_1459437799', '或者输入外部图片地址', 0, -1, '', 0.00, 0.00, '', 0, 'admin', 1459437799, 1459437797, 1462029797, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
+(109, 'test', '', '', '_1459438071', '或者输入外部图片地址', 0, -1, '', 0.00, 0.00, '', 0, 'admin', 1459438071, 1459438069, 1462030069, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
+(110, 'Plesk or Cpanel configurationv fei', '', '', '_1459440322', '或者输入外部图片地址', 0, -1, '', 0.00, 0.00, '', 0, 'admin', 1459440322, 1459440317, 1462032317, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', NULL),
+(111, 'Plesk or Cpanel configurationv fei', '', '', '_1459440643', '或者输入外部图片地址', 0, -1, '', 0.00, 0.00, '', 0, 'admin', 1459440610, 1459440605, 1462032605, 0, 0, 0, 255, 0, 0, 0, 0, '', 1, 0, '', '', 'good to go be');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_jky_orig`
+-- Table structure for table `zhi_jky_orig`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_jky_orig` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_jky_orig` (
+`id` int(11) NOT NULL,
   `img` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
-  `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255'
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_jky_orig`
+-- Dumping data for table `zhi_jky_orig`
 --
 
 INSERT INTO `zhi_jky_orig` (`id`, `img`, `name`, `url`, `ordid`) VALUES
@@ -968,29 +944,28 @@ INSERT INTO `zhi_jky_orig` (`id`, `img`, `name`, `url`, `ordid`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_mail_queue`
+-- Table structure for table `zhi_mail_queue`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_mail_queue` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_mail_queue` (
+`id` int(10) unsigned NOT NULL,
   `mail_to` varchar(120) NOT NULL,
   `mail_subject` varchar(255) NOT NULL,
   `mail_body` text NOT NULL,
   `priority` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `err_num` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `add_time` int(10) unsigned NOT NULL,
-  `lock_expiry` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `lock_expiry` int(10) unsigned NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_mall`
+-- Table structure for table `zhi_mall`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_mall` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_mall` (
+`id` int(10) NOT NULL,
   `aid` varchar(50) NOT NULL,
   `title` varchar(50) DEFAULT NULL,
   `domain` varchar(255) NOT NULL,
@@ -1011,12 +986,11 @@ CREATE TABLE IF NOT EXISTS `zhi_mall` (
   `seo_title` varchar(255) DEFAULT NULL,
   `seo_keys` varchar(255) DEFAULT NULL,
   `seo_desc` text,
-  `index` varchar(2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=494 ;
+  `index` varchar(2) DEFAULT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=494 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_mall`
+-- Dumping data for table `zhi_mall`
 --
 
 INSERT INTO `zhi_mall` (`id`, `aid`, `title`, `domain`, `abst`, `info`, `url_dm`, `url_yqf`, `url_other`, `url`, `cps`, `img`, `cid`, `rebates`, `hits`, `status`, `ordid`, `add_time`, `seo_title`, `seo_keys`, `seo_desc`, `index`) VALUES
@@ -1526,11 +1500,11 @@ INSERT INTO `zhi_mall` (`id`, `aid`, `title`, `domain`, `abst`, `info`, `url_dm`
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_mall_cate`
+-- Table structure for table `zhi_mall_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_mall_cate` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_mall_cate` (
+`id` smallint(4) unsigned NOT NULL,
   `title` varchar(50) NOT NULL,
   `alias` varchar(50) NOT NULL,
   `pid` smallint(4) unsigned NOT NULL DEFAULT '0',
@@ -1539,12 +1513,11 @@ CREATE TABLE IF NOT EXISTS `zhi_mall_cate` (
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
   `seo_title` varchar(255) NOT NULL,
   `seo_keys` varchar(255) NOT NULL,
-  `seo_desc` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+  `seo_desc` text NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_mall_cate`
+-- Dumping data for table `zhi_mall_cate`
 --
 
 INSERT INTO `zhi_mall_cate` (`id`, `title`, `alias`, `pid`, `spid`, `status`, `ordid`, `seo_title`, `seo_keys`, `seo_desc`) VALUES
@@ -1564,28 +1537,27 @@ INSERT INTO `zhi_mall_cate` (`id`, `title`, `alias`, `pid`, `spid`, `status`, `o
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_mall_comment`
+-- Table structure for table `zhi_mall_comment`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_mall_comment` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_mall_comment` (
+`id` int(10) unsigned NOT NULL,
   `mall_id` int(10) unsigned NOT NULL,
   `uid` int(10) unsigned NOT NULL,
   `uname` varchar(20) NOT NULL,
   `info` text NOT NULL,
   `add_time` int(10) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_menu`
+-- Table structure for table `zhi_menu`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_menu` (
-  `id` smallint(6) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_menu` (
+`id` smallint(6) NOT NULL,
   `name` varchar(50) NOT NULL,
   `pid` smallint(6) NOT NULL,
   `module_name` varchar(20) NOT NULL,
@@ -1594,12 +1566,11 @@ CREATE TABLE IF NOT EXISTS `zhi_menu` (
   `remark` varchar(255) NOT NULL,
   `often` tinyint(1) NOT NULL DEFAULT '0',
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
-  `display` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=355 ;
+  `display` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=355 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_menu`
+-- Dumping data for table `zhi_menu`
 --
 
 INSERT INTO `zhi_menu` (`id`, `name`, `pid`, `module_name`, `action_name`, `data`, `remark`, `often`, `ordid`, `display`) VALUES
@@ -1768,11 +1739,11 @@ INSERT INTO `zhi_menu` (`id`, `name`, `pid`, `module_name`, `action_name`, `data
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_message`
+-- Table structure for table `zhi_message`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_message` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_message` (
+`id` int(10) NOT NULL,
   `ftid` int(10) unsigned NOT NULL,
   `from_id` int(10) NOT NULL,
   `from_name` varchar(50) NOT NULL,
@@ -1780,12 +1751,11 @@ CREATE TABLE IF NOT EXISTS `zhi_message` (
   `to_name` varchar(50) NOT NULL,
   `add_time` int(10) NOT NULL,
   `info` text NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+  `status` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_message`
+-- Dumping data for table `zhi_message`
 --
 
 INSERT INTO `zhi_message` (`id`, `ftid`, `from_id`, `from_name`, `to_id`, `to_name`, `add_time`, `info`, `status`) VALUES
@@ -1814,21 +1784,20 @@ INSERT INTO `zhi_message` (`id`, `ftid`, `from_id`, `from_name`, `to_id`, `to_na
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_message_tpl`
+-- Table structure for table `zhi_message_tpl`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_message_tpl` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_message_tpl` (
+`id` int(10) unsigned NOT NULL,
   `type` varchar(20) NOT NULL,
   `is_sys` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL,
   `alias` varchar(50) NOT NULL COMMENT '别名',
-  `content` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  `content` text NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_message_tpl`
+-- Dumping data for table `zhi_message_tpl`
 --
 
 INSERT INTO `zhi_message_tpl` (`id`, `type`, `is_sys`, `name`, `alias`, `content`) VALUES
@@ -1839,11 +1808,11 @@ INSERT INTO `zhi_message_tpl` (`id`, `type`, `is_sys`, `name`, `alias`, `content
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_nav`
+-- Table structure for table `zhi_nav`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_nav` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_nav` (
+`id` smallint(4) unsigned NOT NULL,
   `type` varchar(20) NOT NULL,
   `name` varchar(50) NOT NULL,
   `alias` varchar(20) NOT NULL,
@@ -1852,12 +1821,11 @@ CREATE TABLE IF NOT EXISTS `zhi_nav` (
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
   `mod` varchar(20) NOT NULL,
   `homepage` tinyint(1) NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_nav`
+-- Dumping data for table `zhi_nav`
 --
 
 INSERT INTO `zhi_nav` (`id`, `type`, `name`, `alias`, `link`, `target`, `ordid`, `mod`, `homepage`, `status`) VALUES
@@ -1871,23 +1839,22 @@ INSERT INTO `zhi_nav` (`id`, `type`, `name`, `alias`, `link`, `target`, `ordid`,
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_oauth`
+-- Table structure for table `zhi_oauth`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_oauth` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_oauth` (
+`id` smallint(4) unsigned NOT NULL,
   `code` varchar(20) NOT NULL,
   `name` varchar(50) NOT NULL,
   `config` text NOT NULL,
   `desc` text NOT NULL,
   `author` varchar(50) NOT NULL,
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_oauth`
+-- Dumping data for table `zhi_oauth`
 --
 
 INSERT INTO `zhi_oauth` (`id`, `code`, `name`, `config`, `desc`, `author`, `ordid`, `status`) VALUES
@@ -1898,11 +1865,11 @@ INSERT INTO `zhi_oauth` (`id`, `code`, `name`, `config`, `desc`, `author`, `ordi
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post`
+-- Table structure for table `zhi_post`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_post` (
+`id` int(10) unsigned NOT NULL,
   `key_id` varchar(50) DEFAULT NULL,
   `title` varchar(255) NOT NULL,
   `tcolor` varchar(10) DEFAULT NULL,
@@ -1939,12 +1906,11 @@ CREATE TABLE IF NOT EXISTS `zhi_post` (
   `tips` varchar(255) DEFAULT NULL,
   `type` int(11) NOT NULL DEFAULT '1',
   `brand_id` bigint(20) DEFAULT NULL,
-  `lang` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=325 ;
+  `lang` varchar(10) DEFAULT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=345 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_post`
+-- Dumping data for table `zhi_post`
 --
 
 INSERT INTO `zhi_post` (`id`, `key_id`, `title`, `tcolor`, `post_key`, `url`, `prices`, `info`, `img`, `uname`, `uid`, `mall_id`, `add_time`, `post_time`, `rate_best`, `rate_good`, `rate_bad`, `favs`, `hits`, `ordid`, `is_hot`, `is_recommend`, `is_localimg`, `status`, `collect_flag`, `seo_title`, `comments`, `seo_keys`, `seo_desc`, `delivery_info`, `start_time`, `end_time`, `last_update_time`, `num_version`, `tips`, `type`, `brand_id`, `lang`) VALUES
@@ -2272,20 +2238,22 @@ INSERT INTO `zhi_post` (`id`, `key_id`, `title`, `tcolor`, `post_key`, `url`, `p
 (317, 'zhe_998121366', '[当当] 49元 SNOOPY/史努比 男婴幼童运动鞋 N89003', '', 'dang_dang_49_yuan_snoopy_shi_nu_bi_nan_ying_you_tong_yun_dong_xie', 'http://union.dangdang.com/transfer.php?from=P-311467&ad_type=10&sys_id=1&backurl=http%3A%2F%2Ftuan.dangdang.com%2Fproduct.php%3Fproduct_id%3D1800175663', '0', '<p>\r\n	　　#穿上新鞋，过新年#SNOOPY/史努比 男婴幼童运动鞋 N89003 当当网现价49元不包邮，共有桃红、咖色2色可选，同款同款京东商城69元。鞋子里面材料是保暖人造绒，让宝宝学步的同时又保暖。 　　这款漂亮舒适的学步鞋，绚丽多姿的色彩是泼翻了的颜料瓶，鬼灵精怪的颜料宝贝畅快地流淌着，一眨眼，天真的小狗崽，甜美的小圈圈，就活灵活现地出现在宝宝的鞋子上，还有可爱的撞色魔术贴，温暖的人造绒，让宝宝从此爱上了走路。\r\n</p>', 'http://z1.tuanimg.com/upload/zhitao_activity/act_image/17694/normal_db4d8db36584b67889a6bd965a69c98d.png', 'admin', 0, 2, 1379487612, 1390922656, 0, 0, 0, 0, 0, 255, 1, 1, 0, 1, 1, '[当当] 49元 SNOOPY/史努比 男婴幼童运动鞋 N89003', 0, '', '', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL),
 (318, '', '商品名称test', '', 'shang_pin_ming_cheng_1460108392', '商品链接：test', '2005', '<p>\r\n	test\r\n</p>', '或者输入外部图片地址', 'admin', 0, 56, 1460107232, 1460107140, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '物流信息test', '2016-04-09 05:00:00', '2016-04-10 14:20:20', NULL, NULL, '提示：test', 1, 2, 'fr'),
 (319, '', 'Plesk or Cpanel configurationv fei', '', '_1460288689', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460131757, 1460131740, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-09 00:09:00', '2016-04-09 00:09:00', NULL, NULL, '', 1, 3, 'fr'),
-(320, '', 'test', NULL, '_1460256859', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460256859, 1460256840, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-10 10:54:00', '2016-04-10 10:54:00', NULL, NULL, '', 1, 0, ''),
-(321, '', 'test', NULL, '_1460285069', '商品链接', '200', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460285069, 1460284980, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '物流信息', '2016-04-10 18:43:00', '2016-04-29 00:00:00', NULL, NULL, '提示', 1, 2, 'cn'),
 (322, '', 'test', NULL, '_1460287604', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460287604, 1460287560, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-10 19:26:00', '2016-04-10 19:26:00', NULL, NULL, '', 1, NULL, ''),
-(323, '', 'new', NULL, '_1460287739', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460287739, 1460287680, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-10 19:28:00', '2016-04-10 19:28:00', NULL, NULL, '', 1, NULL, ''),
-(324, '', 'new', '', '_1460288668', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460287852, 1460287800, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-10 19:30:00', '2016-04-10 19:30:00', NULL, NULL, '', 1, 13, 'cn');
+(324, '', 'new', '', '_1460288668', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460287852, 1460287800, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-10 19:30:00', '2016-04-10 19:30:00', NULL, NULL, '', 1, 13, 'cn'),
+(325, '', 'test', NULL, '_1460387421', '', '', '', '1604/11/570bbe5d8cb45.jpg', 'admin', 0, NULL, 1460387421, 1460387340, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-11 23:09:00', '2016-04-11 23:09:00', NULL, NULL, '', 1, -1, ''),
+(326, '', 'ttest', NULL, '_1460387479', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460387479, 1460387460, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-11 23:11:00', '2016-04-11 23:11:00', NULL, NULL, '', 1, -1, ''),
+(327, '', 'test', NULL, '_1460387521', '', '', '', '1604/11/570bbec184194.jpg', 'admin', 0, NULL, 1460387521, 1460387460, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-11 23:11:00', '2016-04-11 23:11:00', NULL, NULL, '', 1, -1, ''),
+(328, '', 'test', NULL, '_1460388518', '', '', '', '1604/11/570bc2a6e4b71.jpg', 'admin', 0, NULL, 1460388518, 1460388480, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-11 23:28:00', '2016-04-11 23:28:00', NULL, NULL, '', 1, -1, ''),
+(344, '', 'link2', '', '_1460396733', '', '', '', '或者输入外部图片地址', 'admin', 0, NULL, 1460395435, 1460395380, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, '', 0, '', '', '', '2016-04-12 01:23:00', '2016-04-12 01:23:00', NULL, NULL, '', 1, -1, '');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post_baoliao`
+-- Table structure for table `zhi_post_baoliao`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post_baoliao` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_post_baoliao` (
+`id` int(10) NOT NULL,
   `uid` int(10) DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
@@ -2294,12 +2262,11 @@ CREATE TABLE IF NOT EXISTS `zhi_post_baoliao` (
   `info` text,
   `email` varchar(255) DEFAULT NULL,
   `add_time` int(10) DEFAULT '0',
-  `type` tinyint(4) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
+  `type` tinyint(4) DEFAULT '0'
+) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_post_baoliao`
+-- Dumping data for table `zhi_post_baoliao`
 --
 
 INSERT INTO `zhi_post_baoliao` (`id`, `uid`, `title`, `url`, `orig`, `web`, `info`, `email`, `add_time`, `type`) VALUES
@@ -2363,11 +2330,11 @@ INSERT INTO `zhi_post_baoliao` (`id`, `uid`, `title`, `url`, `orig`, `web`, `inf
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post_brand`
+-- Table structure for table `zhi_post_brand`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post_brand` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_post_brand` (
+`id` bigint(20) NOT NULL,
   `cover_image_name` varchar(255) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `description` longtext,
@@ -2378,12 +2345,11 @@ CREATE TABLE IF NOT EXISTS `zhi_post_brand` (
   `num_version` int(11) unsigned DEFAULT NULL,
   `status` int(11) NOT NULL,
   `info_template_id` bigint(20) NOT NULL,
-  `collect_flag` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+  `collect_flag` tinyint(1) DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_post_brand`
+-- Dumping data for table `zhi_post_brand`
 --
 
 INSERT INTO `zhi_post_brand` (`id`, `cover_image_name`, `create_time`, `description`, `last_update_time`, `logo_image_name`, `name_cn`, `name_fr`, `num_version`, `status`, `info_template_id`, `collect_flag`) VALUES
@@ -2396,16 +2362,19 @@ INSERT INTO `zhi_post_brand` (`id`, `cover_image_name`, `create_time`, `descript
 (10, 'test', '2016-04-10 03:00:45', 'test', NULL, 'test', 'test', 'tes', 12, 1, 0, 1),
 (14, 'mytry', '2016-04-10 03:16:08', '', NULL, '', '', '', 0, 0, 0, 1),
 (12, 'test', '2016-04-10 03:03:19', '', NULL, 'test', '', '', 0, 1, 0, 1),
-(13, 'googd', '2016-04-10 03:03:43', 'test', NULL, 'go', 'yes', 'non', 1, 1, 0, 1);
+(13, 'googd', '2016-04-10 03:03:43', 'test', NULL, 'go', 'yes', 'non', 1, 1, 0, 1),
+(15, '1604/11/570bac0a3510b.jpg', '2016-04-11 13:52:10', 'test', '0000-00-00 00:00:00', '1604/11/570bac0a3607e.jpg', '中文名称', '法文名称', 12, 0, 0, 1),
+(16, '或者输入外部图片地址', '2016-04-11 13:57:01', '', '2016-04-11 21:57:01', '或者输入外部图片地址', 'test', '', 0, 0, 0, 1),
+(17, '1604/11/570bb08aba150.jpg', '2016-04-11 13:57:27', 'test', '2016-04-11 22:11:22', '1604/11/570bb08aba99c.png', '中文名称2new', 'meanings2new', 12, 1, 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post_cate`
+-- Table structure for table `zhi_post_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post_cate` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_post_cate` (
+`id` smallint(4) unsigned NOT NULL,
   `name` varchar(50) NOT NULL,
   `alias` varchar(50) NOT NULL,
   `pid` smallint(4) unsigned NOT NULL DEFAULT '0',
@@ -2414,12 +2383,11 @@ CREATE TABLE IF NOT EXISTS `zhi_post_cate` (
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
   `seo_title` varchar(255) NOT NULL,
   `seo_keys` varchar(255) NOT NULL,
-  `seo_desc` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+  `seo_desc` text NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_post_cate`
+-- Dumping data for table `zhi_post_cate`
 --
 
 INSERT INTO `zhi_post_cate` (`id`, `name`, `alias`, `pid`, `spid`, `status`, `ordid`, `seo_title`, `seo_keys`, `seo_desc`) VALUES
@@ -2451,17 +2419,16 @@ INSERT INTO `zhi_post_cate` (`id`, `name`, `alias`, `pid`, `spid`, `status`, `or
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post_cate_re`
+-- Table structure for table `zhi_post_cate_re`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post_cate_re` (
+CREATE TABLE `zhi_post_cate_re` (
   `post_id` int(10) NOT NULL,
-  `cate_id` smallint(4) NOT NULL,
-  UNIQUE KEY `post_id` (`post_id`,`cate_id`)
+  `cate_id` smallint(4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_post_cate_re`
+-- Dumping data for table `zhi_post_cate_re`
 --
 
 INSERT INTO `zhi_post_cate_re` (`post_id`, `cate_id`) VALUES
@@ -2793,11 +2760,11 @@ INSERT INTO `zhi_post_cate_re` (`post_id`, `cate_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post_comment`
+-- Table structure for table `zhi_post_comment`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post_comment` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_post_comment` (
+`id` int(10) unsigned NOT NULL,
   `post_id` int(10) unsigned NOT NULL,
   `pid` int(10) DEFAULT '0',
   `uid` int(10) unsigned NOT NULL,
@@ -2807,12 +2774,11 @@ CREATE TABLE IF NOT EXISTS `zhi_post_comment` (
   `burn` int(10) NOT NULL,
   `add_time` int(10) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1',
-  `client` varchar(20) DEFAULT 'pc',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=94 ;
+  `client` varchar(20) DEFAULT 'pc'
+) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_post_comment`
+-- Dumping data for table `zhi_post_comment`
 --
 
 INSERT INTO `zhi_post_comment` (`id`, `post_id`, `pid`, `uid`, `uname`, `info`, `digg`, `burn`, `add_time`, `status`, `client`) VALUES
@@ -2912,21 +2878,20 @@ INSERT INTO `zhi_post_comment` (`id`, `post_id`, `pid`, `uid`, `uname`, `info`, 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post_favs`
+-- Table structure for table `zhi_post_favs`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post_favs` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_post_favs` (
+`id` int(10) NOT NULL,
   `post_id` int(10) NOT NULL,
   `rate` tinyint(1) NOT NULL COMMENT '1:best,2-good,3-bad',
   `uid` int(10) NOT NULL,
   `add_time` int(10) NOT NULL,
-  `ip` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=63 ;
+  `ip` varchar(15) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_post_favs`
+-- Dumping data for table `zhi_post_favs`
 --
 
 INSERT INTO `zhi_post_favs` (`id`, `post_id`, `rate`, `uid`, `add_time`, `ip`) VALUES
@@ -2992,62 +2957,98 @@ INSERT INTO `zhi_post_favs` (`id`, `post_id`, `rate`, `uid`, `add_time`, `ip`) V
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post_image`
+-- Table structure for table `zhi_post_image`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post_image` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_post_image` (
+`id` bigint(20) NOT NULL,
   `full_name` varchar(255) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `extension` varchar(255) DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
   `info_template_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `post_id` int(11) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `zhi_post_image`
+--
+
+INSERT INTO `zhi_post_image` (`id`, `full_name`, `create_time`, `extension`, `size`, `info_template_id`, `post_id`) VALUES
+(1, '1604/11/570bc77e6c9f5.jpg', '2016-04-11 15:49:18', 'image/jpeg', 96345, 0, 331),
+(21, '1604/12/570bd849bf02f.png', '2016-04-11 17:00:57', 'image/png', 139947, 0, 341),
+(3, '1604/11/570bc7cb0970b.jpg', '2016-04-11 15:50:35', 'image/jpeg', 229317, 0, 332),
+(4, '1604/11/570bc7cb0a0dd.png', '2016-04-11 15:50:35', 'image/png', 139947, 0, 332),
+(5, '1604/11/570bc831c8572.jpg', '2016-04-11 15:52:17', 'image/jpeg', 39821, 0, 333),
+(6, '1604/11/570bc831c8a1b.jpg', '2016-04-11 15:52:17', 'image/jpeg', 302456, 0, 333),
+(7, '或者输入外部图片地址', '2016-04-11 15:52:17', NULL, NULL, 0, 333),
+(8, '', '2016-04-11 15:52:17', NULL, NULL, 0, 333),
+(9, 'test out side ', '2016-04-11 15:52:17', NULL, NULL, 0, 333),
+(23, '1604/12/570be2bd06dec.jpg', '2016-04-11 17:45:33', 'image/jpeg', 160230, 0, 344),
+(11, '或者输入外部图片地址', '2016-04-11 15:54:11', NULL, NULL, 0, 335),
+(12, '或者输入外部图片地址', '2016-04-11 15:54:33', NULL, NULL, 0, 336),
+(13, '或者输入外部图片地址', '2016-04-11 15:55:10', NULL, NULL, 0, 337),
+(14, '1604/12/570bd468792dc.jpg', '2016-04-11 16:44:24', 'image/jpeg', 160230, 0, 331),
+(15, '1604/12/570bd46879e26.jpg', '2016-04-11 16:44:24', 'image/jpeg', 12836, 0, 331),
+(20, '1604/12/570bd849be803.jpg', '2016-04-11 17:00:57', 'image/jpeg', 160230, 0, 341),
+(17, '1604/12/570bd47550acf.jpg', '2016-04-11 16:44:37', 'image/jpeg', 39821, 0, 331);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post_link`
+-- Table structure for table `zhi_post_link`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post_link` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_post_link` (
+`id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `click_count` int(11) DEFAULT NULL,
   `info_template_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `post_id` int(11) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `zhi_post_link`
+--
+
+INSERT INTO `zhi_post_link` (`id`, `description`, `url`, `click_count`, `info_template_id`, `post_id`) VALUES
+(1, 'test ', 'url 1', 0, 0, 343),
+(2, '', 'rul2', 50, 0, 343),
+(4, 'new des 1', 'new1', 20, 0, 0),
+(5, '', 'new 2', 15, 0, 0),
+(6, '', 'new 3', 0, 0, 0),
+(18, 'ss', 'new2', 13, 0, 344),
+(17, 'sdfss', 'new1', 12, 0, 344),
+(19, '', 'good', 0, 0, 344),
+(20, '', 'test', 0, 0, 344);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post_rate`
+-- Table structure for table `zhi_post_rate`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post_rate` (
+CREATE TABLE `zhi_post_rate` (
   `id` int(10) NOT NULL,
   `post_id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
-  `add_time` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
+  `add_time` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_post_tag`
+-- Table structure for table `zhi_post_tag`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_post_tag` (
+CREATE TABLE `zhi_post_tag` (
   `post_id` int(10) unsigned NOT NULL,
-  `tag_id` int(10) unsigned NOT NULL,
-  UNIQUE KEY `post_id` (`post_id`,`tag_id`)
+  `tag_id` int(10) unsigned NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_post_tag`
+-- Dumping data for table `zhi_post_tag`
 --
 
 INSERT INTO `zhi_post_tag` (`post_id`, `tag_id`) VALUES
@@ -4534,16 +4535,19 @@ INSERT INTO `zhi_post_tag` (`post_id`, `tag_id`) VALUES
 (319, 1411),
 (321, 1406),
 (322, 1406),
-(324, 1407);
+(324, 1407),
+(331, 1411),
+(341, 1412),
+(344, 1413);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_score_item`
+-- Table structure for table `zhi_score_item`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_score_item` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_score_item` (
+`id` int(10) NOT NULL,
   `cate_id` smallint(4) NOT NULL,
   `title` varchar(120) NOT NULL,
   `type` tinyint(1) NOT NULL,
@@ -4553,12 +4557,11 @@ CREATE TABLE IF NOT EXISTS `zhi_score_item` (
   `user_num` mediumint(8) NOT NULL,
   `buy_num` mediumint(8) NOT NULL,
   `desc` text NOT NULL,
-  `ordid` tinyint(3) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+  `ordid` tinyint(3) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_score_item`
+-- Dumping data for table `zhi_score_item`
 --
 
 INSERT INTO `zhi_score_item` (`id`, `cate_id`, `title`, `type`, `img`, `score`, `stock`, `user_num`, `buy_num`, `desc`, `ordid`) VALUES
@@ -4580,19 +4583,18 @@ INSERT INTO `zhi_score_item` (`id`, `cate_id`, `title`, `type`, `img`, `score`, 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_score_item_cate`
+-- Table structure for table `zhi_score_item_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_score_item_cate` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_score_item_cate` (
+`id` smallint(4) unsigned NOT NULL,
   `name` varchar(50) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `ordid` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+  `ordid` tinyint(1) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_score_item_cate`
+-- Dumping data for table `zhi_score_item_cate`
 --
 
 INSERT INTO `zhi_score_item_cate` (`id`, `name`, `status`, `ordid`) VALUES
@@ -4606,35 +4608,33 @@ INSERT INTO `zhi_score_item_cate` (`id`, `name`, `status`, `ordid`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_score_level`
+-- Table structure for table `zhi_score_level`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_score_level` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_score_level` (
+`id` int(10) NOT NULL,
   `title` varchar(50) NOT NULL,
   `val` int(11) NOT NULL DEFAULT '0',
-  `img` varchar(50) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `img` varchar(50) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_score_log`
+-- Table structure for table `zhi_score_log`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_score_log` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_score_log` (
+`id` int(10) NOT NULL,
   `uid` int(10) NOT NULL,
   `uname` varchar(50) NOT NULL,
   `action` varchar(50) NOT NULL,
   `score` int(10) NOT NULL,
-  `add_time` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=431 ;
+  `add_time` int(10) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=431 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_score_log`
+-- Dumping data for table `zhi_score_log`
 --
 
 INSERT INTO `zhi_score_log` (`id`, `uid`, `uname`, `action`, `score`, `add_time`) VALUES
@@ -5071,11 +5071,11 @@ INSERT INTO `zhi_score_log` (`id`, `uid`, `uname`, `action`, `score`, `add_time`
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_score_order`
+-- Table structure for table `zhi_score_order`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_score_order` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_score_order` (
+`id` int(10) NOT NULL,
   `order_sn` varchar(100) NOT NULL,
   `uid` int(10) NOT NULL,
   `uname` varchar(20) NOT NULL,
@@ -5089,12 +5089,11 @@ CREATE TABLE IF NOT EXISTS `zhi_score_order` (
   `order_score` int(10) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `add_time` int(10) NOT NULL,
-  `remark` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+  `remark` varchar(255) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_score_order`
+-- Dumping data for table `zhi_score_order`
 --
 
 INSERT INTO `zhi_score_order` (`id`, `order_sn`, `uid`, `uname`, `item_id`, `item_name`, `item_num`, `consignee`, `address`, `zip`, `mobile`, `order_score`, `status`, `add_time`, `remark`) VALUES
@@ -5112,18 +5111,17 @@ INSERT INTO `zhi_score_order` (`id`, `order_sn`, `uid`, `uname`, `item_id`, `ite
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_setting`
+-- Table structure for table `zhi_setting`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_setting` (
+CREATE TABLE `zhi_setting` (
   `name` varchar(100) NOT NULL,
   `data` text NOT NULL,
-  `remark` varchar(255) NOT NULL,
-  UNIQUE KEY `name` (`name`)
+  `remark` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_setting`
+-- Dumping data for table `zhi_setting`
 --
 
 INSERT INTO `zhi_setting` (`name`, `data`, `remark`) VALUES
@@ -5181,17 +5179,16 @@ INSERT INTO `zhi_setting` (`name`, `data`, `remark`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_tag`
+-- Table structure for table `zhi_tag`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_tag` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1412 ;
+CREATE TABLE `zhi_tag` (
+`id` int(10) unsigned NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=1414 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_tag`
+-- Dumping data for table `zhi_tag`
 --
 
 INSERT INTO `zhi_tag` (`id`, `name`) VALUES
@@ -6605,16 +6602,18 @@ INSERT INTO `zhi_tag` (`id`, `name`) VALUES
 (1408, 'configurationv'),
 (1409, 'Cpanel'),
 (1410, 'Plesk'),
-(1411, 'fei');
+(1411, 'fei'),
+(1412, 'googd'),
+(1413, 'link2');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_user`
+-- Table structure for table `zhi_user`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_user` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_user` (
+`id` int(10) NOT NULL,
   `uc_uid` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(20) NOT NULL DEFAULT '0',
   `password` varchar(32) NOT NULL DEFAULT '0',
@@ -6642,12 +6641,11 @@ CREATE TABLE IF NOT EXISTS `zhi_user` (
   `follows` int(10) unsigned DEFAULT '0',
   `fans` int(10) unsigned DEFAULT '0',
   `albums` int(10) unsigned DEFAULT '0',
-  `daren` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+  `daren` tinyint(1) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_user`
+-- Dumping data for table `zhi_user`
 --
 
 INSERT INTO `zhi_user` (`id`, `uc_uid`, `username`, `password`, `email`, `avatar`, `gender`, `tags`, `intro`, `byear`, `bmonth`, `bday`, `province`, `city`, `score`, `score_level`, `cover`, `reg_ip`, `reg_time`, `last_time`, `last_ip`, `is_merchant`, `status`, `shares`, `likes`, `follows`, `fans`, `albums`, `daren`) VALUES
@@ -6672,21 +6670,20 @@ INSERT INTO `zhi_user` (`id`, `uc_uid`, `username`, `password`, `email`, `avatar
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_user_address`
+-- Table structure for table `zhi_user_address`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_user_address` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_user_address` (
+`id` int(10) unsigned NOT NULL,
   `uid` int(10) unsigned NOT NULL,
   `consignee` varchar(20) NOT NULL,
   `address` varchar(255) NOT NULL,
   `zip` varchar(10) NOT NULL,
-  `mobile` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `mobile` varchar(15) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_user_address`
+-- Dumping data for table `zhi_user_address`
 --
 
 INSERT INTO `zhi_user_address` (`id`, `uid`, `consignee`, `address`, `zip`, `mobile`) VALUES
@@ -6697,35 +6694,31 @@ INSERT INTO `zhi_user_address` (`id`, `uid`, `consignee`, `address`, `zip`, `mob
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_user_bind`
+-- Table structure for table `zhi_user_bind`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_user_bind` (
+CREATE TABLE `zhi_user_bind` (
   `uid` int(10) unsigned NOT NULL,
   `type` varchar(60) NOT NULL,
   `keyid` varchar(100) NOT NULL,
-  `info` text NOT NULL,
-  KEY `uid` (`uid`),
-  KEY `uid_type` (`uid`,`type`),
-  KEY `type_keyid` (`type`,`keyid`)
+  `info` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_user_stat`
+-- Table structure for table `zhi_user_stat`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_user_stat` (
+CREATE TABLE `zhi_user_stat` (
   `uid` int(10) unsigned NOT NULL,
   `action` varchar(20) NOT NULL,
   `num` int(10) unsigned NOT NULL,
-  `last_time` int(10) unsigned NOT NULL,
-  UNIQUE KEY `uid_type` (`uid`,`action`)
+  `last_time` int(10) unsigned NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_user_stat`
+-- Dumping data for table `zhi_user_stat`
 --
 
 INSERT INTO `zhi_user_stat` (`uid`, `action`, `num`, `last_time`) VALUES
@@ -6788,20 +6781,19 @@ INSERT INTO `zhi_user_stat` (`uid`, `action`, `num`, `last_time`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_zhaoshang_cate`
+-- Table structure for table `zhi_zhaoshang_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_zhaoshang_cate` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_zhaoshang_cate` (
+`id` int(10) unsigned NOT NULL,
   `name` varchar(100) NOT NULL,
   `info` text NOT NULL,
   `ordid` tinyint(3) unsigned NOT NULL DEFAULT '255',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_zhaoshang_cate`
+-- Dumping data for table `zhi_zhaoshang_cate`
 --
 
 INSERT INTO `zhi_zhaoshang_cate` (`id`, `name`, `info`, `ordid`, `status`) VALUES
@@ -6813,11 +6805,11 @@ INSERT INTO `zhi_zhaoshang_cate` (`id`, `name`, `info`, `ordid`, `status`) VALUE
 -- --------------------------------------------------------
 
 --
--- 表的结构 `zhi_zhaoshang_item`
+-- Table structure for table `zhi_zhaoshang_item`
 --
 
-CREATE TABLE IF NOT EXISTS `zhi_zhaoshang_item` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `zhi_zhaoshang_item` (
+`id` int(10) NOT NULL,
   `title` varchar(150) NOT NULL,
   `img` varchar(255) NOT NULL COMMENT '九块邮图片为304*190',
   `img2` varchar(255) NOT NULL COMMENT '值得买图片为220*230',
@@ -6831,23 +6823,585 @@ CREATE TABLE IF NOT EXISTS `zhi_zhaoshang_item` (
   `contact` varchar(255) NOT NULL,
   `add_time` int(10) NOT NULL,
   `stime` int(10) DEFAULT NULL COMMENT '审核通过时间',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为未审核，1为已审核',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0为未审核，1为已审核'
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `zhi_zhaoshang_item`
+-- Dumping data for table `zhi_zhaoshang_item`
 --
 
 INSERT INTO `zhi_zhaoshang_item` (`id`, `title`, `img`, `img2`, `cid`, `zs_type`, `info`, `mprice`, `price`, `url`, `uid`, `contact`, `add_time`, `stime`, `status`) VALUES
-(4, '111111', '', '', 2, 0, '1111111', '11111.00', '11111.00', '1111111', 7, '111111', 0, 1375179105, 0),
-(5, '123', '1307/26/51f2542413a65.gif', '1307/26/51f2542414e63.gif', 1, 0, '234234243123412132', '13.00', '132.00', '13', 7, '132', 1375062798, 1375179111, 0),
-(6, '测试3', '1307/26/51f25ac26e77e.gif', '1307/26/51f25ac26f88c.gif', 3, 0, '测试3', '0.00', '0.00', '测试3', 7, '测试3', 0, 1375179118, 1),
-(7, '测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4', '1307/29/51f5cb0e2eb27.gif', '1307/29/51f5cb0e32898.gif', 2, 0, '测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4', '2.00', '1.00', 'http://localhost/zhephp/?g=admin&m=index&a=indexhttp://localhost/zhephp/?g=admin&m=index&a=indexhttp://localhost/zhephp/?g=admin&m=index&a=index', 7, '测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4', 1375062798, 1375165661, 1),
-(8, '测试9.9', '1307/29/51f6023303fc1.jpg', '1307/29/51f6023307608.jpg', 1, 1, '测试9.9', '9.00', '1.00', '测试9.9', 7, '测试9.9', 1375076915, 1375178899, 1),
-(9, '1111', '1307/31/51f8b2e75c27c.gif', '1307/31/51f8b2e760810.gif', 1, 0, '1111111', '0.00', '0.00', '111111', 7, '1111', 1375253223, 0, 0),
-(10, '22222222222', '1307/31/51f8b60f6bde2.gif', '1307/31/51f8b60f6cef5.gif', 1, 0, '22222222222222', '200.55', '19.90', '2222222222222', 7, '2222222222', 1375254031, 0, 0);
+(4, '111111', '', '', 2, 0, '1111111', 11111.00, 11111.00, '1111111', 7, '111111', 0, 1375179105, 0),
+(5, '123', '1307/26/51f2542413a65.gif', '1307/26/51f2542414e63.gif', 1, 0, '234234243123412132', 13.00, 132.00, '13', 7, '132', 1375062798, 1375179111, 0),
+(6, '测试3', '1307/26/51f25ac26e77e.gif', '1307/26/51f25ac26f88c.gif', 3, 0, '测试3', 0.00, 0.00, '测试3', 7, '测试3', 0, 1375179118, 1),
+(7, '测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4', '1307/29/51f5cb0e2eb27.gif', '1307/29/51f5cb0e32898.gif', 2, 0, '测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4', 2.00, 1.00, 'http://localhost/zhephp/?g=admin&m=index&a=indexhttp://localhost/zhephp/?g=admin&m=index&a=indexhttp://localhost/zhephp/?g=admin&m=index&a=index', 7, '测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4测试4', 1375062798, 1375165661, 1),
+(8, '测试9.9', '1307/29/51f6023303fc1.jpg', '1307/29/51f6023307608.jpg', 1, 1, '测试9.9', 9.00, 1.00, '测试9.9', 7, '测试9.9', 1375076915, 1375178899, 1),
+(9, '1111', '1307/31/51f8b2e75c27c.gif', '1307/31/51f8b2e760810.gif', 1, 0, '1111111', 0.00, 0.00, '111111', 7, '1111', 1375253223, 0, 0),
+(10, '22222222222', '1307/31/51f8b60f6bde2.gif', '1307/31/51f8b60f6cef5.gif', 1, 0, '22222222222222', 200.55, 19.90, '2222222222222', 7, '2222222222', 1375254031, 0, 0);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `zhi_ad`
+--
+ALTER TABLE `zhi_ad`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_adboard`
+--
+ALTER TABLE `zhi_adboard`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_admin`
+--
+ALTER TABLE `zhi_admin`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `user_name` (`username`);
+
+--
+-- Indexes for table `zhi_admin_auth`
+--
+ALTER TABLE `zhi_admin_auth`
+ ADD KEY `role_id` (`role_id`,`menu_id`);
+
+--
+-- Indexes for table `zhi_admin_role`
+--
+ALTER TABLE `zhi_admin_role`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_article`
+--
+ALTER TABLE `zhi_article`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_article_cate`
+--
+ALTER TABLE `zhi_article_cate`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_article_page`
+--
+ALTER TABLE `zhi_article_page`
+ ADD PRIMARY KEY (`cate_id`);
+
+--
+-- Indexes for table `zhi_auto_user`
+--
+ALTER TABLE `zhi_auto_user`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_badword`
+--
+ALTER TABLE `zhi_badword`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_flink`
+--
+ALTER TABLE `zhi_flink`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_flink_cate`
+--
+ALTER TABLE `zhi_flink_cate`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_ipban`
+--
+ALTER TABLE `zhi_ipban`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_item_site`
+--
+ALTER TABLE `zhi_item_site`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_jky_anhao`
+--
+ALTER TABLE `zhi_jky_anhao`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_jky_cate`
+--
+ALTER TABLE `zhi_jky_cate`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_jky_cate_re`
+--
+ALTER TABLE `zhi_jky_cate_re`
+ ADD UNIQUE KEY `post_id` (`item_id`,`cate_id`);
+
+--
+-- Indexes for table `zhi_jky_comment`
+--
+ALTER TABLE `zhi_jky_comment`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_jky_icon`
+--
+ALTER TABLE `zhi_jky_icon`
+ ADD UNIQUE KEY `jky_id` (`item_id`,`type_id`);
+
+--
+-- Indexes for table `zhi_jky_icon_type`
+--
+ALTER TABLE `zhi_jky_icon_type`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_jky_item`
+--
+ALTER TABLE `zhi_jky_item`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_jky_orig`
+--
+ALTER TABLE `zhi_jky_orig`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_mail_queue`
+--
+ALTER TABLE `zhi_mail_queue`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_mall`
+--
+ALTER TABLE `zhi_mall`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_mall_cate`
+--
+ALTER TABLE `zhi_mall_cate`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_mall_comment`
+--
+ALTER TABLE `zhi_mall_comment`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_menu`
+--
+ALTER TABLE `zhi_menu`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_message`
+--
+ALTER TABLE `zhi_message`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_message_tpl`
+--
+ALTER TABLE `zhi_message_tpl`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_nav`
+--
+ALTER TABLE `zhi_nav`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_oauth`
+--
+ALTER TABLE `zhi_oauth`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_post`
+--
+ALTER TABLE `zhi_post`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_post_baoliao`
+--
+ALTER TABLE `zhi_post_baoliao`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_post_brand`
+--
+ALTER TABLE `zhi_post_brand`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_post_cate`
+--
+ALTER TABLE `zhi_post_cate`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_post_cate_re`
+--
+ALTER TABLE `zhi_post_cate_re`
+ ADD UNIQUE KEY `post_id` (`post_id`,`cate_id`);
+
+--
+-- Indexes for table `zhi_post_comment`
+--
+ALTER TABLE `zhi_post_comment`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_post_favs`
+--
+ALTER TABLE `zhi_post_favs`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_post_image`
+--
+ALTER TABLE `zhi_post_image`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_post_link`
+--
+ALTER TABLE `zhi_post_link`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_post_rate`
+--
+ALTER TABLE `zhi_post_rate`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_post_tag`
+--
+ALTER TABLE `zhi_post_tag`
+ ADD UNIQUE KEY `post_id` (`post_id`,`tag_id`);
+
+--
+-- Indexes for table `zhi_score_item`
+--
+ALTER TABLE `zhi_score_item`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_score_item_cate`
+--
+ALTER TABLE `zhi_score_item_cate`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_score_level`
+--
+ALTER TABLE `zhi_score_level`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_score_log`
+--
+ALTER TABLE `zhi_score_log`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_score_order`
+--
+ALTER TABLE `zhi_score_order`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_setting`
+--
+ALTER TABLE `zhi_setting`
+ ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `zhi_tag`
+--
+ALTER TABLE `zhi_tag`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_user`
+--
+ALTER TABLE `zhi_user`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_user_address`
+--
+ALTER TABLE `zhi_user_address`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_user_bind`
+--
+ALTER TABLE `zhi_user_bind`
+ ADD KEY `uid` (`uid`), ADD KEY `uid_type` (`uid`,`type`), ADD KEY `type_keyid` (`type`,`keyid`);
+
+--
+-- Indexes for table `zhi_user_stat`
+--
+ALTER TABLE `zhi_user_stat`
+ ADD UNIQUE KEY `uid_type` (`uid`,`action`);
+
+--
+-- Indexes for table `zhi_zhaoshang_cate`
+--
+ALTER TABLE `zhi_zhaoshang_cate`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zhi_zhaoshang_item`
+--
+ALTER TABLE `zhi_zhaoshang_item`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `zhi_ad`
+--
+ALTER TABLE `zhi_ad`
+MODIFY `id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
+--
+-- AUTO_INCREMENT for table `zhi_adboard`
+--
+ALTER TABLE `zhi_adboard`
+MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT for table `zhi_admin`
+--
+ALTER TABLE `zhi_admin`
+MODIFY `id` mediumint(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `zhi_admin_role`
+--
+ALTER TABLE `zhi_admin_role`
+MODIFY `id` tinyint(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `zhi_article`
+--
+ALTER TABLE `zhi_article`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+--
+-- AUTO_INCREMENT for table `zhi_article_cate`
+--
+ALTER TABLE `zhi_article_cate`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+--
+-- AUTO_INCREMENT for table `zhi_auto_user`
+--
+ALTER TABLE `zhi_auto_user`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `zhi_badword`
+--
+ALTER TABLE `zhi_badword`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zhi_flink`
+--
+ALTER TABLE `zhi_flink`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `zhi_flink_cate`
+--
+ALTER TABLE `zhi_flink_cate`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `zhi_ipban`
+--
+ALTER TABLE `zhi_ipban`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zhi_item_site`
+--
+ALTER TABLE `zhi_item_site`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `zhi_jky_anhao`
+--
+ALTER TABLE `zhi_jky_anhao`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `zhi_jky_cate`
+--
+ALTER TABLE `zhi_jky_cate`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `zhi_jky_comment`
+--
+ALTER TABLE `zhi_jky_comment`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+--
+-- AUTO_INCREMENT for table `zhi_jky_icon_type`
+--
+ALTER TABLE `zhi_jky_icon_type`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `zhi_jky_item`
+--
+ALTER TABLE `zhi_jky_item`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=112;
+--
+-- AUTO_INCREMENT for table `zhi_jky_orig`
+--
+ALTER TABLE `zhi_jky_orig`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `zhi_mail_queue`
+--
+ALTER TABLE `zhi_mail_queue`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zhi_mall`
+--
+ALTER TABLE `zhi_mall`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=494;
+--
+-- AUTO_INCREMENT for table `zhi_mall_cate`
+--
+ALTER TABLE `zhi_mall_cate`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `zhi_mall_comment`
+--
+ALTER TABLE `zhi_mall_comment`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zhi_menu`
+--
+ALTER TABLE `zhi_menu`
+MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=355;
+--
+-- AUTO_INCREMENT for table `zhi_message`
+--
+ALTER TABLE `zhi_message`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+--
+-- AUTO_INCREMENT for table `zhi_message_tpl`
+--
+ALTER TABLE `zhi_message_tpl`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `zhi_nav`
+--
+ALTER TABLE `zhi_nav`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `zhi_oauth`
+--
+ALTER TABLE `zhi_oauth`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `zhi_post`
+--
+ALTER TABLE `zhi_post`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=345;
+--
+-- AUTO_INCREMENT for table `zhi_post_baoliao`
+--
+ALTER TABLE `zhi_post_baoliao`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
+--
+-- AUTO_INCREMENT for table `zhi_post_brand`
+--
+ALTER TABLE `zhi_post_brand`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `zhi_post_cate`
+--
+ALTER TABLE `zhi_post_cate`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT for table `zhi_post_comment`
+--
+ALTER TABLE `zhi_post_comment`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=94;
+--
+-- AUTO_INCREMENT for table `zhi_post_favs`
+--
+ALTER TABLE `zhi_post_favs`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+--
+-- AUTO_INCREMENT for table `zhi_post_image`
+--
+ALTER TABLE `zhi_post_image`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT for table `zhi_post_link`
+--
+ALTER TABLE `zhi_post_link`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `zhi_score_item`
+--
+ALTER TABLE `zhi_score_item`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `zhi_score_item_cate`
+--
+ALTER TABLE `zhi_score_item_cate`
+MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `zhi_score_level`
+--
+ALTER TABLE `zhi_score_level`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zhi_score_log`
+--
+ALTER TABLE `zhi_score_log`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=431;
+--
+-- AUTO_INCREMENT for table `zhi_score_order`
+--
+ALTER TABLE `zhi_score_order`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT for table `zhi_tag`
+--
+ALTER TABLE `zhi_tag`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1414;
+--
+-- AUTO_INCREMENT for table `zhi_user`
+--
+ALTER TABLE `zhi_user`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT for table `zhi_user_address`
+--
+ALTER TABLE `zhi_user_address`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `zhi_zhaoshang_cate`
+--
+ALTER TABLE `zhi_zhaoshang_cate`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `zhi_zhaoshang_item`
+--
+ALTER TABLE `zhi_zhaoshang_item`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
