@@ -70,11 +70,11 @@
 
                                     <tr>
             		 		<th> 开始时间：</th>
-                                        <td><input type="text" name="start_time" id="J_start_time" class="date J_date_picker" size="20" value="{:date('Y-m-d H:i',time())}"/></td>
+                                        <td><input type="text" name="start_time" id="J_start_time" class="date J_date_picker" size="20" value="{$info['start_time']}"/></td>
                                     </tr>
                                     <tr>
             		 		<th> 结束时间：</th>
-                                        <td><input type="text" name="end_time" id="J_end_time" class="date J_date_picker" size="20" value="{:date('Y-m-d H:i',time())}"/></td>
+                                        <td><input type="text" name="end_time" id="J_end_time" class="date J_date_picker" size="20" value="{$info['end_time']}"/></td>
                                     </tr>
                                       <tr>
                                     <th>附加图片：</th>
@@ -175,7 +175,7 @@
                                 <tr>
             		 				<td>
                                         定时发布：
-                                        <input type="text" name="post_time" id="J_time_start" class="date J_date_picker" size="20" value="{:date('Y-m-d H:i',time())}"/>
+                                        <input type="text" name="post_time" id="J_time_start" class="date J_date_picker" size="20" value="{$info['post_time']}"/>
             						</td>
             					</tr>
                                 <tr>

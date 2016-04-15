@@ -179,7 +179,7 @@ class postAction extends backendAction {
             @copy($upload_path . 'zhaoshang/' . $_POST['zs_images'], $upload_path . 'post/' . $_POST['zs_images']);
             $data['img'] = $_POST['zs_images'];
         }
-        $data['post_time'] = strtotime($this->_request('post_time', 'trim'));
+        $data['post_time'] = $this->_request('post_time', 'trim');
         $data['post_key'] = $this->get_post_key($data['title']);
         $data['mall_id'] = $this->_request('mall_id', 'intval');
         return $data;
@@ -375,7 +375,7 @@ class postAction extends backendAction {
         } else {
             $data['img'] = $this->_post('img_url', 'trim');
         }
-        $data['post_time'] = strtotime($this->_request('post_time', 'trim'));
+        $data['post_time'] = $this->_request('post_time', 'trim');
         $data['post_key'] = $this->get_post_key($data['title']);
         $data['mall_id'] = $this->_request('mall_id', 'intval');
         return $data;
@@ -431,7 +431,7 @@ class postAction extends backendAction {
                 }
             }
         }
-        $data['post_time'] > 0 && $data['post_time'] = strtotime($data['post_time']);
+        $data['post_time'] > 0 && $data['post_time'] = $data['post_time'];
         $data = D('post')->parse_data($data);
         return $data;
     }
@@ -472,7 +472,7 @@ class postAction extends backendAction {
                     $data['add_time'] = time();
                     $data['img'] = trim($val['img']);
                     if (!empty($_REQUEST['post_time'])) {
-                        $data['post_time'] = strtotime($this->_request('post_time', 'trim', time()));
+                        $data['post_time'] = $val['post_time'];
                     }
                     $data['collect_flag'] = intval($data['collect_flag']);
                     $data['post_key'] = $this->get_post_key($data['title']);

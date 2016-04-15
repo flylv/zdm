@@ -14,7 +14,7 @@
 */
 class postModel extends baseModel {
     protected $_auto = array(
-        array('add_time', 'time', 1, 'function'),
+        //array('add_time', 'time', 1, 'function'),
     );
     protected $_validate = array(
         array('title', 'require', '{%article_title_empty}'),

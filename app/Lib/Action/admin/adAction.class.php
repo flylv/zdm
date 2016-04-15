@@ -71,9 +71,9 @@ class adAction extends backendAction {
         $this->assign('ad_type_arr', $this->_ad_type);
     }
     protected function _before_insert($data) {
-        $data['start_time'] = strtotime($data['start_time']);
-        $data['end_time'] = strtotime($data['end_time']);
-        if ($data['start_time'] >= $data['end_time']) {
+        $data['start_time'] = $data['start_time'];
+        $data['end_time'] = $data['end_time'];
+        if (strtotime($data['start_time']) >= strtotime($data['end_time'])) {
             $this->ajaxReturn(0, L('ad_endtime_less_startime'));
         }
         switch ($data['type']) {
@@ -103,9 +103,9 @@ class adAction extends backendAction {
         $this->assign('ad_type_arr', $this->_ad_type);
     }
     protected function _before_update($data) {
-        $data['start_time'] = strtotime($data['start_time']);
-        $data['end_time'] = strtotime($data['end_time']);
-        if ($data['start_time'] >= $data['end_time']) {
+        $data['start_time'] = $data['start_time'];
+        $data['end_time'] = $data['end_time'];
+        if (strtotime($data['start_time']) >= strtotime($data['end_time'])) {
             $this->ajaxReturn(0, L('ad_endtime_less_startime'));
         }
         switch ($data['type']) {

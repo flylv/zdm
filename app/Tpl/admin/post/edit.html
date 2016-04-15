@@ -184,7 +184,7 @@ select[name="index"]{
                                 <tr>
             		 				<td>
                                         定时发布：
-                                        <input type="text" name="post_time" id="J_time_start" class="date J_date_picker" size="20" value="{:date('Y-m-d H:i',$info['post_time'])}"/>
+                                        <input type="text" name="post_time" id="J_time_start" class="date J_date_picker" size="20" value="{$info['post_time']}"/>
             						</td>
             					</tr>
                                 <tr>
@@ -205,7 +205,7 @@ select[name="index"]{
             					</tr>
                                 <tr>
             		 				<td>
-                                        添加时间：{:date("Y-m-d H:i:s",$info['add_time'])}
+                                        添加时间：{$info['add_time']}
             						</td>
             					</tr>
             				</table>                        
