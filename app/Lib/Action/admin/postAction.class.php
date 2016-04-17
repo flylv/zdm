@@ -180,14 +180,17 @@ class postAction extends backendAction {
             $data['img'] = $_POST['zs_images'];
         }
         $data['post_time'] = $this->_request('post_time', 'trim');
-        $data['post_key'] = $this->get_post_key($data['title']);
+        if($this->_request('post_key', 'trim')){
+            $data['post_key'] = $this->_request('post_key', 'trim');
+        }else
+            $data['post_key'] = $this->get_post_key($data['title']);
         $data['mall_id'] = $this->_request('mall_id', 'intval');
         return $data;
     }
 
     protected function _after_insert($id) {
 
-        if (!empty($_FILES['moreImg'] && count($_FILES['moreImg']['name']))) {
+        if (!empty($_FILES['moreImg']) && count($_FILES['moreImg']['name'])) {
             for ($i=0; $i < count($_FILES['moreImg']['name']); $i++) { 
                if(!empty($_FILES['moreImg']['name'][$i])){
 
@@ -277,7 +280,7 @@ class postAction extends backendAction {
 
     protected function _before_update($data) {
 
-        if (!empty($_FILES['moreImg'] && count($_FILES['moreImg']['name']))) {
+        if (!empty($_FILES['moreImg']) && count($_FILES['moreImg']['name'])) {
             for ($i=0; $i < count($_FILES['moreImg']['name']); $i++) { 
                if(!empty($_FILES['moreImg']['name'][$i])){
 
@@ -376,7 +379,12 @@ class postAction extends backendAction {
             $data['img'] = $this->_post('img_url', 'trim');
         }
         $data['post_time'] = $this->_request('post_time', 'trim');
-        $data['post_key'] = $this->get_post_key($data['title']);
+        
+        if($this->_request('post_key', 'trim')){
+            $data['post_key'] = $this->_request('post_key', 'trim');
+        }else
+            $data['post_key'] = $this->get_post_key($data['title']);
+        
         $data['mall_id'] = $this->_request('mall_id', 'intval');
         return $data;
     }

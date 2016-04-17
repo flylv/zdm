@@ -40,40 +40,19 @@ class post_brandAction extends backendAction {
         $map = array();
         $collect_flag = $this->_request('collect_flag', 'intval', 1);
         $map['collect_flag'] = $collect_flag;
-        ($time_start = $this->_request('time_start', 'trim')) && $map['post_time'][] = array('egt', strtotime($time_start));
-        ($time_end = $this->_request('time_end', 'trim')) && $map['post_time'][] = array('elt', strtotime($time_end) + (24 * 60 * 60 - 1));
         $status = $this->_request('status');
         if ($status != null) {
             $map['status'] = $status;
         }
-        ($keyword = $this->_request('keyword', 'trim')) && $map['title'] = array('like', '%' . $keyword . '%');
-        $cate_id = $this->_request('cate_id', 'intval');
-        $selected_ids = '';
-        if ($cate_id) {
-            $id_arr = $this->_cate_mod->get_child_ids($cate_id, true);
-            $res = D("post_cate_re")->where("cate_id in(" . implode(',', $id_arr) . ")")->select();
-            $ids = "0";
-            foreach ($res as $val) {
-                $ids .= "," . $val['post_id'];
-            }
-            $map['id'] = array('IN', $ids);
-            $spid = $this->_cate_mod->where(array('id' => $cate_id))->getField('spid');
-            $selected_ids = $spid ? $spid . $cate_id : $cate_id;
-        }
-        $mall_id = $this->_request('mall_id', 'intval');
-        if ($mall_id > 0) {
-            $map['mall_id'] = $mall_id;
-        }
+        ($keywordfr = $this->_request('keywordfr', 'trim')) && $map['name_fr'] = array('like', '%' . $keywordfr . '%' );
+        ($keywordcn = $this->_request('keywordcn', 'trim')) && $map['name_cn'] = array('like', '%' . $keywordcn . '%' );
         $this->assign('search', array(
-            'time_start' => $time_start,
-            'time_end' => $time_end,
-            'cate_id' => $cate_id,
-            'selected_ids' => $selected_ids,
             'status' => $status,
-            'keyword' => $keyword,
-            'mall_id' => $mall_id,
+            'keywordfr' => $keywordfr,
+            'keywordcn' => $keywordcn,
             'collect_flag' => $collect_flag,
         ));
+
         return $map;
     }
 

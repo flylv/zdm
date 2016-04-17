@@ -1,6 +1,35 @@
 <include file="public:header" />
 <!--文章列表-->
 <div class="pad_10" >
+       <form name="searchform" method="get" >
+    <table width="100%" cellspacing="0" class="search_form">
+        <tbody>
+        <tr>
+            <td>
+            <div class="explain_col">
+                <input type="hidden" name="g" value="{:GROUP_NAME}" />
+                <input type="hidden" name="m" value="{:MODULE_NAME}" />
+                <input type="hidden" name="a" value="{:ACTION_NAME}" />
+                <input type="hidden" name="menuid" value="{$menuid}" />               
+               
+                {:L('status')}:
+                <select name="status">
+                <option value="">-{:L('all')}-</option>
+                <option value="1" <if condition="$search.status eq '1'">selected="selected"</if>>已审核</option>
+                <option value="0" <if condition="$search.status eq '0'">selected="selected"</if>>未审核</option>
+                </select>
+                &nbsp;&nbsp;中文名称关键字 :
+                <input name="keywordcn" type="text" class="input-text" size="25" value="{$search.keywordcn}" />
+                  &nbsp;&nbsp;法文名称关键字 :
+                <input name="keywordfr" type="text" class="input-text" size="25" value="{$search.keywordfr}" />
+                <input type="submit" name="search" class="btn" value="{:L('search')}" />
+                <input type="hidden" name="collect_flag" value="{$Think.get.collect_flag}">
+            </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </form>
     <div class="J_tablelist table_list" data-acturi="{:U(MODULE_NAME.'/ajax_edit')}">
     <table width="100%" cellspacing="0">
         <thead>
@@ -9,9 +38,9 @@
                 <th width="25"><input type="checkbox" id="checkall_t" class="J_checkall"></th>
                 <th width="30"><span data-tdtype="order_by" data-field="id">ID</span></th>
                 <th>Logo</th>
-                <th><span data-tdtype="order_by" data-field="中文名称">中文名称</span></th>  
-                <th><span data-tdtype="order_by" data-field="法文名称">法文名称</span></th>  
-		<th width="200"><span data-tdtype="order_by" data-field="add_time">{:L('publish_time')}</span></th>
+                <th><span data-tdtype="order_by" data-field="name_cn">中文名称</span></th>  
+                <th><span data-tdtype="order_by" data-field="name_fr">法文名称</span></th>  
+		<th width="200"><span data-tdtype="order_by" data-field="create_time">{:L('publish_time')}</span></th>
                 <th width="28"><span data-tdtype="order_by" data-field="status">{:L('status')}</span></th>
                 <th width="80">操作</th>
             </tr>

@@ -980,7 +980,6 @@ function create_brand_index($context) {
 
 function get_support_images(context,id) {
     var url = ROOT_PATH + '/index.php';
-    
     var params = {
         g: 'admin',
         m: 'post',
@@ -991,7 +990,7 @@ function get_support_images(context,id) {
     $.get(url, params, function (data) {
         var html = '';
         for (var i = 0; i < data.length; i++) {
-            html += '<div><img src="data/upload/post/' + data[i].full_name + '" width="50"  /><br/><a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="/zdm/index.php?g=admin&m=post&a=deleteimage&id='+data[i].id +'" data-msg="确认删除？">删除</a></div>';
+            html += '<div><img src="data/upload/post/' + data[i].full_name + '" width="50"  /><br/><a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="'+url+'?g=admin&m=post&a=deleteimage&id='+data[i].id +'" data-msg="确认删除？">删除</a></div>';
         }
         $(context).html(html);
     }, 'json');

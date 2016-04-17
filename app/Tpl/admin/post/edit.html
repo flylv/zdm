@@ -42,6 +42,12 @@ select[name="index"]{
                                         <input type="text" name="tags" id="J_tags" class="input-text" size="65" value="{$tags}"/>
           		                        <input type="button" value="{:L('auto_get')}" id="J_gettags" name="tags_btn" class="btn"/></td>
                                 </tr>
+                                 <tr>
+                                    <th>商品Slug：</th>
+                                    <td>
+                                        <input type="text" name="post_key" class="input-text" size="60" value="{$info.post_key}"/>                                        
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th>商品链接：</th>                                        
                                     <td>
@@ -69,7 +75,7 @@ select[name="index"]{
                                             </span><br />
                                         </notempty>                                                                
                                         上传：<input type="file" name="img" class="input-text"  style="width:200px;" />
-                                        &nbsp;&nbsp;<input type="text" class="input-text J_tip" data-default="或者输入外部图片地址" name="img_url" value="{$info.img}" size="55"/>
+                                        &nbsp;&nbsp;<input type="text" class="input-text J_tip" placeholder="或者输入外部图片地址" name="img_url" value="{$info.img}" size="55"/>
                                     </td>
             		 			</tr>
                                  
@@ -99,6 +105,10 @@ select[name="index"]{
                                     <tr>
                                     <th>物流信息：</th>
                                     <td><textarea name="delivery_info" id="delivery_info" style="width:90%;height:100px;resize:none;">{$info.delivery_info}</textarea></td>
+                                    </tr>
+                                    <tr>
+                                    <th>位置信息：</th>
+                                    <td><textarea name="location_info" id="location_info" style="width:90%;height:100px;resize:none;">{$info.location_info}</textarea></td>
                                     </tr>
                                     <tr>
                                     <th>提示：</th>
